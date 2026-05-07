@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-manrope: 'Manrope', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: #F5F2EA;
+  color: #1A1A1A;
+  font-family: 'Manrope', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,.15); border-radius: 4px; }
+
+/* ── Range slider ───────────────────────────────────────── */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(0,0,0,.1);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #1A6638;
+  border: 3px solid #F5F2EA;
+  box-shadow: 0 0 0 1px rgba(26,102,56,.35), 0 2px 8px rgba(26,102,56,.25);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+input[type='range']::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 1px rgba(26,102,56,.5), 0 4px 12px rgba(26,102,56,.35);
+}
+input[type='range']::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #1A6638;
+  border: 3px solid #F5F2EA;
+  cursor: pointer;
+}
+
+/* ── Hero particle animation ────────────────────────────── */
+@keyframes float-up {
+  0%   { opacity: 0; transform: translateY(0) scale(1); }
+  20%  { opacity: 0.6; }
+  80%  { opacity: 0.3; }
+  100% { opacity: 0; transform: translateY(-120px) scale(0.5); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+
+@keyframes drift {
+  0%   { transform: translateX(0) translateY(0); }
+  33%  { transform: translateX(12px) translateY(-8px); }
+  66%  { transform: translateX(-8px) translateY(5px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes rise-fade {
+  0%   { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Number animation ───────────────────────────────────── */
+.animate-count {
+  animation: count-up 0.5s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+@layer components {
+  /* ── Buttons ──────────────────────────────────────────── */
+  .btn-primary {
+    @apply bg-g3 text-white font-semibold text-[15px] rounded-full px-8 py-3.5 transition-all duration-200 hover:bg-[#1A6638] hover:-translate-y-0.5 hover:shadow-lg cursor-pointer border-none inline-flex items-center gap-2;
+    box-shadow: 0 2px 12px rgba(26,102,56,.28);
+  }
+  .btn-outline {
+    @apply bg-transparent text-g3 font-semibold text-[15px] rounded-full px-7 py-3.5 border border-g3/40 transition-all duration-200 hover:bg-g3/[.08] hover:border-g3/70 cursor-pointer inline-flex items-center gap-2;
+  }
+  .btn-dark {
+    @apply bg-g1 text-white font-semibold text-[16px] rounded-full px-10 py-4 transition-all duration-200 hover:bg-g2 hover:text-g4 cursor-pointer border-none;
+    box-shadow: 0 4px 20px rgba(82,181,88,.35);
+  }
+  .btn-hero {
+    @apply bg-g1 text-white font-semibold text-[15px] rounded-full px-8 py-3.5 transition-all duration-200 cursor-pointer border-none inline-flex items-center gap-2;
+    box-shadow: 0 2px 16px rgba(82,181,88,.4);
+  }
+  .btn-hero:hover {
+    @apply -translate-y-0.5;
+    box-shadow: 0 6px 24px rgba(82,181,88,.5);
+  }
+  .btn-hero-outline {
+    @apply bg-white/[.08] text-white font-semibold text-[15px] rounded-full px-7 py-3.5 border border-white/20 transition-all duration-200 hover:bg-white/[.14] cursor-pointer inline-flex items-center gap-2;
+  }
+
+  /* ── Section labels ──────────────────────────────────── */
+  .section-label {
+    @apply text-[11px] font-bold tracking-[0.12em] uppercase text-g3 mb-3;
+  }
+  .section-label-warn {
+    @apply text-[11px] font-bold tracking-[0.12em] uppercase text-warn mb-3;
+  }
+  .section-label-lila {
+    @apply text-[11px] font-bold tracking-[0.12em] uppercase text-lila mb-3;
+  }
+  .section-label-lt {
+    @apply text-[11px] font-bold tracking-[0.12em] uppercase text-white/40 mb-3;
+  }
+  .section-label-muted {
+    @apply text-[11px] font-bold tracking-[0.12em] uppercase text-t3 mb-3;
+  }
+
+  /* ── Cards ───────────────────────────────────────────── */
+  .card-base {
+    @apply bg-white border border-black/[.07] rounded-3xl p-7;
+  }
+  .card-warn {
+    @apply bg-[#FEF0EC] border border-warn/15 rounded-3xl p-7;
+  }
+  .card-green {
+    @apply bg-[#EDF8E8] border border-g1/20 rounded-3xl p-7;
+  }
+  .card-lila {
+    @apply bg-[#F0ECFF] border border-lila/20 rounded-3xl p-7;
+  }
+  .card-dark {
+    @apply bg-g4 border border-white/[.06] rounded-3xl p-7;
+  }
+
+  /* ── Quote / Alert ───────────────────────────────────── */
+  .quote-block {
+    @apply border-l-2 border-g1 bg-[#EDF8E8] rounded-r-2xl px-6 py-5 my-6;
+  }
+  .quote-block-lila {
+    @apply border-l-2 border-lila bg-[#F0ECFF] rounded-r-2xl px-6 py-5 my-6;
+  }
+  .alert-green {
+    @apply bg-[#EDF8E8] border-l-2 border-g1 text-g4 rounded-r-2xl px-5 py-4 text-[15px] leading-relaxed mb-4;
+  }
+  .alert-warn {
+    @apply bg-[#FEF0EC] border-l-2 border-warn text-[#7A2B15] rounded-r-2xl px-5 py-4 text-[15px] leading-relaxed mb-4;
+  }
+  .alert-lila {
+    @apply bg-[#F0ECFF] border-l-2 border-lila text-[#3D2D99] rounded-r-2xl px-5 py-4 text-[15px] leading-relaxed mb-4;
+  }
+
+  /* ── Chip / Badge ────────────────────────────────────── */
+  .chip {
+    @apply flex items-center gap-2 bg-white border border-black/[.08] rounded-full px-4 py-2 text-[13px] font-medium text-t2;
+  }
+  .badge {
+    @apply bg-white/[.08] border border-white/[.15] rounded-full px-4 py-1.5 text-[12px] text-white/70 flex items-center gap-2;
+  }
+
+  /* ── Section wrapper ─────────────────────────────────── */
+  .section-wrap {
+    @apply py-24 px-6;
+  }
+  .section-wrap-white {
+    @apply bg-white py-24 px-6;
+  }
+  .inner {
+    @apply max-w-4xl mx-auto;
+  }
+
+  /* ── Stat number ─────────────────────────────────────── */
+  .stat-num {
+    @apply text-[clamp(32px,5vw,52px)] font-bold tracking-tight leading-none;
+  }
+  .stat-num-sm {
+    @apply text-[clamp(26px,4vw,40px)] font-bold tracking-tight leading-none;
+  }
+}
