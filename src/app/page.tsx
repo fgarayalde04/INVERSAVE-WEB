@@ -6,6 +6,7 @@ import InteresCompuestoSection from "@/components/sections/InteresCompuesto";
 import DCASection from "@/components/sections/DCA";
 import SP500Section from "@/components/sections/SP500Section";
 import SimuladorSection from "@/components/sections/Simulador";
+import AccountDashboard from "@/components/sections/AccountDashboard";
 import PlanInversaveSection from "@/components/sections/PlanInversave";
 import ExpandiblesSection from "@/components/sections/Expandibles";
 import { CTASection, Footer } from "@/components/sections/CTAFooter";
@@ -29,6 +30,7 @@ export default function Home() {
       <SP500Section />
       <GlowDivider />
       <SimuladorSection />
+      <AccountDashboard />
       <GlowDivider />
       <PlanInversaveSection />
       <GlowDivider />

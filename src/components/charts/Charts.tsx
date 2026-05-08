@@ -200,7 +200,95 @@ export function SimChart({ monthly, years, rate }: SimChartProps) {
   return <canvas ref={ref} />;
 }
 
-// ── SP500 Chart ───────────────────────────────────────────────
+// ── SPY Real Chart — uses live data from /api/spy-data ────────
+import type { SPYDataPoint } from "@/app/api/spy-data/route";
+
+interface SPYRealChartProps { data: SPYDataPoint[] }
+
+export function SPYRealChart({ data }: SPYRealChartProps) {
+  const ref = useRef<HTMLCanvasElement>(null);
+  const chartRef = useRef<Chart | null>(null);
+
+  useEffect(() => {
+    if (!ref.current || data.length === 0) return;
+    if (chartRef.current) chartRef.current.destroy();
+
+    // Show annual labels (every Jan, or every 2/5 years when range is large)
+    const totalPoints = data.length;
+    const step = totalPoints > 200 ? 24 : totalPoints > 60 ? 12 : 6;
+
+    const labels = data.map((d, i) => {
+      if (i % step === 0) return d.date.slice(0, 7);
+      return "";
+    });
+
+    chartRef.current = new Chart(ref.current, {
+      type: "line",
+      data: {
+        labels,
+        datasets: [
+          {
+            label: "SPY Adjusted Close",
+            data: data.map(d => d.close),
+            borderColor: "#1A6638",
+            backgroundColor: "rgba(26,102,56,.08)",
+            fill: true,
+            tension: 0.3,
+            pointRadius: 0,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "#1A6638",
+            borderWidth: 2.5,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              title: (items) => data[items[0].dataIndex]?.date?.slice(0, 7) ?? "",
+              label: (ctx) => {
+                const d = data[ctx.dataIndex];
+                return [
+                  ` Precio: USD ${(ctx.parsed.y ?? 0).toFixed(2)}`,
+                  ` Retorno acum.: +${d?.returnPct?.toFixed(1) ?? 0}%`,
+                ];
+              },
+            },
+            backgroundColor: "#fff",
+            titleColor: "#1A1A1A",
+            bodyColor: "#5A5A5A",
+            borderColor: "rgba(0,0,0,.1)",
+            borderWidth: 1,
+            padding: 12,
+          },
+        },
+        scales: {
+          x: {
+            ticks: { font: TICK_FONT, color: AXIS_COLOR, maxRotation: 0, autoSkip: false },
+            grid: { display: false },
+          },
+          y: {
+            ticks: {
+              font: TICK_FONT,
+              color: AXIS_COLOR,
+              callback: (v) => `$${(+v).toFixed(0)}`,
+            },
+            grid: { color: GRID_COLOR },
+          },
+        },
+      },
+    });
+    return () => chartRef.current?.destroy();
+  }, [data]);
+
+  return <canvas ref={ref} />;
+}
+
+// ── SP500 Chart (legacy — kept for compatibility) ─────────────
 export function SP500Chart() {
   const ref = useRef<HTMLCanvasElement>(null);
   const chartRef = useRef<Chart | null>(null);
