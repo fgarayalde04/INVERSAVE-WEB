@@ -69,10 +69,10 @@ export default function Navbar() {
         {/* CTA + hamburger */}
         <div className="flex items-center gap-3">
           <button
-            onClick={() => scrollTo("cta")}
+            onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro")}
             className="btn-primary text-[13px] py-2 px-5 hidden sm:inline-flex"
           >
-            Agendar reunión
+            Comenzar mi plan
           </button>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -130,10 +130,10 @@ export default function Navbar() {
               ))}
               <div className="pt-2 pb-1">
                 <button
-                  onClick={() => scrollTo("cta")}
+                  onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro")}
                   className="btn-primary w-full justify-center text-[14px] py-3"
                 >
-                  Agendar reunión
+                  Comenzar mi plan
                 </button>
               </div>
             </div>

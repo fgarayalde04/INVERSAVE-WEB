@@ -21,25 +21,35 @@ export function CTASection() {
 
       <div className="max-w-lg mx-auto relative z-10">
         <FadeIn>
-          <p className="text-[11px] font-bold tracking-[0.12em] uppercase text-g2/50 mb-5">Primer paso</p>
+          <p className="text-[11px] font-bold tracking-[0.12em] uppercase text-g2/50 mb-5">El momento es ahora</p>
           <h2 className="text-[clamp(30px,5vw,52px)] font-bold tracking-[-0.025em] text-white leading-[1.06] mb-4">
-            La planificación{" "}
-            <span className="text-g2">empieza hoy.</span>
+            Tu futuro financiero{" "}
+            <span className="text-g2">se construye hoy.</span>
           </h2>
           <p className="text-[17px] text-white/50 leading-relaxed mb-10">
-            Sin compromiso, sin costo. Una conversación para entender tu situación y
-            mostrarte exactamente qué opciones tenés.
+            Invertir no es para hacerse rico rápido. Es para vivir más tranquilo después.
+            Una conversación sin compromiso para entender tu situación y mostrarte exactamente qué opciones tenés.
           </p>
-          <motion.button
-            whileHover={{ scale: 1.03, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            className="btn-dark"
-            onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net")}
-          >
-            Agendar reunión gratuita
-          </motion.button>
-          <p className="text-[12px] text-white/20 mt-5">
-            Sin compromiso · Sin costo · Asesoría bajo licencia BCU · Dominion Capital Strategies · Guernsey FSC
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-5">
+            <motion.button
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="btn-dark"
+              onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro")}
+            >
+              Comenzar mi plan de ahorro
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.02, y: -1 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-[15px] font-semibold border border-white/20 text-white/70 hover:bg-white/[.06] transition-all duration-200 cursor-pointer"
+              onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro")}
+            >
+              Hablar con un asesor
+            </motion.button>
+          </div>
+          <p className="text-[12px] text-white/20 mt-3">
+            Sin compromiso · Sin costo · Regulado BCU · Dominion Capital Strategies · Guernsey FSC
           </p>
         </FadeIn>
       </div>

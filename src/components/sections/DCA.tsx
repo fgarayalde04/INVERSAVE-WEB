@@ -109,6 +109,21 @@ export default function DCASection() {
           </div>
           <p className="text-[11px] text-t3 italic mt-4">Fuente: S&P, Bloomberg, BofA US Equity & Quant Strategy.</p>
         </div>
+
+        <FadeIn>
+          <div className="mt-10 bg-[#EDF8E8] border border-g1/20 rounded-2xl px-6 py-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+            <div>
+              <p className="text-[15px] font-semibold text-g4 mb-1">Automatizá tu ahorro. Dejá que el tiempo haga su parte.</p>
+              <p className="text-[13px] text-t2">Aportes mensuales fijos, inversión automática, sin necesitar saber de finanzas.</p>
+            </div>
+            <button
+              onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro")}
+              className="flex-shrink-0 bg-g3 text-white font-semibold text-[13px] rounded-full px-5 py-2.5 hover:bg-[#1A6638] transition-colors cursor-pointer"
+            >
+              Comenzar hoy
+            </button>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

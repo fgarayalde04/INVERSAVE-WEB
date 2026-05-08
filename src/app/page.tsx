@@ -1,6 +1,7 @@
 import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";
-import { StatsBand, ProblemaSection } from "@/components/sections/Problema";
+import { ProblemaSection } from "@/components/sections/Problema";
+import PorQueFunciona from "@/components/sections/PorQueFunciona";
 import MentalidadSection from "@/components/sections/Mentalidad";
 import InteresCompuestoSection from "@/components/sections/InteresCompuesto";
 import DCASection from "@/components/sections/DCA";
@@ -18,6 +19,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <ProblemaSection />
+      <GlowDivider />
+      <PorQueFunciona />
       <GlowDivider />
       <MentalidadSection />
       <GlowDivider />

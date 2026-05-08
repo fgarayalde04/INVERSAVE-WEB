@@ -113,6 +113,23 @@ export default function MentalidadSection() {
         </div>
 
         <QuoteBlock text={QUOTES.buffett1.text} author={QUOTES.buffett1.author} />
+
+        <FadeIn>
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <button
+              onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro")}
+              className="btn-primary text-[14px]"
+            >
+              Comenzar mi plan
+            </button>
+            <button
+              onClick={() => document.getElementById("sim")?.scrollIntoView({ behavior: "smooth" })}
+              className="btn-outline text-[14px]"
+            >
+              Simulá tu futuro
+            </button>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

@@ -231,6 +231,21 @@ export default function SP500Section() {
             </button>
           </motion.div>
         )}
+
+        {/* Section CTA */}
+        <FadeIn>
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white border border-black/[.07] rounded-2xl px-6 py-5">
+            <p className="text-[15px] font-semibold text-t1">
+              El tiempo en el mercado suele superar al intento de adivinar el mercado.
+            </p>
+            <button
+              onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro")}
+              className="flex-shrink-0 bg-g3 text-white font-semibold text-[13px] rounded-full px-5 py-2.5 hover:bg-[#1A6638] transition-colors cursor-pointer"
+            >
+              Agendá una reunión
+            </button>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

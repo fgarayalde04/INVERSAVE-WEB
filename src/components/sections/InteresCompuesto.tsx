@@ -8,27 +8,27 @@ export default function InteresCompuestoSection() {
     <section className="section-wrap">
       <div className="inner">
         <FadeIn>
-          <p className="section-label">Interés compuesto</p>
+          <p className="section-label">El costo de esperar</p>
           <h2 className="text-h2 font-bold mb-5">
-            Empezar 5 años antes{" "}
+            Empezar 10 años antes{" "}
             <br className="hidden sm:block" />
-            <span className="text-g3">vale USD 124.695 más.</span>
+            <span className="text-g3">vale más de USD 600.000.</span>
           </h2>
           <p className="text-[17px] text-t2 leading-relaxed max-w-xl mb-12">
-            Ana y Federico aportan exactamente lo mismo. La única diferencia es cuándo
-            empezaron. Ese detalle cambia el resultado de forma que ningún ingreso
-            extra puede compensar.
+            Persona A y Persona B aportan exactamente lo mismo por mes.
+            La única diferencia: cuándo empezaron. Ese solo detalle cambia el resultado
+            de una forma que ningún aumento de aporte puede compensar.
           </p>
         </FadeIn>
 
-        {/* Ana vs Federico */}
+        {/* Persona A vs Persona B — spec: $300/mes, 25 vs 35, 8% anual */}
         <div className="grid sm:grid-cols-2 gap-5 mb-6">
           <FadeIn>
             <div className="bg-[#EDF8E8] border border-g1/25 rounded-3xl p-7" style={{ borderTop: "3px solid #52B558" }}>
-              <p className="text-[11px] font-bold text-g3 tracking-[0.1em] uppercase mb-4">Ana — empieza a los 25</p>
-              <p className="text-[clamp(28px,4.5vw,42px)] font-bold text-g3 tracking-tight leading-none mb-2">USD 1.286.980</p>
-              <p className="text-[14px] text-t2 leading-snug mb-5">USD 500/mes · 40 años · 8% anual · Total aportado: USD 240.000</p>
-              <div className="h-1.5 bg-black/[.07] rounded-full overflow-hidden mb-2">
+              <p className="text-[11px] font-bold text-g3 tracking-[0.1em] uppercase mb-4">Persona A — empieza a los 25</p>
+              <p className="text-[clamp(28px,4.5vw,42px)] font-bold text-g3 tracking-tight leading-none mb-2">USD 1.047.600</p>
+              <p className="text-[14px] text-t2 leading-snug mb-5">USD 300/mes · 40 años · 8% anual · Total aportado: USD 144.000</p>
+              <div className="h-2 bg-black/[.07] rounded-full overflow-hidden mb-2">
                 <div className="h-full bg-g1 rounded-full" style={{ width: "100%" }} />
               </div>
               <p className="text-[12px] text-t3">100% — Capital máximo posible</p>
@@ -36,23 +36,31 @@ export default function InteresCompuestoSection() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <div className="card-base" style={{ borderTop: "3px solid #6B48E8" }}>
-              <p className="text-[11px] font-bold text-lila tracking-[0.1em] uppercase mb-4">Federico — empieza a los 30</p>
-              <p className="text-[clamp(28px,4.5vw,42px)] font-bold text-lila tracking-tight leading-none mb-2">USD 1.162.285</p>
-              <p className="text-[14px] text-t2 leading-snug mb-5">USD 500/mes · 35 años · 8% anual · Total aportado: USD 210.000</p>
-              <div className="h-1.5 bg-black/[.07] rounded-full overflow-hidden mb-2">
-                <div className="h-full bg-lila rounded-full" style={{ width: "90%" }} />
+              <p className="text-[11px] font-bold text-lila tracking-[0.1em] uppercase mb-4">Persona B — empieza a los 35</p>
+              <p className="text-[clamp(28px,4.5vw,42px)] font-bold text-lila tracking-tight leading-none mb-2">USD 447.150</p>
+              <p className="text-[14px] text-t2 leading-snug mb-5">USD 300/mes · 30 años · 8% anual · Total aportado: USD 108.000</p>
+              <div className="h-2 bg-black/[.07] rounded-full overflow-hidden mb-2">
+                <div className="h-full bg-lila rounded-full" style={{ width: "43%" }} />
               </div>
-              <p className="text-[12px] text-t3">90% del capital de Ana — 5 años menos</p>
+              <p className="text-[12px] text-t3">43% del capital de A — 10 años menos</p>
             </div>
           </FadeIn>
         </div>
 
         <FadeIn>
-          <Alert variant="green">
-            Empezar 5 años antes genera{" "}
-            <strong>USD 124.695 más</strong> sin aportar un peso extra. El tiempo
-            tiene un valor financiero concreto e irreemplazable.
-          </Alert>
+          <div className="bg-[#EDF8E8] border border-g1/20 rounded-2xl px-5 py-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+            <p className="text-[15px] text-g4 leading-relaxed">
+              Empezar 10 años antes genera{" "}
+              <strong>USD 600.450 más</strong> aportando el mismo monto mensual.{" "}
+              <span className="italic text-g3">El tiempo no solo suma — multiplica.</span>
+            </p>
+            <button
+              onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro")}
+              className="flex-shrink-0 bg-g3 text-white font-semibold text-[13px] rounded-full px-5 py-2.5 hover:bg-[#1A6638] transition-colors cursor-pointer"
+            >
+              Empezar hoy
+            </button>
+          </div>
         </FadeIn>
 
         {/* Chart */}
