@@ -2,6 +2,38 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FadeIn, AnimatedNumber } from "@/components/ui";
+import { PopulationAgingChart, BPSSubsidyChart } from "@/components/charts/Charts";
+
+function AccordionItem({ title, children }: { title: string; children: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border-b border-black/[.06] last:border-0">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between py-4 text-left gap-4"
+      >
+        <span className="text-[14px] font-semibold text-t1">{title}</span>
+        <motion.span
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+          className="text-t3 flex-shrink-0"
+        >
+          ↓
+        </motion.span>
+      </button>
+      {open && (
+        <motion.div
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
+          className="pb-5"
+        >
+          {children}
+        </motion.div>
+      )}
+    </div>
+  );
+}
 
 function TimelineBar({ label, pct, color, year }: { label: string; pct: number; color: string; year: string }) {
   return (
@@ -98,7 +130,7 @@ export function ProblemaSection() {
           </button>
         </FadeIn>
 
-        {/* Expandable: timeline + alert + life expectancy */}
+        {/* Expandable content */}
         {showMore && (
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -129,8 +161,30 @@ export function ProblemaSection() {
               </div>
             </FadeIn>
 
+            {/* Two charts side by side */}
+            <div className="grid sm:grid-cols-2 gap-5 mt-8 mb-8">
+              <FadeIn>
+                <div className="bg-white border border-black/[.07] rounded-3xl p-6">
+                  <p className="text-[13px] font-semibold text-t1 mb-0.5">Población 65+ en Uruguay</p>
+                  <p className="text-[12px] text-t3 mb-4">Observado y proyección CEPAL (%)</p>
+                  <div className="h-[180px]">
+                    <PopulationAgingChart />
+                  </div>
+                </div>
+              </FadeIn>
+              <FadeIn delay={0.06}>
+                <div className="bg-white border border-black/[.07] rounded-3xl p-6">
+                  <p className="text-[13px] font-semibold text-t1 mb-0.5">Asistencia del Estado al BPS</p>
+                  <p className="text-[12px] text-t3 mb-4">Miles de millones UYU (2015–2024)</p>
+                  <div className="h-[180px]">
+                    <BPSSubsidyChart />
+                  </div>
+                </div>
+              </FadeIn>
+            </div>
+
             {/* Life expectancy */}
-            <div className="mt-10" id="educacion">
+            <div className="mb-10" id="educacion">
               <FadeIn>
                 <p className="section-label">Esperanza de vida: sube sin parar</p>
                 <h3 className="text-h3 font-bold mb-3">
@@ -157,13 +211,125 @@ export function ProblemaSection() {
                     </FadeIn>
                   ))}
                 </div>
-                <p className="text-[11px] text-t3 italic">Fuente: CEPAL (2022) e INE Uruguay revisión 2025.</p>
+                <p className="text-[11px] text-t3 italic mb-10">Fuente: CEPAL (2022) e INE Uruguay revisión 2025.</p>
               </FadeIn>
             </div>
 
+            {/* Por qué necesitás un complemento — 3 idea cards */}
+            <FadeIn>
+              <p className="section-label mb-1">Por qué el retiro necesita un complemento</p>
+              <h3 className="text-h3 font-bold mb-6">
+                El sistema público cubre{" "}
+                <span className="text-warn">solo una parte</span> de lo que necesitás.
+              </h3>
+            </FadeIn>
+            <div className="grid sm:grid-cols-3 gap-4 mb-10">
+              {[
+                {
+                  icon: "⏳",
+                  title: "El retiro dura más que antes",
+                  body: "Con una esperanza de vida de 78 años y jubilación a los 65, tu retiro puede durar 15–25 años. El sistema público no fue diseñado para financiar ese horizonte con calidad de vida.",
+                },
+                {
+                  icon: "📉",
+                  title: "La tasa de sustitución cae",
+                  body: "La jubilación promedio cubre menos del 60% del último salario. A medida que el ratio cotizantes/jubilado baja, ese porcentaje seguirá descendiendo en términos reales.",
+                },
+                {
+                  icon: "🌍",
+                  title: "La inflación erosiona el ahorro",
+                  body: "Mantener pesos inactivos pierde valor cada año. Una inversión en activos globales diversificados puede superar la inflación y crecer de forma compuesta en el largo plazo.",
+                },
+              ].map((c, i) => (
+                <FadeIn key={c.title} delay={i * 0.07}>
+                  <div className="bg-white border border-black/[.07] rounded-3xl p-6 h-full">
+                    <div className="text-[28px] mb-4">{c.icon}</div>
+                    <p className="text-[15px] font-bold text-t1 mb-3">{c.title}</p>
+                    <p className="text-[13px] text-t2 leading-relaxed">{c.body}</p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+
+            {/* Evidencia internacional */}
+            <FadeIn>
+              <div className="bg-[#F5F2EA] border border-black/[.06] rounded-3xl p-7 mb-10">
+                <p className="section-label mb-1">Evidencia internacional</p>
+                <h3 className="text-[18px] font-bold text-t1 mb-5">
+                  El ahorro complementario es la norma, no la excepción.
+                </h3>
+                <div className="grid sm:grid-cols-3 gap-5 mb-5">
+                  {[
+                    { n: "72%", l: "De los inversores globales afirman que el ahorro propio es crucial para su retiro (ICI Research Report)" },
+                    { n: "87%", l: "De quienes tienen opinión formada sobre su retiro priorizan instrumentos de inversión propios sobre la pensión pública" },
+                    { n: "65%", l: "De los hogares en países de la OCDE cuentan con algún tipo de ahorro privado complementario al sistema público" },
+                  ].map((s, i) => (
+                    <FadeIn key={i} delay={i * 0.07}>
+                      <div className="bg-white border border-black/[.07] rounded-2xl p-5 text-center">
+                        <p className="text-[clamp(24px,4vw,36px)] font-bold text-g3 tracking-tight leading-none mb-2">{s.n}</p>
+                        <p className="text-[12px] text-t2 leading-snug">{s.l}</p>
+                      </div>
+                    </FadeIn>
+                  ))}
+                </div>
+                <p className="text-[11px] text-t3 italic">
+                  Fuente: ICI Research Report, OCDE Pensions Outlook 2023, CEPAL, BPS, CINVE y elaboración propia.
+                </p>
+              </div>
+            </FadeIn>
+
+            {/* Educational accordion */}
+            <FadeIn>
+              <p className="section-label mb-1">Entender mejor qué está pasando</p>
+              <h3 className="text-[18px] font-bold text-t1 mb-5">Preguntas frecuentes sobre el sistema</h3>
+              <div className="bg-white border border-black/[.07] rounded-3xl px-6 mb-8">
+                <AccordionItem title="¿Qué es el sistema mixto de jubilaciones en Uruguay?">
+                  <p className="text-[13px] text-t2 leading-relaxed">
+                    Uruguay tiene un sistema de dos pilares. El primero es el BPS (Banco de Previsión Social),
+                    que funciona por reparto: los trabajadores activos financian las jubilaciones de los actuales pasivos.
+                    El segundo es el régimen de capitalización individual a través de las AFAP (Administradoras de Fondos
+                    de Ahorro Previsional), donde cada trabajador acumula sus propios aportes. Ambos son obligatorios para
+                    quienes ganan por encima de un umbral. Sin embargo, ninguno de los dos fue diseñado para financiar
+                    solos 25–30 años de retiro activo con calidad de vida creciente.
+                  </p>
+                </AccordionItem>
+                <AccordionItem title="¿Por qué el BPS necesita cada vez más asistencia del Estado?">
+                  <p className="text-[13px] text-t2 leading-relaxed">
+                    El BPS es un sistema de reparto: los ingresos provienen de los aportes de trabajadores activos,
+                    y los egresos son las pasividades. A medida que la población envejece y la natalidad cae, hay menos
+                    cotizantes por cada jubilado. En 1985 había 5,2 cotizantes por pasivo; hoy son 2,3. Esa brecha
+                    estructural requiere que el Estado transfiera fondos al BPS para cubrir el déficit. En 2024,
+                    esa asistencia superó los $8.194 millones de pesos —más del doble que en 2019.
+                  </p>
+                </AccordionItem>
+                <AccordionItem title="¿Cuánto cubre realmente la jubilación pública?">
+                  <p className="text-[13px] text-t2 leading-relaxed">
+                    En promedio, la jubilación pública en Uruguay cubre entre el 45% y el 65% del último salario en
+                    actividad, dependiendo de los años de cotización y el salario promedio del trabajador. Para quienes
+                    tienen salarios más altos o carreras más cortas, la tasa de sustitución es aún menor. Esto implica
+                    que al retirarse, la mayoría de las personas experimenta una caída significativa en su ingreso mensual.
+                  </p>
+                </AccordionItem>
+                <AccordionItem title="¿Qué pasa si no hago nada y dependo solo del BPS y la AFAP?">
+                  <p className="text-[13px] text-t2 leading-relaxed">
+                    Si dependés exclusivamente de BPS + AFAP, tu jubilación cubrirá aproximadamente el 50–70% de tu
+                    salario actual —en el mejor de los casos. Además, ese porcentaje podría decrecer en el tiempo si
+                    el déficit del BPS se profundiza. Las proyecciones de CEPAL y CINVE indican que sin ahorro
+                    complementario, muchos uruguayos deberán reducir su nivel de vida al retirarse, o postergar el
+                    retiro más allá de los 65 años. El tercer pilar voluntario no reemplaza al sistema, lo complementa.
+                  </p>
+                </AccordionItem>
+              </div>
+            </FadeIn>
+
+            <p className="text-[11px] text-t3 italic mb-8">
+              Fuentes: INE Uruguay, BPS, CINVE, Estados Financieros BPS 2024, Monitor Mensual BPS,
+              ICI Research Report y elaboración propia.
+            </p>
+
             <button
               onClick={() => setShowMore(false)}
-              className="flex items-center gap-2 text-[13px] font-semibold text-t3 hover:text-t1 transition-colors mt-8"
+              className="flex items-center gap-2 text-[13px] font-semibold text-t3 hover:text-t1 transition-colors"
             >
               ↑ Ver menos
             </button>

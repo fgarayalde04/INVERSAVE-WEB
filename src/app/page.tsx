@@ -7,7 +7,6 @@ import DCASection from "@/components/sections/DCA";
 import SP500Section from "@/components/sections/SP500Section";
 import EvidenciaHistorica from "@/components/sections/EvidenciaHistorica";
 import SimuladorSection from "@/components/sections/Simulador";
-import AccountDashboard from "@/components/sections/AccountDashboard";
 import PlanInversaveSection from "@/components/sections/PlanInversave";
 import ExpandiblesSection from "@/components/sections/Expandibles";
 import { CTASection, Footer } from "@/components/sections/CTAFooter";
@@ -31,7 +30,6 @@ export default function Home() {
       <EvidenciaHistorica />
       <GlowDivider />
       <SimuladorSection />
-      <AccountDashboard />
       <GlowDivider />
       <PlanInversaveSection />
       <GlowDivider />

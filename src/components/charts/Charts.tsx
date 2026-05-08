@@ -5,7 +5,7 @@ import {
   LineController, LineElement, PointElement, LinearScale, CategoryScale,
   BarController, BarElement, Filler, Tooltip, Legend,
 } from "chart.js";
-import { SP500_ANNUAL_RETURNS } from "@/data/sp500AnnualReturns";
+import { SP500_HISTORICAL_RETURNS } from "@/data/sp500HistoricalReturns";
 
 Chart.register(
   LineController, LineElement, PointElement, LinearScale, CategoryScale,
@@ -298,7 +298,7 @@ export function AnnualReturnsChart() {
     if (!ref.current) return;
     if (chartRef.current) chartRef.current.destroy();
 
-    const data = SP500_ANNUAL_RETURNS;
+    const data = SP500_HISTORICAL_RETURNS;
     const avgGeometric = 10.02;
 
     chartRef.current = new Chart(ref.current, {
@@ -308,12 +308,12 @@ export function AnnualReturnsChart() {
         datasets: [
           {
             label: "Retorno anual S&P 500",
-            data: data.map(d => d.returnPct),
+            data: data.map(d => d.return),
             backgroundColor: data.map(d =>
-              d.returnPct >= 0 ? "rgba(26,102,56,0.82)" : "rgba(181,69,30,0.82)"
+              d.return >= 0 ? "rgba(26,102,56,0.82)" : "rgba(181,69,30,0.82)"
             ),
             borderColor: data.map(d =>
-              d.returnPct >= 0 ? "#1A6638" : "#B5451E"
+              d.return >= 0 ? "#1A6638" : "#B5451E"
             ),
             borderWidth: 0,
             borderRadius: 1.5,
@@ -343,7 +343,7 @@ export function AnnualReturnsChart() {
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               title: (items: any[]) => `Año ${items[0].label}`,
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              label: (ctx: any) => {
+              label: (ctx: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
                 if (ctx.datasetIndex === 0) {
                   const v = ctx.parsed.y ?? 0;
                   return ` ${v >= 0 ? "+" : ""}${v.toFixed(2)}%`;
@@ -375,6 +375,148 @@ export function AnnualReturnsChart() {
               font: TICK_FONT,
               color: AXIS_COLOR,
               callback: (v: number | string) => `${+v >= 0 ? "+" : ""}${v}%`,
+            },
+            grid: { color: GRID_COLOR },
+          },
+        },
+      },
+    });
+    return () => chartRef.current?.destroy();
+  }, []);
+
+  return <canvas ref={ref} />;
+}
+
+// ── Population Aging Chart (Uruguay) ─────────────────────────
+export function PopulationAgingChart() {
+  const ref = useRef<HTMLCanvasElement>(null);
+  const chartRef = useRef<Chart | null>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    if (chartRef.current) chartRef.current.destroy();
+
+    const observed = ["1990", "2000", "2010", "2020", "2025"];
+    const observedVals = [11.0, 12.5, 13.8, 15.5, 15.8];
+    const projected = ["2030", "2040", "2050", "2070"];
+    const projectedVals = [18.0, 22.0, 26.0, 32.5];
+
+    const allLabels = [...observed, ...projected];
+    const obsData = [...observedVals, null, null, null, null];
+    const projData = [15.8, null, null, null, ...projectedVals]; // connect from 2025
+
+    chartRef.current = new Chart(ref.current, {
+      type: "line",
+      data: {
+        labels: allLabels,
+        datasets: [
+          {
+            label: "Observado",
+            data: obsData,
+            borderColor: "#C84B28",
+            backgroundColor: "rgba(200,75,40,.08)",
+            fill: true, tension: 0.3, pointRadius: 4,
+            pointBackgroundColor: "#C84B28", borderWidth: 2.5,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            spanGaps: false as any,
+          },
+          {
+            label: "Proyección",
+            data: projData,
+            borderColor: "#C84B28",
+            backgroundColor: "transparent",
+            fill: false, tension: 0.3, pointRadius: 4,
+            pointBackgroundColor: "#C84B28", borderWidth: 2,
+            borderDash: [6, 4],
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            spanGaps: false as any,
+          },
+        ],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => {
+                const v = ctx.parsed.y;
+                if (v === null) return "";
+                return ` ${v.toFixed(1)}% de la población`;
+              },
+            },
+            backgroundColor: "#fff", titleColor: "#1A1A1A", bodyColor: "#5A5A5A",
+            borderColor: "rgba(0,0,0,.1)", borderWidth: 1, padding: 10,
+          },
+        },
+        scales: {
+          x: {
+            ticks: { font: TICK_FONT, color: AXIS_COLOR, maxRotation: 0 },
+            grid: { display: false },
+          },
+          y: {
+            min: 8,
+            ticks: { font: TICK_FONT, color: AXIS_COLOR, callback: (v) => v + "%" },
+            grid: { color: GRID_COLOR },
+          },
+        },
+      },
+    });
+    return () => chartRef.current?.destroy();
+  }, []);
+
+  return <canvas ref={ref} />;
+}
+
+// ── BPS State Subsidy Chart ────────────────────────────────────
+export function BPSSubsidyChart() {
+  const ref = useRef<HTMLCanvasElement>(null);
+  const chartRef = useRef<Chart | null>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    if (chartRef.current) chartRef.current.destroy();
+
+    const labels = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"];
+    const vals   = [2.5,    2.7,    2.9,    3.1,    3.6,    4.4,    5.4,    5.9,    7.1,    8.2];
+
+    chartRef.current = new Chart(ref.current, {
+      type: "bar",
+      data: {
+        labels,
+        datasets: [
+          {
+            label: "Asistencia del Estado (miles de millones UYU)",
+            data: vals,
+            backgroundColor: vals.map((_, i) =>
+              i === vals.length - 1 ? "rgba(200,75,40,0.9)" : "rgba(200,75,40,0.55)"
+            ),
+            borderColor: "transparent",
+            borderRadius: 5,
+          },
+        ],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => ` ${(ctx.parsed.y as number).toFixed(1)} miles de millones UYU`,
+            },
+            backgroundColor: "#fff", titleColor: "#1A1A1A", bodyColor: "#5A5A5A",
+            borderColor: "rgba(0,0,0,.1)", borderWidth: 1, padding: 10,
+          },
+        },
+        scales: {
+          x: {
+            ticks: { font: TICK_FONT, color: AXIS_COLOR, maxRotation: 0 },
+            grid: { display: false },
+          },
+          y: {
+            ticks: {
+              font: TICK_FONT, color: AXIS_COLOR,
+              callback: (v) => v + " MM",
             },
             grid: { color: GRID_COLOR },
           },

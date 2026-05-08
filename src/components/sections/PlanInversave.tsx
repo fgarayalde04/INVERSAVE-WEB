@@ -280,6 +280,55 @@ export default function PlanInversaveSection() {
           </Alert>
         </FadeIn>
 
+        {/* Account preview */}
+        <FadeIn>
+          <div className="mt-14 mb-4">
+            <p className="section-label mb-1">Visualizá tu inversión</p>
+            <h3 className="text-h3 font-bold mb-3">
+              Seguimiento completo{" "}
+              <span className="text-g3">de tu portafolio.</span>
+            </h3>
+            <p className="text-[17px] text-t2 leading-relaxed max-w-xl mb-8">
+              Una cuenta con visibilidad completa de tu portafolio, rendimiento
+              histórico y asignación de activos — accesible 24/7.
+            </p>
+          </div>
+          <div className="relative max-w-4xl mx-auto mb-4">
+            <div
+              className="rounded-3xl overflow-hidden border border-black/[.08]"
+              style={{ boxShadow: "0 24px 64px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.08)" }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/account-preview.png"
+                alt="Ejemplo de cuenta de inversión Dominion"
+                className="w-full h-auto block"
+                onError={e => {
+                  const target = e.currentTarget;
+                  target.style.display = "none";
+                  const parent = target.parentElement;
+                  if (parent) {
+                    parent.innerHTML = `
+                      <div style="background:#0C1A11;padding:80px 40px;text-align:center;min-height:360px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                          <path d="M6 36 L16 22 L24 30 L33 18 L42 8" stroke="#52B558" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        <p style="color:rgba(255,255,255,0.5);font-size:14px;font-family:Manrope,sans-serif;max-width:340px;line-height:1.6;">
+                          Coloca la imagen de la cuenta en <code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px;">/public/account-preview.png</code>
+                        </p>
+                      </div>
+                    `;
+                  }
+                }}
+              />
+            </div>
+          </div>
+          <p className="text-center text-[13px] text-t3 mb-1">Ejemplo visual de una cuenta de inversión.</p>
+          <p className="text-center text-[11px] text-t3/70 italic">
+            Imagen ilustrativa. Los valores mostrados pueden variar y no representan una garantía de rendimiento.
+          </p>
+        </FadeIn>
+
         {/* Feature pills */}
         <FadeIn>
           <div className="flex flex-wrap gap-3 mt-8">
