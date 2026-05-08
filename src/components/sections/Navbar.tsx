@@ -36,8 +36,8 @@ export default function Navbar() {
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className={`h-16 flex items-center justify-between px-6 sticky top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-white/95 backdrop-blur-md border-b border-black/[.07] shadow-sm"
-            : "bg-transparent border-b border-transparent"
+            ? "bg-white/97 backdrop-blur-md border-b border-black/[.07] shadow-sm"
+            : "bg-white/92 backdrop-blur-md border-b border-black/[.06] shadow-sm"
         }`}
       >
         {/* Logo */}

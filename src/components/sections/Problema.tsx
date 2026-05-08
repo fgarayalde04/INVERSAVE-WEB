@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FadeIn, AnimatedNumber } from "@/components/ui";
 
@@ -31,6 +32,8 @@ export function StatsBand() {
 }
 
 export function ProblemaSection() {
+  const [showMore, setShowMore] = useState(false);
+
   return (
     <section id="problema" className="section-wrap">
       <div className="inner">
@@ -67,7 +70,7 @@ export function ProblemaSection() {
         </div>
 
         {/* Big stat cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-14">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
           {[
             { n: "1,27", l: "Hijos por mujer en Uruguay. El mínimo de reemplazo es 2,1.", color: "text-warn", bg: "card-warn" },
             { n: "32,5%", l: "De uruguayos tendrá más de 65 años en 2070. Hoy son el 15,8%.", color: "text-warn", bg: "card-warn" },
@@ -84,62 +87,88 @@ export function ProblemaSection() {
           ))}
         </div>
 
-        {/* Cotizantes/jubilado timeline */}
+        {/* Leer más toggle */}
         <FadeIn>
-          <div className="bg-white border border-black/[.07] rounded-3xl p-7 mb-8">
-            <p className="section-label-warn mb-1">Relación cotizantes / jubilado — BPS</p>
-            <p className="text-[14px] text-t2 mb-6">La base que sostiene el sistema se estrecha cada año.</p>
-            <TimelineBar year="1985" label="5,2 cotizantes" pct={88} color="#3D9A3D" />
-            <TimelineBar year="2000" label="4,1 cotizantes" pct={70} color="#7AAA3A" />
-            <TimelineBar year="2010" label="3,1 cotizantes" pct={53} color="#B89020" />
-            <TimelineBar year="2020" label="2,5 cotizantes" pct={42} color="#C86020" />
-            <TimelineBar year="2025" label="2,3 cotizantes" pct={38} color="#C84B28" />
-            <TimelineBar year="2045 (proy.)" label="1,7 cotizantes" pct={28} color="#A83020" />
-            <p className="text-[11px] text-t3 italic mt-4">Fuente: BPS, Banco Mundial, CEPAL.</p>
-          </div>
+          <button
+            onClick={() => setShowMore(!showMore)}
+            className="flex items-center gap-2 text-[13px] font-semibold text-warn hover:opacity-80 transition-opacity mb-4"
+          >
+            <motion.span animate={{ rotate: showMore ? 180 : 0 }} transition={{ duration: 0.2 }}>↓</motion.span>
+            {showMore ? "Ver menos" : "Ver evolución histórica y esperanza de vida"}
+          </button>
         </FadeIn>
 
-        {/* Alert */}
-        <FadeIn>
-          <div className="alert-warn">
-            El Estado deberá destinar el{" "}
-            <strong>2,80% del PBI</strong> para sostener el BPS en 2075 —
-            más del doble que hoy. La jubilación pública sola no alcanzará.
-          </div>
-        </FadeIn>
+        {/* Expandable: timeline + alert + life expectancy */}
+        {showMore && (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {/* Timeline */}
+            <FadeIn>
+              <div className="bg-white border border-black/[.07] rounded-3xl p-7 mb-8">
+                <p className="section-label-warn mb-1">Relación cotizantes / jubilado — BPS</p>
+                <p className="text-[14px] text-t2 mb-6">La base que sostiene el sistema se estrecha cada año.</p>
+                <TimelineBar year="1985" label="5,2 cotizantes" pct={88} color="#3D9A3D" />
+                <TimelineBar year="2000" label="4,1 cotizantes" pct={70} color="#7AAA3A" />
+                <TimelineBar year="2010" label="3,1 cotizantes" pct={53} color="#B89020" />
+                <TimelineBar year="2020" label="2,5 cotizantes" pct={42} color="#C86020" />
+                <TimelineBar year="2025" label="2,3 cotizantes" pct={38} color="#C84B28" />
+                <TimelineBar year="2045 (proy.)" label="1,7 cotizantes" pct={28} color="#A83020" />
+                <p className="text-[11px] text-t3 italic mt-4">Fuente: BPS, Banco Mundial, CEPAL.</p>
+              </div>
+            </FadeIn>
 
-        {/* Life expectancy comparison */}
-        <div className="mt-12" id="educacion">
-          <FadeIn>
-            <p className="section-label">Esperanza de vida: sube sin parar</p>
-            <h3 className="text-h3 font-bold mb-3">
-              Quien se retira a los 65 puede tener{" "}
-              <span className="text-g3">25 años activos</span> por delante.
-            </h3>
-            <p className="text-[17px] text-t2 leading-relaxed mb-7">
-              Tu ahorro tiene que durar tanto como vos. El sistema público no fue diseñado para financiar 25–30 años de retiro.
-            </p>
-          </FadeIn>
+            {/* Alert */}
+            <FadeIn>
+              <div className="alert-warn">
+                El Estado deberá destinar el{" "}
+                <strong>2,80% del PBI</strong> para sostener el BPS en 2075 —
+                más del doble que hoy. La jubilación pública sola no alcanzará.
+              </div>
+            </FadeIn>
 
-          <FadeIn>
-            <div className="grid grid-cols-3 gap-4 mb-4">
-              {[
-                { yr: "1950", num: "66", sub: "años — Uruguay", bg: "bg-[#F5F2EA]", numColor: "text-t2", badge: "" },
-                { yr: "2025", num: "78", sub: "años — Uruguay", bg: "bg-white border border-black/[.07]", numColor: "text-t1", badge: "" },
-                { yr: "2100 proy.", num: "88", sub: "años — CEPAL", bg: "bg-[#EDF8E8] border border-g1/20", numColor: "text-g3", badge: "text-g3" },
-              ].map((col, i) => (
-                <FadeIn key={i} delay={i * 0.08}>
-                  <div className={`${col.bg} rounded-3xl py-7 px-4 text-center`}>
-                    <p className={`text-[11px] font-bold tracking-[0.1em] uppercase mb-3 ${col.badge || "text-t3"}`}>{col.yr}</p>
-                    <p className={`text-[clamp(28px,5vw,44px)] font-bold tracking-tight mb-1 ${col.numColor}`}>{col.num}</p>
-                    <p className="text-[12px] text-t3 leading-snug">{col.sub}</p>
-                  </div>
-                </FadeIn>
-              ))}
+            {/* Life expectancy */}
+            <div className="mt-10" id="educacion">
+              <FadeIn>
+                <p className="section-label">Esperanza de vida: sube sin parar</p>
+                <h3 className="text-h3 font-bold mb-3">
+                  Quien se retira a los 65 puede tener{" "}
+                  <span className="text-g3">25 años activos</span> por delante.
+                </h3>
+                <p className="text-[17px] text-t2 leading-relaxed mb-7">
+                  Tu ahorro tiene que durar tanto como vos. El sistema público no fue diseñado para financiar 25–30 años de retiro.
+                </p>
+              </FadeIn>
+              <FadeIn>
+                <div className="grid grid-cols-3 gap-4 mb-4">
+                  {[
+                    { yr: "1950", num: "66", sub: "años — Uruguay", bg: "bg-[#F5F2EA]", numColor: "text-t2", badge: "" },
+                    { yr: "2025", num: "78", sub: "años — Uruguay", bg: "bg-white border border-black/[.07]", numColor: "text-t1", badge: "" },
+                    { yr: "2100 proy.", num: "88", sub: "años — CEPAL", bg: "bg-[#EDF8E8] border border-g1/20", numColor: "text-g3", badge: "text-g3" },
+                  ].map((col, i) => (
+                    <FadeIn key={i} delay={i * 0.08}>
+                      <div className={`${col.bg} rounded-3xl py-7 px-4 text-center`}>
+                        <p className={`text-[11px] font-bold tracking-[0.1em] uppercase mb-3 ${col.badge || "text-t3"}`}>{col.yr}</p>
+                        <p className={`text-[clamp(28px,5vw,44px)] font-bold tracking-tight mb-1 ${col.numColor}`}>{col.num}</p>
+                        <p className="text-[12px] text-t3 leading-snug">{col.sub}</p>
+                      </div>
+                    </FadeIn>
+                  ))}
+                </div>
+                <p className="text-[11px] text-t3 italic">Fuente: CEPAL (2022) e INE Uruguay revisión 2025.</p>
+              </FadeIn>
             </div>
-            <p className="text-[11px] text-t3 italic">Fuente: CEPAL (2022) e INE Uruguay revisión 2025.</p>
-          </FadeIn>
-        </div>
+
+            <button
+              onClick={() => setShowMore(false)}
+              className="flex items-center gap-2 text-[13px] font-semibold text-t3 hover:text-t1 transition-colors mt-8"
+            >
+              ↑ Ver menos
+            </button>
+          </motion.div>
+        )}
       </div>
     </section>
   );
