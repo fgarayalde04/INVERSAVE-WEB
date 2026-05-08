@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLeadModal } from "@/context/ModalContext";
 
 const NAV_LINKS = [
   { label: "El Problema", id: "problema" },
@@ -12,6 +13,7 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
+  const { openModal } = useLeadModal();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -36,8 +38,8 @@ export default function Navbar() {
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className={`h-16 flex items-center justify-between px-6 sticky top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-white/95 backdrop-blur-md border-b border-black/[.07] shadow-sm"
-            : "bg-transparent border-b border-transparent"
+            ? "bg-white/97 backdrop-blur-md border-b border-black/[.07] shadow-sm"
+            : "bg-white/92 backdrop-blur-md border-b border-black/[.06] shadow-sm"
         }`}
       >
         {/* Logo */}
@@ -69,10 +71,10 @@ export default function Navbar() {
         {/* CTA + hamburger */}
         <div className="flex items-center gap-3">
           <button
-            onClick={() => scrollTo("cta")}
+            onClick={() => openModal("navbar")}
             className="btn-primary text-[13px] py-2 px-5 hidden sm:inline-flex"
           >
-            Agendar reunión
+            Comenzar mi plan
           </button>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -113,7 +115,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed top-16 left-0 right-0 z-40 bg-white/98 backdrop-blur-md border-b border-black/[.07] shadow-xl md:hidden"
+            className="fixed top-16 left-0 right-0 z-40 bg-white border-b border-black/[.07] shadow-xl md:hidden"
           >
             <div className="px-6 py-4 space-y-1">
               {NAV_LINKS.map((l, i) => (
@@ -130,10 +132,10 @@ export default function Navbar() {
               ))}
               <div className="pt-2 pb-1">
                 <button
-                  onClick={() => scrollTo("cta")}
+                  onClick={() => openModal("navbar")}
                   className="btn-primary w-full justify-center text-[14px] py-3"
                 >
-                  Agendar reunión
+                  Comenzar mi plan
                 </button>
               </div>
             </div>

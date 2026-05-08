@@ -146,37 +146,77 @@ export default function PlanInversaveSection() {
           <p className="section-label mb-1">Perfiles de inversión</p>
           <h3 className="text-h3 font-bold mb-3">
             Para horizontes largos,{" "}
-            <span className="text-g3">el perfil agresivo lidera.</span>
+            <span className="text-g3">una estrategia agresiva puede tener mayor sentido.</span>
           </h3>
           <p className="text-[17px] text-t2 leading-relaxed mb-5 max-w-xl">
-            Tu asesor te ayuda a definir el perfil correcto según tu edad, horizonte y tolerancia al riesgo.
-            Los perfiles conservador y moderado existen para objetivos de corto a mediano plazo,
-            pero el modelo INVERSAVE está diseñado para maximizar el crecimiento compuesto a largo plazo.
+            El modelo INVERSAVE está diseñado para maximizar el crecimiento compuesto a largo plazo.
+            Los perfiles conservador y balanceado existen para quienes tienen objetivos de corto a mediano plazo
+            o menor tolerancia a la volatilidad — pero no son el foco de este modelo.
           </p>
-          <div className="bg-[#EDF8E8] border border-g1/25 rounded-2xl px-5 py-4 mb-8 max-w-2xl">
-            <p className="text-[14px] text-g4 leading-relaxed">
-              Para horizontes largos, una estrategia agresiva puede tener mayor sentido dentro de
-              un modelo de aportes periódicos. La volatilidad anual no desaparece, pero el DCA
-              permite construir posición gradualmente y reducir la dependencia de un único punto
-              de entrada. El objetivo no es evitar toda caída, sino{" "}
-              <strong>capturar crecimiento compuesto en el tiempo.</strong>
-            </p>
+        </FadeIn>
+
+        {/* Hero card — Perfil Agresivo */}
+        <FadeIn>
+          <div className="rounded-3xl p-8 relative overflow-hidden mb-6" style={{ background: "linear-gradient(135deg,#0C1A11 0%,#0F2A1A 100%)" }}>
+            <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 60% 65% at 40% 50%, rgba(82,181,88,.10) 0%, transparent 70%)" }} />
+            <div className="relative z-10">
+              <div className="flex items-center gap-3 mb-5 flex-wrap">
+                <span className="bg-g3 text-white text-[10px] font-bold tracking-[0.1em] uppercase px-3 py-1.5 rounded-full">Perfil recomendado · Largo plazo</span>
+                <span className="bg-white/10 text-white/60 text-[10px] font-semibold px-3 py-1.5 rounded-full border border-white/10">15+ años</span>
+                <span className="bg-white/10 text-white/60 text-[10px] font-semibold px-3 py-1.5 rounded-full border border-white/10">Riesgo Alto</span>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-8 items-start">
+                <div>
+                  <p className="text-[11px] font-bold tracking-[0.12em] uppercase text-g2/50 mb-2">Agresivo</p>
+                  <p className="text-[clamp(32px,5vw,48px)] font-bold text-white tracking-tight leading-none mb-2">10–12%</p>
+                  <p className="text-[14px] text-white/50 mb-6">retorno anual estimado</p>
+                  <div className="mb-5">
+                    <div className="flex h-2.5 rounded-full overflow-hidden mb-2">
+                      <div className="bg-g2" style={{ width: "95%" }} />
+                      <div className="bg-white/15" style={{ width: "5%" }} />
+                    </div>
+                    <div className="flex justify-between text-[11px] text-white/40">
+                      <span>Acciones 95%</span>
+                      <span>Renta fija 5%</span>
+                    </div>
+                  </div>
+                  <p className="text-[14px] text-white/65 leading-relaxed">
+                    S&P 500, MSCI World, mercados emergentes. Máximo potencial de crecimiento compuesto.
+                    Para quienes priorizan el largo plazo sobre la estabilidad anual.
+                  </p>
+                </div>
+                <div className="bg-white/[.05] border border-white/[.08] rounded-2xl p-6">
+                  <p className="text-[11px] font-bold tracking-[0.1em] uppercase text-g2/60 mb-4">Por qué el perfil agresivo en horizontes largos</p>
+                  <p className="text-[14px] text-white/70 leading-relaxed mb-4">
+                    Para horizontes largos, una estrategia agresiva puede tener mayor sentido dentro de
+                    un modelo de aportes periódicos. La volatilidad anual no desaparece, pero el DCA
+                    permite construir posición gradualmente y reducir la dependencia de un único punto de entrada.
+                  </p>
+                  <p className="text-[14px] text-white/70 leading-relaxed">
+                    El objetivo no es evitar toda caída, sino{" "}
+                    <strong className="text-g2">capturar crecimiento compuesto en el tiempo.</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </FadeIn>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
-          {PROFILES.map((p, i) => (
+
+        {/* Perfiles alternativos */}
+        <FadeIn>
+          <p className="text-[12px] font-semibold text-t3 tracking-[0.08em] uppercase mb-4">
+            Perfiles alternativos — para otros objetivos y horizontes
+          </p>
+        </FadeIn>
+        <div className="grid sm:grid-cols-3 gap-4 mb-14">
+          {PROFILES.filter(p => !p.featured).map((p, i) => (
             <FadeIn key={p.name} delay={i * 0.07}>
               <div
-                className={`${p.bg} border rounded-3xl p-6 flex flex-col h-full relative`}
-                style={{ borderColor: p.borderColor + "33", borderTop: `3px solid ${p.borderColor}` }}
+                className={`${p.bg} border rounded-3xl p-6 flex flex-col h-full`}
+                style={{ borderColor: p.borderColor + "33", borderTop: `2px solid ${p.borderColor}` }}
               >
-                {p.featured && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="bg-g3 text-white text-[10px] font-bold tracking-[0.08em] uppercase px-3 py-1 rounded-full">Más popular</span>
-                  </div>
-                )}
                 <p className="text-[11px] font-bold text-t3 tracking-[0.1em] uppercase mb-3">{p.name}</p>
-                <p className="text-[clamp(20px,3vw,26px)] font-bold text-t1 tracking-tight leading-none mb-1">{p.target}</p>
+                <p className="text-[clamp(18px,2.5vw,24px)] font-bold text-t1 tracking-tight leading-none mb-1">{p.target}</p>
                 <p className="text-[12px] text-t3 mb-4">retorno anual estimado</p>
                 <div className="flex gap-2 mb-4 flex-wrap">
                   <span className={`text-[11px] font-semibold ${p.riskColor} bg-white/60 border border-black/[.07] rounded-full px-2.5 py-1`}>
@@ -186,7 +226,6 @@ export default function PlanInversaveSection() {
                     {p.horizon}
                   </span>
                 </div>
-                {/* Allocation bar */}
                 <div className="mb-4">
                   <div className="flex h-2 rounded-full overflow-hidden mb-1.5">
                     <div className="bg-g3" style={{ width: `${p.stocks}%` }} />
@@ -239,6 +278,55 @@ export default function PlanInversaveSection() {
             La diversificación geográfica y sectorial protege tu patrimonio ante eventos que afectan a mercados o sectores específicos.
             Tu asesor ajusta la estrategia según el ciclo de vida y cambios en tu situación personal.
           </Alert>
+        </FadeIn>
+
+        {/* Account preview */}
+        <FadeIn>
+          <div className="mt-14 mb-4">
+            <p className="section-label mb-1">Visualizá tu inversión</p>
+            <h3 className="text-h3 font-bold mb-3">
+              Seguimiento completo{" "}
+              <span className="text-g3">de tu portafolio.</span>
+            </h3>
+            <p className="text-[17px] text-t2 leading-relaxed max-w-xl mb-8">
+              Una cuenta con visibilidad completa de tu portafolio, rendimiento
+              histórico y asignación de activos — accesible 24/7.
+            </p>
+          </div>
+          <div className="relative max-w-4xl mx-auto mb-4">
+            <div
+              className="rounded-3xl overflow-hidden border border-black/[.08]"
+              style={{ boxShadow: "0 24px 64px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.08)" }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/account-preview.png"
+                alt="Ejemplo de cuenta de inversión Dominion"
+                className="w-full h-auto block"
+                onError={e => {
+                  const target = e.currentTarget;
+                  target.style.display = "none";
+                  const parent = target.parentElement;
+                  if (parent) {
+                    parent.innerHTML = `
+                      <div style="background:#0C1A11;padding:80px 40px;text-align:center;min-height:360px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                          <path d="M6 36 L16 22 L24 30 L33 18 L42 8" stroke="#52B558" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        <p style="color:rgba(255,255,255,0.5);font-size:14px;font-family:Manrope,sans-serif;max-width:340px;line-height:1.6;">
+                          Coloca la imagen de la cuenta en <code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px;">/public/account-preview.png</code>
+                        </p>
+                      </div>
+                    `;
+                  }
+                }}
+              />
+            </div>
+          </div>
+          <p className="text-center text-[13px] text-t3 mb-1">Ejemplo visual de una cuenta de inversión.</p>
+          <p className="text-center text-[11px] text-t3/70 italic">
+            Imagen ilustrativa. Los valores mostrados pueden variar y no representan una garantía de rendimiento.
+          </p>
         </FadeIn>
 
         {/* Feature pills */}

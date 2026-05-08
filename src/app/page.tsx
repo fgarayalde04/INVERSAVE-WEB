@@ -1,13 +1,13 @@
 import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";
-import { StatsBand, ProblemaSection } from "@/components/sections/Problema";
+import { ProblemaSection } from "@/components/sections/Problema";
+import PorQueFunciona from "@/components/sections/PorQueFunciona";
 import MentalidadSection from "@/components/sections/Mentalidad";
 import InteresCompuestoSection from "@/components/sections/InteresCompuesto";
 import DCASection from "@/components/sections/DCA";
 import SP500Section from "@/components/sections/SP500Section";
 import EvidenciaHistorica from "@/components/sections/EvidenciaHistorica";
 import SimuladorSection from "@/components/sections/Simulador";
-import AccountDashboard from "@/components/sections/AccountDashboard";
 import PlanInversaveSection from "@/components/sections/PlanInversave";
 import ExpandiblesSection from "@/components/sections/Expandibles";
 import { CTASection, Footer } from "@/components/sections/CTAFooter";
@@ -18,9 +18,9 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
-      <StatsBand />
-      <GlowDivider />
       <ProblemaSection />
+      <GlowDivider />
+      <PorQueFunciona />
       <GlowDivider />
       <MentalidadSection />
       <GlowDivider />
@@ -33,7 +33,6 @@ export default function Home() {
       <EvidenciaHistorica />
       <GlowDivider />
       <SimuladorSection />
-      <AccountDashboard />
       <GlowDivider />
       <PlanInversaveSection />
       <GlowDivider />

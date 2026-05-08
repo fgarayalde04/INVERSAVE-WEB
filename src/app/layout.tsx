@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ModalProvider } from "@/context/ModalContext";
+import LeadModal from "@/components/LeadModal";
 
 export const metadata: Metadata = {
   title: "INVERSAVE — Planificación patrimonial y retiro en Uruguay",
@@ -13,7 +15,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <ModalProvider>
+          {children}
+          <LeadModal />
+        </ModalProvider>
+      </body>
     </html>
   );
 }

@@ -3,8 +3,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { FadeIn, QuoteBlock } from "@/components/ui";
 import { fmt, QUOTES } from "@/lib/utils";
+import { useLeadModal } from "@/context/ModalContext";
 
 export default function MentalidadSection() {
+  const { openModal } = useLeadModal();
   const [ingreso, setIngreso] = useState(2000);
   const [pct, setPct] = useState(20);
   const ahorro = Math.round(ingreso * pct / 100);
@@ -113,6 +115,23 @@ export default function MentalidadSection() {
         </div>
 
         <QuoteBlock text={QUOTES.buffett1.text} author={QUOTES.buffett1.author} />
+
+        <FadeIn>
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <button
+              onClick={() => openModal("mentalidad")}
+              className="btn-primary text-[14px]"
+            >
+              Comenzar mi plan
+            </button>
+            <button
+              onClick={() => document.getElementById("sim")?.scrollIntoView({ behavior: "smooth" })}
+              className="btn-outline text-[14px]"
+            >
+              Simulá tu futuro
+            </button>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

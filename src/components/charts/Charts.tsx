@@ -5,7 +5,7 @@ import {
   LineController, LineElement, PointElement, LinearScale, CategoryScale,
   BarController, BarElement, Filler, Tooltip, Legend,
 } from "chart.js";
-import { SP500_ANNUAL_RETURNS } from "@/data/sp500AnnualReturns";
+import { SP500_HISTORICAL_RETURNS } from "@/data/sp500HistoricalReturns";
 
 Chart.register(
   LineController, LineElement, PointElement, LinearScale, CategoryScale,
@@ -28,7 +28,7 @@ export function ICChart() {
     const d6: number[] = [], d8: number[] = [], d10: number[] = [];
     for (let y = 1; y <= 40; y++) {
       labels.push(y % 10 === 0 || y === 1 ? `Año ${y}` : "");
-      const mo = y * 12, m = 500;
+      const mo = y * 12, m = 200;
       d6.push(Math.round(m * ((Math.pow(1 + 0.06 / 12, mo) - 1) / (0.06 / 12))));
       d8.push(Math.round(m * ((Math.pow(1 + 0.08 / 12, mo) - 1) / (0.08 / 12))));
       d10.push(Math.round(m * ((Math.pow(1 + 0.10 / 12, mo) - 1) / (0.10 / 12))));
@@ -298,7 +298,7 @@ export function AnnualReturnsChart() {
     if (!ref.current) return;
     if (chartRef.current) chartRef.current.destroy();
 
-    const data = SP500_ANNUAL_RETURNS;
+    const data = SP500_HISTORICAL_RETURNS;
     const avgGeometric = 10.02;
 
     chartRef.current = new Chart(ref.current, {
@@ -308,12 +308,12 @@ export function AnnualReturnsChart() {
         datasets: [
           {
             label: "Retorno anual S&P 500",
-            data: data.map(d => d.returnPct),
+            data: data.map(d => d.return),
             backgroundColor: data.map(d =>
-              d.returnPct >= 0 ? "rgba(26,102,56,0.82)" : "rgba(181,69,30,0.82)"
+              d.return >= 0 ? "rgba(26,102,56,0.82)" : "rgba(181,69,30,0.82)"
             ),
             borderColor: data.map(d =>
-              d.returnPct >= 0 ? "#1A6638" : "#B5451E"
+              d.return >= 0 ? "#1A6638" : "#B5451E"
             ),
             borderWidth: 0,
             borderRadius: 1.5,
@@ -343,7 +343,7 @@ export function AnnualReturnsChart() {
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               title: (items: any[]) => `Año ${items[0].label}`,
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              label: (ctx: any) => {
+              label: (ctx: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
                 if (ctx.datasetIndex === 0) {
                   const v = ctx.parsed.y ?? 0;
                   return ` ${v >= 0 ? "+" : ""}${v.toFixed(2)}%`;
@@ -375,6 +375,148 @@ export function AnnualReturnsChart() {
               font: TICK_FONT,
               color: AXIS_COLOR,
               callback: (v: number | string) => `${+v >= 0 ? "+" : ""}${v}%`,
+            },
+            grid: { color: GRID_COLOR },
+          },
+        },
+      },
+    });
+    return () => chartRef.current?.destroy();
+  }, []);
+
+  return <canvas ref={ref} />;
+}
+
+// ── Population Aging Chart (Uruguay) ─────────────────────────
+export function PopulationAgingChart() {
+  const ref = useRef<HTMLCanvasElement>(null);
+  const chartRef = useRef<Chart | null>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    if (chartRef.current) chartRef.current.destroy();
+
+    const observed = ["1990", "2000", "2010", "2020", "2025"];
+    const observedVals = [11.0, 12.5, 13.8, 15.5, 15.8];
+    const projected = ["2030", "2040", "2050", "2070"];
+    const projectedVals = [18.0, 22.0, 26.0, 32.5];
+
+    const allLabels = [...observed, ...projected];
+    const obsData = [...observedVals, null, null, null, null];
+    const projData = [15.8, null, null, null, ...projectedVals]; // connect from 2025
+
+    chartRef.current = new Chart(ref.current, {
+      type: "line",
+      data: {
+        labels: allLabels,
+        datasets: [
+          {
+            label: "Observado",
+            data: obsData,
+            borderColor: "#C84B28",
+            backgroundColor: "rgba(200,75,40,.08)",
+            fill: true, tension: 0.3, pointRadius: 4,
+            pointBackgroundColor: "#C84B28", borderWidth: 2.5,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            spanGaps: false as any,
+          },
+          {
+            label: "Proyección",
+            data: projData,
+            borderColor: "#C84B28",
+            backgroundColor: "transparent",
+            fill: false, tension: 0.3, pointRadius: 4,
+            pointBackgroundColor: "#C84B28", borderWidth: 2,
+            borderDash: [6, 4],
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            spanGaps: false as any,
+          },
+        ],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => {
+                const v = ctx.parsed.y;
+                if (v === null) return "";
+                return ` ${v.toFixed(1)}% de la población`;
+              },
+            },
+            backgroundColor: "#fff", titleColor: "#1A1A1A", bodyColor: "#5A5A5A",
+            borderColor: "rgba(0,0,0,.1)", borderWidth: 1, padding: 10,
+          },
+        },
+        scales: {
+          x: {
+            ticks: { font: TICK_FONT, color: AXIS_COLOR, maxRotation: 0 },
+            grid: { display: false },
+          },
+          y: {
+            min: 8,
+            ticks: { font: TICK_FONT, color: AXIS_COLOR, callback: (v) => v + "%" },
+            grid: { color: GRID_COLOR },
+          },
+        },
+      },
+    });
+    return () => chartRef.current?.destroy();
+  }, []);
+
+  return <canvas ref={ref} />;
+}
+
+// ── BPS State Subsidy Chart ────────────────────────────────────
+export function BPSSubsidyChart() {
+  const ref = useRef<HTMLCanvasElement>(null);
+  const chartRef = useRef<Chart | null>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    if (chartRef.current) chartRef.current.destroy();
+
+    const labels = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"];
+    const vals   = [2.5,    2.7,    2.9,    3.1,    3.6,    4.4,    5.4,    5.9,    7.1,    8.2];
+
+    chartRef.current = new Chart(ref.current, {
+      type: "bar",
+      data: {
+        labels,
+        datasets: [
+          {
+            label: "Asistencia del Estado (miles de millones UYU)",
+            data: vals,
+            backgroundColor: vals.map((_, i) =>
+              i === vals.length - 1 ? "rgba(200,75,40,0.9)" : "rgba(200,75,40,0.55)"
+            ),
+            borderColor: "transparent",
+            borderRadius: 5,
+          },
+        ],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => ` ${(ctx.parsed.y as number).toFixed(1)} miles de millones UYU`,
+            },
+            backgroundColor: "#fff", titleColor: "#1A1A1A", bodyColor: "#5A5A5A",
+            borderColor: "rgba(0,0,0,.1)", borderWidth: 1, padding: 10,
+          },
+        },
+        scales: {
+          x: {
+            ticks: { font: TICK_FONT, color: AXIS_COLOR, maxRotation: 0 },
+            grid: { display: false },
+          },
+          y: {
+            ticks: {
+              font: TICK_FONT, color: AXIS_COLOR,
+              callback: (v) => v + " MM",
             },
             grid: { color: GRID_COLOR },
           },
@@ -451,6 +593,224 @@ export function SP500Chart() {
           },
           y: {
             ticks: { font: TICK_FONT, color: AXIS_COLOR, callback: (v) => +v >= 1000 ? Math.round(+v / 1000) + "k" : String(v) },
+            grid: { color: GRID_COLOR },
+          },
+        },
+      },
+    });
+    return () => chartRef.current?.destroy();
+  }, []);
+
+  return <canvas ref={ref} />;
+}
+
+// ── Persona A vs B — compound growth curves ───────────────────
+export function PersonaABChart() {
+  const ref = useRef<HTMLCanvasElement>(null);
+  const chartRef = useRef<Chart | null>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    if (chartRef.current) chartRef.current.destroy();
+
+    const r = 0.08 / 12;
+    const fv = (months: number) =>
+      months > 0 ? Math.round(200 * ((Math.pow(1 + r, months) - 1) / r)) : 0;
+
+    const labels: string[] = [];
+    const dataA: number[] = [];
+    const dataB: (number | null)[] = [];
+    const aporA: number[] = [];
+    const aporB: (number | null)[] = [];
+
+    for (let y = 0; y <= 40; y++) {
+      labels.push(y % 5 === 0 ? `Año ${y}` : "");
+      dataA.push(fv(y * 12));
+      dataB.push(y <= 10 ? null : fv((y - 10) * 12));
+      aporA.push(200 * y * 12);
+      aporB.push(y <= 10 ? null : 200 * (y - 10) * 12);
+    }
+    // For B, add the flat zero section (years 0-10)
+    const dataBFull: number[] = dataB.map((v, i) => (i <= 10 ? 0 : (v ?? 0)));
+    const aporBFull: number[] = aporB.map((v, i) => (i <= 10 ? 0 : (v ?? 0)));
+
+    chartRef.current = new Chart(ref.current, {
+      type: "line",
+      data: {
+        labels,
+        datasets: [
+          {
+            label: "Persona A (empieza hoy)",
+            data: dataA,
+            borderColor: "#1A6638",
+            backgroundColor: "rgba(26,102,56,.10)",
+            fill: true, tension: 0.4, pointRadius: 0,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "#1A6638",
+            borderWidth: 2.5, order: 1,
+          },
+          {
+            label: "Persona B (empieza 10 años después)",
+            data: dataBFull,
+            borderColor: "#6B48E8",
+            backgroundColor: "rgba(107,72,232,.06)",
+            fill: true, tension: 0.4, pointRadius: 0,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "#6B48E8",
+            borderWidth: 2, order: 2,
+          },
+          {
+            label: "Aportes A",
+            data: aporA,
+            borderColor: "rgba(26,102,56,.25)",
+            backgroundColor: "transparent",
+            fill: false, tension: 0, pointRadius: 0,
+            borderWidth: 1.2, borderDash: [4, 3], order: 3,
+          },
+          {
+            label: "Aportes B",
+            data: aporBFull,
+            borderColor: "rgba(107,72,232,.2)",
+            backgroundColor: "transparent",
+            fill: false, tension: 0, pointRadius: 0,
+            borderWidth: 1.2, borderDash: [4, 3], order: 4,
+          },
+        ],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              title: (items) => `${items[0].label || `Año ${items[0].dataIndex}`}`,
+              label: (ctx) => {
+                const v = ctx.parsed.y ?? 0;
+                if (ctx.datasetIndex === 0) return ` Persona A: USD ${Math.round(v).toLocaleString("es-UY")}`;
+                if (ctx.datasetIndex === 1) return ` Persona B: USD ${Math.round(v).toLocaleString("es-UY")}`;
+                if (ctx.datasetIndex === 2) return ` Aportado A: USD ${Math.round(v).toLocaleString("es-UY")}`;
+                return ` Aportado B: USD ${Math.round(v).toLocaleString("es-UY")}`;
+              },
+            },
+            backgroundColor: "#fff", titleColor: "#1A1A1A", bodyColor: "#5A5A5A",
+            borderColor: "rgba(0,0,0,.1)", borderWidth: 1, padding: 12,
+          },
+        },
+        scales: {
+          x: {
+            ticks: { font: TICK_FONT, color: AXIS_COLOR, maxRotation: 0, autoSkip: false },
+            grid: { display: false },
+          },
+          y: {
+            ticks: {
+              font: TICK_FONT, color: AXIS_COLOR,
+              callback: (v) => "$" + Math.round(+v / 1000) + "k",
+            },
+            grid: { color: GRID_COLOR },
+          },
+        },
+      },
+    });
+    return () => chartRef.current?.destroy();
+  }, []);
+
+  return <canvas ref={ref} />;
+}
+
+// ── S&P 500 Cumulative Index from 1928 ────────────────────────
+export function SP500CumulativeChart() {
+  const ref = useRef<HTMLCanvasElement>(null);
+  const chartRef = useRef<Chart | null>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    if (chartRef.current) chartRef.current.destroy();
+
+    const raw = SP500_HISTORICAL_RETURNS;
+    const CRISES: Record<number, string> = {
+      1929: "Crack del 29", 1932: "Gran Depresión", 1937: "Recesión 1937",
+      1973: "Crisis petróleo", 1974: "Inflación/Nixon", 2000: "Burbuja dotcom",
+      2002: "Colapso dotcom", 2008: "Crisis financiera", 2020: "COVID-19", 2022: "Fed / Inflación",
+    };
+
+    const labels: string[] = [];
+    const values: number[] = [];
+    let idx = 100;
+
+    for (const d of raw) {
+      idx = idx * (1 + d.return / 100);
+      labels.push(d.year.toString());
+      values.push(Math.round(idx * 10) / 10);
+    }
+
+    const isCrisis = raw.map(d => d.return < -15);
+    const pointBg = isCrisis.map(c => c ? "rgba(181,69,30,.85)" : "transparent");
+    const pointBorder = isCrisis.map(c => c ? "#B5451E" : "transparent");
+    const pointR = isCrisis.map(c => c ? 5 : 0);
+    const pointHoverR = isCrisis.map(c => c ? 7 : 5);
+
+    chartRef.current = new Chart(ref.current, {
+      type: "line",
+      data: {
+        labels,
+        datasets: [
+          {
+            label: "S&P 500 — índice acumulado (base 100 en 1928)",
+            data: values,
+            borderColor: "#1A6638",
+            backgroundColor: "rgba(26,102,56,.07)",
+            fill: true, tension: 0.3,
+            pointRadius: pointR,
+            pointHoverRadius: pointHoverR,
+            pointBackgroundColor: pointBg,
+            pointBorderColor: pointBorder,
+            pointHoverBackgroundColor: "#1A6638",
+            borderWidth: 2.5,
+          },
+        ],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              title: (items: any[]) => `Año ${items[0].label}`,
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              label: (ctx: any) => {
+                const yr = parseInt(labels[ctx.dataIndex]);
+                const ret = raw.find(d => d.year === yr)?.return ?? 0;
+                return [
+                  ` Índice: ${(ctx.parsed.y ?? 0).toLocaleString("es-UY", { maximumFractionDigits: 0 })}`,
+                  ` Retorno: ${ret >= 0 ? "+" : ""}${ret.toFixed(1)}%`,
+                  CRISES[yr] ? ` Crisis: ${CRISES[yr]}` : "",
+                ].filter(Boolean);
+              },
+            },
+            backgroundColor: "#fff", titleColor: "#1A1A1A", bodyColor: "#5A5A5A",
+            borderColor: "rgba(0,0,0,.1)", borderWidth: 1, padding: 12,
+          },
+        },
+        scales: {
+          x: {
+            ticks: {
+              font: TICK_FONT, color: AXIS_COLOR,
+              maxRotation: 0, autoSkip: true, maxTicksLimit: 13,
+            },
+            grid: { display: false },
+          },
+          y: {
+            ticks: {
+              font: TICK_FONT, color: AXIS_COLOR,
+              callback: (v: number | string) => {
+                const n = +v;
+                if (n >= 1000) return "$" + Math.round(n / 1000) + "k";
+                return "$" + Math.round(n);
+              },
+            },
             grid: { color: GRID_COLOR },
           },
         },
