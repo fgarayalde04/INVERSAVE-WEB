@@ -2,7 +2,10 @@ import axios from "axios";
 import { XMLParser } from "fast-xml-parser";
 import type { ParsedReport, Position, Trade, Dividend, CashMovement } from "./types";
 
-const FLEX_BASE = "https://gdcdyn.interactivebrokers.com/Universal/servlet/FlexStatementService";
+// IBKR has two Flex endpoints — try the EU one first for .ie accounts
+const FLEX_BASE =
+  process.env.IBKR_FLEX_URL ??
+  "https://gdcdyn.interactivebrokers.com/Universal/servlet/FlexStatementService";
 const POLL_INTERVAL_MS = 5_000;
 const MAX_POLL_ATTEMPTS = 24; // 2 minutes total
 
