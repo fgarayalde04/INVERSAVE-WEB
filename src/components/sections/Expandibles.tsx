@@ -79,6 +79,94 @@ export default function ExpandiblesSection() {
           </p>
         </FadeIn>
 
+        {/* Más información sobre la solución */}
+        <ExpandBlock
+          icon={<IconTrending />}
+          iconVariant="g"
+          title="Más información sobre la solución"
+          subtitle="El modelo, la estrategia y cómo funciona en detalle"
+        >
+          <p className="text-[15px] text-t2 leading-relaxed mb-5">
+            INVERSAVE es un plan de ahorro e inversión global automatizado diseñado como tercer pilar
+            de retiro para residentes en Uruguay. Funciona fuera del sistema estatal (BPS/AFAP),
+            con aportes mensuales fijos, inversión automática y un asesor local regulado por el BCU.
+          </p>
+
+          {/* El modelo */}
+          <div className="bg-[#F8F6F0] border border-black/[.07] rounded-2xl p-5 mb-4">
+            <p className="text-[13px] font-bold text-t1 mb-3">El modelo: DCA + perfil agresivo + largo plazo</p>
+            <div className="space-y-2">
+              {[
+                { title: "Aporte mensual fijo:", desc: "Cada mes, un monto fijo se invierte automáticamente sin que tengas que hacer nada. La disciplina está integrada al sistema." },
+                { title: "Dollar Cost Averaging (DCA):", desc: "Al invertir el mismo monto cada mes, comprás más unidades cuando el mercado baja y menos cuando sube. Reduce el impacto del timing." },
+                { title: "Perfil agresivo como base:", desc: "Para horizontes de 15 años o más, el modelo prioriza renta variable global (S&P 500, MSCI World). La volatilidad anual es aceptada a cambio de crecimiento compuesto a largo plazo." },
+                { title: "Reinversión automática:", desc: "Los dividendos y rendimientos se reinvierten. El interés compuesto trabaja sin interrupciones." },
+              ].map(p => (
+                <div key={p.title} className="flex gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-g3 flex-shrink-0 mt-2" />
+                  <p className="text-[13px] text-t2 leading-snug"><strong className="text-t1">{p.title}</strong> {p.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Regulación */}
+          <div className="bg-[#EDF8E8] border border-g1/20 rounded-2xl p-5 mb-4">
+            <p className="text-[13px] font-bold text-g4 mb-2">Estructura regulatoria</p>
+            <p className="text-[13px] text-t2 leading-relaxed">
+              Las inversiones se realizan a través de <strong>Dominion Capital Strategies Limited</strong>,
+              plataforma regulada por la <strong>Guernsey Financial Services Commission (Guernsey FSC)</strong>.
+              Los activos son custodiados por <strong>BNY Mellon</strong> en cuentas segregadas — legalmente separados del patrimonio de la empresa.
+              El asesoramiento local es provisto por <strong>Roble Capital Wealth Management</strong>, entidad regulada por el <strong>Banco Central del Uruguay (BCU)</strong>.
+            </p>
+          </div>
+
+          {/* Ejemplos */}
+          <div className="bg-white border border-black/[.07] rounded-2xl p-5 mb-4">
+            <p className="text-[13px] font-bold text-t1 mb-3">Ejemplo orientativo — USD 100/mes · 15 años</p>
+            <div className="grid sm:grid-cols-3 gap-3">
+              {[
+                { period: "2011–2025", cagr: "13,94%", final: "USD 55.603", note: "Período reciente" },
+                { period: "1985–1999", cagr: "18,80%", final: "USD 84.728", note: "Mejor período histórico" },
+                { period: "2000–2014", cagr: "4,19%", final: "USD 25.305", note: "Década perdida" },
+              ].map(e => (
+                <div key={e.period} className="bg-[#F5F2EA] rounded-xl p-3.5">
+                  <p className="text-[10px] font-bold text-t3 uppercase tracking-[0.08em] mb-1">{e.period}</p>
+                  <p className="text-[14px] font-bold text-t1 mb-0.5">{e.final}</p>
+                  <p className="text-[11px] text-g3 font-semibold mb-0.5">CAGR {e.cagr}</p>
+                  <p className="text-[11px] text-t3">{e.note}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-[10px] text-t3 italic mt-3">
+              Aporte total: USD 18.000. Los rendimientos pasados no garantizan resultados futuros.
+              Ver sección «Evidencia histórica» para el detalle completo de cada período.
+            </p>
+          </div>
+
+          {/* Preguntas frecuentes sobre la solución */}
+          <div className="space-y-2">
+            {[
+              { q: "¿Cuál es el aporte mínimo?", a: "El plan INVERSAVE es flexible en el aporte. El ejemplo de referencia es USD 100 mensuales. Tu asesor te indicará el mínimo aplicable según tu situación." },
+              { q: "¿Puedo retirar el dinero antes de los 15 años?", a: "Sí. No hay permanencia mínima obligatoria. El dinero tiene liquidez. Sin embargo, el modelo está diseñado para maximizar resultados en horizontes largos — retiros anticipados reducen el efecto del interés compuesto." },
+              { q: "¿Qué pasa si el mercado cae fuerte?", a: "La caída es parte del proceso. El DCA mensual hace que sigas comprando a precios bajos. Históricamente, los inversores que mantuvieron su estrategia durante caídas terminaron mejor que los que salieron." },
+              { q: "¿Cómo empiezo?", a: "Una conversación inicial con un asesor local. Sin formularios, sin compromiso previo. Se define tu perfil, horizonte y aporte. Luego el sistema trabaja de forma automática." },
+            ].map(item => (
+              <div key={item.q} className="border border-black/[.06] rounded-xl p-4">
+                <p className="text-[13px] font-semibold text-t1 mb-1.5">{item.q}</p>
+                <p className="text-[13px] text-t2 leading-relaxed">{item.a}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-5 p-4 bg-[#F0EFE8] border border-black/[.07] rounded-xl">
+            <p className="text-[11px] text-t3 leading-relaxed">
+              La información tiene fines exclusivamente educativos y no constituye asesoramiento financiero personalizado.
+              Los rendimientos pasados no garantizan resultados futuros. Toda inversión implica riesgo de pérdida de capital.
+            </p>
+          </div>
+        </ExpandBlock>
+
         {/* 6 Factores */}
         <ExpandBlock
           icon={<IconTarget />}

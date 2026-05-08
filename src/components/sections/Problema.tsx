@@ -27,26 +27,7 @@ function TimelineBar({ label, pct, color, year }: { label: string; pct: number; 
 }
 
 export function StatsBand() {
-  const stats = [
-    { n: "78", suffix: " años", l: "Esperanza de vida Uruguay hoy", warn: false },
-    { n: "2,3", suffix: "x", l: "Cotizantes por jubilado (BPS). En 2004 eran 3,5×", warn: true },
-    { n: "60%", suffix: "", l: "Del salario promedio cubre la jubilación pública", warn: true },
-    { n: "30", suffix: " años", l: "Puede durar tu etapa de retiro activo", warn: false },
-  ];
-  return (
-    <div className="bg-white border-t border-b border-black/[.06] py-10">
-      <div className="max-w-4xl mx-auto px-6 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-        {stats.map((s, i) => (
-          <FadeIn key={s.l} delay={i * 0.08}>
-            <div className={`stat-num mb-2 ${s.warn ? "text-warn" : "text-g3"}`}>
-              <AnimatedNumber value={s.n + s.suffix} />
-            </div>
-            <div className="text-[13px] text-t3 font-medium leading-snug">{s.l}</div>
-          </FadeIn>
-        ))}
-      </div>
-    </div>
-  );
+  return null;
 }
 
 export function ProblemaSection() {
@@ -60,16 +41,34 @@ export function ProblemaSection() {
             Más jubilados,{" "}
             <span className="text-warn">menos trabajadores.</span>
           </h2>
-          <p className="text-[17px] text-t2 leading-relaxed max-w-xl mb-14">
+          <p className="text-[17px] text-t2 leading-relaxed max-w-xl mb-8">
             El sistema de reparto funciona cuando hay muchos activos por cada jubilado.
             Esa proporción cambia cada año — y la tendencia es estructural e irreversible.
           </p>
         </FadeIn>
 
-        {/* Big stat cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-14">
+        {/* Stats band — integrado */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10 bg-white border border-black/[.06] rounded-3xl py-8 px-6">
           {[
-            { n: "2,3", l: "Cotizantes/jubilado hoy (BPS dic. 2025). En 2004 eran 3,5.", color: "text-warn", bg: "card-warn" },
+            { n: "78", suffix: " años", l: "Esperanza de vida Uruguay hoy", warn: false },
+            { n: "2,3", suffix: "x", l: "Cotizantes por jubilado (BPS). En 2004 eran 3,5×", warn: true },
+            { n: "60%", suffix: "", l: "Del salario promedio cubre la jubilación pública", warn: true },
+            { n: "30", suffix: " años", l: "Puede durar tu etapa de retiro activo", warn: false },
+          ].map((s, i) => (
+            <FadeIn key={s.l} delay={i * 0.08}>
+              <div className="text-center">
+                <div className={`stat-num mb-2 ${s.warn ? "text-warn" : "text-g3"}`}>
+                  <AnimatedNumber value={s.n + s.suffix} />
+                </div>
+                <div className="text-[13px] text-t3 font-medium leading-snug">{s.l}</div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+
+        {/* Big stat cards */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-14">
+          {[
             { n: "1,27", l: "Hijos por mujer en Uruguay. El mínimo de reemplazo es 2,1.", color: "text-warn", bg: "card-warn" },
             { n: "32,5%", l: "De uruguayos tendrá más de 65 años en 2070. Hoy son el 15,8%.", color: "text-warn", bg: "card-warn" },
             { n: "$8.194M", l: "Asistencia del Estado al BPS en 2024. Más del doble que en 2019.", color: "text-warn", bg: "card-warn" },

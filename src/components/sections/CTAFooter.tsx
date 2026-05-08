@@ -34,7 +34,7 @@ export function CTASection() {
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.98 }}
             className="btn-dark"
-            onClick={() => window.open("mailto:contacto@inversave.com")}
+            onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net")}
           >
             Agendar reunión gratuita
           </motion.button>
@@ -65,7 +65,7 @@ export function Footer() {
             <p className="text-[12px] text-t3 leading-relaxed">Plataforma: Dominion Capital Strategies Limited · Guernsey FSC</p>
           </div>
           <div className="text-right">
-            <p className="text-[12px] text-t3">contacto@inversave.com</p>
+            <p className="text-[12px] text-t3">fgarayaldearrillaga@roblecapital.net</p>
           </div>
         </div>
         <p className="text-[11px] text-t3 leading-relaxed">

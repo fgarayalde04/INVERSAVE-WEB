@@ -73,7 +73,7 @@ export const ROLLING_15Y: RollingPeriod[] = [
     totalReturn:   1091.16,
     monthlyContrib: 100,
     totalContrib:  18000,
-    finalValue:    null, // No disponible en documento fuente
+    finalValue:    78732.46,
     tag:           "best",
     tagLabel:      "Mayor CAGR",
   },

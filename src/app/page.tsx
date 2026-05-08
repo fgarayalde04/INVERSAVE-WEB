@@ -18,8 +18,6 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
-      <StatsBand />
-      <GlowDivider />
       <ProblemaSection />
       <GlowDivider />
       <MentalidadSection />
