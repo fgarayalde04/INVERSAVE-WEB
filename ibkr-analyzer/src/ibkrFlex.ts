@@ -46,7 +46,16 @@ export async function downloadFlexReport(): Promise<{ raw: string; parsed: Parse
 
 async function requestReport(token: string, queryId: string): Promise<string> {
   const url = `${FLEX_BASE}.SendRequest?t=${token}&q=${queryId}&v=3`;
-  const response = await axios.get<string>(url, { responseType: "text" });
+  let response;
+  try {
+    response = await axios.get<string>(url, { responseType: "text" });
+  } catch (err: unknown) {
+    if (axios.isAxiosError(err)) {
+      const body = err.response?.data ?? "(sin cuerpo)";
+      throw new Error(`IBKR respondió ${err.response?.status}: ${body}`);
+    }
+    throw err;
+  }
 
   const parser = new XMLParser({ ignoreAttributes: false });
   const result: FlexRequestResponse = parser.parse(response.data);
