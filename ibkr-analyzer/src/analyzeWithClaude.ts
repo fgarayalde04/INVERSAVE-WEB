@@ -1,4 +1,4 @@
-import Anthropic from "@anthropic-ai/sdk";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import type { ParsedReport, ReportDiff } from "./types";
 
 const DISCLAIMER =
@@ -8,34 +8,29 @@ export async function analyzeWithClaude(
   report: ParsedReport,
   diff: ReportDiff | null
 ): Promise<string> {
-  const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) throw new Error("GEMINI_API_KEY debe estar configurado en .env");
 
-  const prompt = buildPrompt(report, diff);
-
-  console.log("🤖 Enviando reporte a Claude para análisis...");
-
-  const message = await client.messages.create({
-    model: "claude-opus-4-7",
-    max_tokens: 4096,
-    messages: [
-      {
-        role: "user",
-        content: prompt,
-      },
-    ],
-    system: `Eres un analista de wealth management senior.
+  const genAI = new GoogleGenerativeAI(apiKey);
+  const model = genAI.getGenerativeModel({
+    model: "gemini-2.0-flash",
+    systemInstruction: `Eres un analista de wealth management senior.
 Redactas reportes de cartera en español con tono profesional pero claro y directo.
 Tu objetivo es dar al inversor un panorama completo y práctico de su cartera.
 No recomiendas comprar ni vender. No das asesoramiento personal.
 Solo analizas y describes la situación actual.`,
   });
 
-  const textBlock = message.content.find((b) => b.type === "text");
-  if (!textBlock || textBlock.type !== "text") {
-    throw new Error("Claude no devolvió un bloque de texto.");
-  }
+  const prompt = buildPrompt(report, diff);
 
-  return textBlock.text + `\n\n---\n*${DISCLAIMER}*`;
+  console.log("🤖 Enviando reporte a Gemini para análisis...");
+
+  const result = await model.generateContent(prompt);
+  const text = result.response.text();
+
+  if (!text) throw new Error("Gemini no devolvió texto.");
+
+  return text + `\n\n---\n*${DISCLAIMER}*`;
 }
 
 function buildPrompt(report: ParsedReport, diff: ReportDiff | null): string {
@@ -79,33 +74,21 @@ function buildPrompt(report: ParsedReport, diff: ReportDiff | null): string {
       `Variación P&L realizado: ${fmtUSD(diff.realizedPnLDelta)}`,
       `Variación P&L no realizado: ${fmtUSD(diff.unrealizedPnLDelta)}`,
     ];
-
-    if (diff.newPositions.length > 0) {
-      lines.push(
-        `\nNuevas posiciones: ${diff.newPositions.map((p) => p.symbol).join(", ")}`
-      );
-    }
-    if (diff.closedPositions.length > 0) {
-      lines.push(
-        `Posiciones cerradas: ${diff.closedPositions.map((p) => p.symbol).join(", ")}`
-      );
-    }
+    if (diff.newPositions.length > 0)
+      lines.push(`\nNuevas posiciones: ${diff.newPositions.map((p) => p.symbol).join(", ")}`);
+    if (diff.closedPositions.length > 0)
+      lines.push(`Posiciones cerradas: ${diff.closedPositions.map((p) => p.symbol).join(", ")}`);
     if (diff.weightChanges.length > 0) {
       lines.push("\nCambios de peso relevantes (≥1%):");
       diff.weightChanges.slice(0, 8).forEach((c) => {
-        lines.push(
-          `  ${c.symbol}: ${fmt(c.previousPct, 1)}% → ${fmt(c.currentPct, 1)}% (${fmtPct(c.deltaPct)})`
-        );
+        lines.push(`  ${c.symbol}: ${fmt(c.previousPct, 1)}% → ${fmt(c.currentPct, 1)}% (${fmtPct(c.deltaPct)})`);
       });
     }
-    if (diff.newTrades.length > 0) {
-      lines.push(`\nNuevos trades: ${diff.newTrades.length}`);
-    }
+    if (diff.newTrades.length > 0) lines.push(`\nNuevos trades: ${diff.newTrades.length}`);
     if (diff.dividendsReceived.length > 0) {
       const total = diff.dividendsReceived.reduce((s, d) => s + d.amount, 0);
       lines.push(`Dividendos nuevos: ${fmtUSD(total)}`);
     }
-
     diffSection = lines.join("\n");
   }
 
