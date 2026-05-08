@@ -1,8 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { FadeIn } from "@/components/ui";
-
-const MAILTO = "mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro";
+import { useLeadModal } from "@/context/ModalContext";
 
 const STEPS = [
   {
@@ -63,6 +62,7 @@ const STEPS = [
 ];
 
 export default function PorQueFunciona() {
+  const { openModal } = useLeadModal();
   return (
     <section className="section-wrap-white">
       <div className="inner">
@@ -147,7 +147,7 @@ export default function PorQueFunciona() {
               <motion.button
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => window.open(MAILTO)}
+                onClick={() => openModal("porquefunciona")}
                 className="btn-dark"
               >
                 Construir tranquilidad financiera

@@ -28,7 +28,7 @@ export function ICChart() {
     const d6: number[] = [], d8: number[] = [], d10: number[] = [];
     for (let y = 1; y <= 40; y++) {
       labels.push(y % 10 === 0 || y === 1 ? `Año ${y}` : "");
-      const mo = y * 12, m = 500;
+      const mo = y * 12, m = 200;
       d6.push(Math.round(m * ((Math.pow(1 + 0.06 / 12, mo) - 1) / (0.06 / 12))));
       d8.push(Math.round(m * ((Math.pow(1 + 0.08 / 12, mo) - 1) / (0.08 / 12))));
       d10.push(Math.round(m * ((Math.pow(1 + 0.10 / 12, mo) - 1) / (0.10 / 12))));

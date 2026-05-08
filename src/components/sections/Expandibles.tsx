@@ -79,6 +79,44 @@ export default function ExpandiblesSection() {
           </p>
         </FadeIn>
 
+        {/* Información importante */}
+        <ExpandBlock
+          icon={<IconShield />}
+          iconVariant="g"
+          title="Información importante antes de empezar"
+          subtitle="Monto mínimo, flexibilidad, largo plazo y qué esperar"
+        >
+          <div className="space-y-4">
+            <div className="bg-[#EDF8E8] border border-g1/20 rounded-2xl p-5">
+              <p className="text-[13px] font-bold text-g4 mb-3">Lo que necesitás saber</p>
+              <div className="space-y-3">
+                {[
+                  { title: "Monto mínimo de aporte:", desc: "USD 150 por mes. Los ejemplos en esta web utilizan USD 200/mes como referencia educativa." },
+                  { title: "Aporte por débito automático:", desc: "El sistema debita el monto mensual de forma automática. Sin recordatorios, sin esfuerzo manual, sin decisiones emocionales." },
+                  { title: "Flexibilidad de aportes:", desc: "Podés ajustar el monto de tu aporte en cualquier momento según tu situación financiera." },
+                  { title: "Posibilidad de pausar:", desc: "Si necesitás hacer una pausa temporal, es posible. Sin embargo, cada mes sin aportar tiene un costo real en capital futuro que no se recupera." },
+                  { title: "Horizonte de largo plazo:", desc: "El plan está diseñado para horizontes de 10 a 40 años. A mayor plazo, mayor es el efecto del interés compuesto y menor el riesgo histórico de pérdida." },
+                  { title: "Diversificación en índices globales:", desc: "Las inversiones se realizan en índices como el S&P 500 y MSCI World. No se apuesta a acciones individuales ni a sectores específicos." },
+                  { title: "No es trading:", desc: "INVERSAVE no es una plataforma de compra/venta activa. Es un plan de acumulación sistemática y disciplinada." },
+                  { title: "Acompañamiento:", desc: "Tenés un asesor local disponible para responder preguntas, revisar tu plan y acompañarte en cada etapa." },
+                ].map(p => (
+                  <div key={p.title} className="flex gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-g3 flex-shrink-0 mt-2" />
+                    <p className="text-[13px] text-t2 leading-snug"><strong className="text-t1">{p.title}</strong> {p.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-[#F0EFE8] border border-black/[.07] rounded-xl p-4">
+              <p className="text-[12px] text-t3 leading-relaxed">
+                Las simulaciones son ilustrativas. Los rendimientos pasados no garantizan resultados futuros.
+                La tasa estimada del 8% anual se utiliza únicamente como ejemplo educativo.
+                Toda inversión implica riesgo de pérdida de capital.
+              </p>
+            </div>
+          </div>
+        </ExpandBlock>
+
         {/* Más información sobre la solución */}
         <ExpandBlock
           icon={<IconTrending />}

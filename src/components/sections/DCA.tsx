@@ -3,8 +3,10 @@ import { FadeIn, Alert, QuoteBlock } from "@/components/ui";
 import { DCAChart } from "@/components/charts/Charts";
 import { QUOTES, RISK_DATA } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { useLeadModal } from "@/context/ModalContext";
 
 export default function DCASection() {
+  const { openModal } = useLeadModal();
   return (
     <section className="section-wrap-white">
       <div className="inner">
@@ -117,7 +119,7 @@ export default function DCASection() {
               <p className="text-[13px] text-t2">Aportes mensuales fijos, inversión automática, sin necesitar saber de finanzas.</p>
             </div>
             <button
-              onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro")}
+              onClick={() => openModal("dca")}
               className="flex-shrink-0 bg-g3 text-white font-semibold text-[13px] rounded-full px-5 py-2.5 hover:bg-[#1A6638] transition-colors cursor-pointer"
             >
               Comenzar hoy

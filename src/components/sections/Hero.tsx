@@ -1,5 +1,7 @@
 "use client";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useLeadModal } from "@/context/ModalContext";
 
 const TRUST_BADGES = [
   "Regulado BCU",
@@ -8,7 +10,20 @@ const TRUST_BADGES = [
   "Asesor local",
 ];
 
-const MAILTO = "mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro";
+const PHRASES = [
+  "Ahorrar no es renunciar. Es elegir quién serás en 20 años.",
+  "El mejor momento para empezar fue hace diez años. El segundo mejor es hoy.",
+  "Tu jubilación no la define el BPS. La definís vos.",
+  "USD 200 al mes pueden convertirse en más de USD 600.000 con el tiempo suficiente.",
+  "Construir patrimonio no requiere saber de finanzas. Requiere constancia.",
+  "Tu futuro financiero se construye hoy, en silencio, un mes a la vez.",
+  "La diferencia entre tranquilidad e incertidumbre en el retiro se construye ahora.",
+  "No se trata de timing perfecto. Se trata de tiempo en el mercado.",
+  "Invertir no es para hacerse rico rápido. Es para vivir más tranquilo después.",
+  "El interés compuesto no distingue entre ricos y no ricos. Solo entre quienes empezaron y quienes no.",
+  "Cada mes sin invertir tiene un costo real que no se recupera.",
+  "El dinero que no invertís hoy pierde poder frente a la inflación mañana.",
+];
 
 function Particle({ style }: { style: React.CSSProperties }) {
   return (
@@ -20,6 +35,14 @@ function Particle({ style }: { style: React.CSSProperties }) {
 }
 
 export default function Hero() {
+  const { openModal } = useLeadModal();
+  const [phraseIdx, setPhraseIdx] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setPhraseIdx(i => (i + 1) % PHRASES.length), 4000);
+    return () => clearInterval(id);
+  }, []);
+
   const scrollTo = (id: string) =>
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
@@ -99,15 +122,35 @@ export default function Hero() {
           </span>
         </motion.h1>
 
+        {/* Rotating phrase */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.32, duration: 0.55 }}
+          className="max-w-[580px] mx-auto mb-3 min-h-[60px] flex items-center justify-center"
+        >
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={phraseIdx}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.4 }}
+              className="text-[clamp(15px,2vw,18px)] text-white/55 leading-relaxed text-center italic"
+            >
+              {PHRASES[phraseIdx]}
+            </motion.p>
+          </AnimatePresence>
+        </motion.div>
+
         {/* Sub */}
         <motion.p
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.32, duration: 0.55 }}
-          className="text-[clamp(16px,2.2vw,20px)] text-white/55 leading-relaxed max-w-[560px] mx-auto mb-10"
+          transition={{ delay: 0.38, duration: 0.55 }}
+          className="text-[clamp(15px,2vw,17px)] text-white/35 leading-relaxed max-w-[480px] mx-auto mb-10"
         >
-          Inversave te ayuda a crear patrimonio de largo plazo con aportes
-          automáticos, inversión diversificada y una estrategia simple para tu retiro.
+          Aportes automáticos, inversión diversificada y una estrategia simple para tu retiro.
         </motion.p>
 
         {/* CTAs */}
@@ -120,7 +163,7 @@ export default function Hero() {
           <motion.button
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.97 }}
-            onClick={() => window.open(MAILTO)}
+            onClick={() => openModal("hero")}
             className="btn-hero"
           >
             Comenzar mi plan

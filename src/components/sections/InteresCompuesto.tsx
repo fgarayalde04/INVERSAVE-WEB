@@ -2,8 +2,10 @@
 import { FadeIn, Alert, QuoteBlock } from "@/components/ui";
 import { ICChart } from "@/components/charts/Charts";
 import { QUOTES } from "@/lib/utils";
+import { useLeadModal } from "@/context/ModalContext";
 
 export default function InteresCompuestoSection() {
+  const { openModal } = useLeadModal();
   return (
     <section className="section-wrap">
       <div className="inner">
@@ -12,7 +14,7 @@ export default function InteresCompuestoSection() {
           <h2 className="text-h2 font-bold mb-5">
             Empezar 10 años antes{" "}
             <br className="hidden sm:block" />
-            <span className="text-g3">vale más de USD 600.000.</span>
+            <span className="text-g3">vale más de USD 400.000.</span>
           </h2>
           <p className="text-[17px] text-t2 leading-relaxed max-w-xl mb-12">
             Persona A y Persona B aportan exactamente lo mismo por mes.
@@ -21,13 +23,13 @@ export default function InteresCompuestoSection() {
           </p>
         </FadeIn>
 
-        {/* Persona A vs Persona B — spec: $300/mes, 25 vs 35, 8% anual */}
+        {/* Persona A vs Persona B — $200/mes, 25 vs 35, 8% anual */}
         <div className="grid sm:grid-cols-2 gap-5 mb-6">
           <FadeIn>
             <div className="bg-[#EDF8E8] border border-g1/25 rounded-3xl p-7" style={{ borderTop: "3px solid #52B558" }}>
               <p className="text-[11px] font-bold text-g3 tracking-[0.1em] uppercase mb-4">Persona A — empieza a los 25</p>
-              <p className="text-[clamp(28px,4.5vw,42px)] font-bold text-g3 tracking-tight leading-none mb-2">USD 1.047.600</p>
-              <p className="text-[14px] text-t2 leading-snug mb-5">USD 300/mes · 40 años · 8% anual · Total aportado: USD 144.000</p>
+              <p className="text-[clamp(28px,4.5vw,42px)] font-bold text-g3 tracking-tight leading-none mb-2">USD 698.400</p>
+              <p className="text-[14px] text-t2 leading-snug mb-5">USD 200/mes · 40 años · 8% anual · Total aportado: USD 96.000</p>
               <div className="h-2 bg-black/[.07] rounded-full overflow-hidden mb-2">
                 <div className="h-full bg-g1 rounded-full" style={{ width: "100%" }} />
               </div>
@@ -37,8 +39,8 @@ export default function InteresCompuestoSection() {
           <FadeIn delay={0.1}>
             <div className="card-base" style={{ borderTop: "3px solid #6B48E8" }}>
               <p className="text-[11px] font-bold text-lila tracking-[0.1em] uppercase mb-4">Persona B — empieza a los 35</p>
-              <p className="text-[clamp(28px,4.5vw,42px)] font-bold text-lila tracking-tight leading-none mb-2">USD 447.150</p>
-              <p className="text-[14px] text-t2 leading-snug mb-5">USD 300/mes · 30 años · 8% anual · Total aportado: USD 108.000</p>
+              <p className="text-[clamp(28px,4.5vw,42px)] font-bold text-lila tracking-tight leading-none mb-2">USD 297.500</p>
+              <p className="text-[14px] text-t2 leading-snug mb-5">USD 200/mes · 30 años · 8% anual · Total aportado: USD 72.000</p>
               <div className="h-2 bg-black/[.07] rounded-full overflow-hidden mb-2">
                 <div className="h-full bg-lila rounded-full" style={{ width: "43%" }} />
               </div>
@@ -51,11 +53,11 @@ export default function InteresCompuestoSection() {
           <div className="bg-[#EDF8E8] border border-g1/20 rounded-2xl px-5 py-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
             <p className="text-[15px] text-g4 leading-relaxed">
               Empezar 10 años antes genera{" "}
-              <strong>USD 600.450 más</strong> aportando el mismo monto mensual.{" "}
+              <strong>USD 400.000+ más</strong> aportando el mismo monto mensual.{" "}
               <span className="italic text-g3">El tiempo no solo suma — multiplica.</span>
             </p>
             <button
-              onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro")}
+              onClick={() => openModal("interes_compuesto")}
               className="flex-shrink-0 bg-g3 text-white font-semibold text-[13px] rounded-full px-5 py-2.5 hover:bg-[#1A6638] transition-colors cursor-pointer"
             >
               Empezar hoy
@@ -67,7 +69,7 @@ export default function InteresCompuestoSection() {
         <FadeIn>
           <div className="bg-white border border-black/[.07] rounded-3xl p-7 mb-3 mt-8">
             <p className="text-[14px] font-semibold text-t2 mb-1">
-              Crecimiento de USD 500/mes — 40 años
+              Crecimiento de USD 200/mes — 40 años
             </p>
             <p className="text-[13px] text-t3 mb-5">A distintas tasas de rentabilidad anual estimada</p>
             <div className="relative w-full h-[220px]">
@@ -87,7 +89,7 @@ export default function InteresCompuestoSection() {
             </div>
           </div>
           <p className="text-[11px] text-t3 italic">
-            USD 500/mes con tasa fija y aporte constante. Meramente ilustrativo. Fuente: Dominion Capital Strategies.
+            Las simulaciones son ilustrativas. Los rendimientos pasados no garantizan resultados futuros. La tasa estimada del 8% anual se utiliza únicamente como ejemplo educativo.
           </p>
         </FadeIn>
 

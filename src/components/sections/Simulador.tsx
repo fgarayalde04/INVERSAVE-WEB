@@ -4,8 +4,7 @@ import { motion } from "framer-motion";
 import { FadeIn } from "@/components/ui";
 import { SimChart } from "@/components/charts/Charts";
 import { fmt, calcFV, calcMonthlyRetirement } from "@/lib/utils";
-
-const MAILTO = "mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro";
+import { useLeadModal } from "@/context/ModalContext";
 
 function getInsight(edad: number, years: number): string {
   if (edad <= 28) return "Tu mayor ventaja es el tiempo. Empezar hoy puede multiplicar cada peso que aportés.";
@@ -98,7 +97,8 @@ async function downloadPdf(params: {
 }
 
 export default function SimuladorSection() {
-  const [monthly, setMonthly] = useState(500);
+  const { openModal } = useLeadModal();
+  const [monthly, setMonthly] = useState(200);
   const [years, setYears] = useState(20);
   const [rate, setRate] = useState(8);
   const [capitalInicial, setCapitalInicial] = useState(0);
@@ -309,14 +309,19 @@ export default function SimuladorSection() {
                 animate={{ opacity: 1, y: 0 }}
                 className="bg-[#F5F2EA] border border-black/[.06] rounded-[16px] px-5 py-4 flex gap-3"
               >
-                <span className="text-[20px] flex-shrink-0 mt-0.5">💡</span>
+                <svg className="flex-shrink-0 mt-0.5 text-g3" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <circle cx="9" cy="7.5" r="5" stroke="currentColor" strokeWidth="1.5"/>
+                  <path d="M6.5 12.5 L11.5 12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M7.5 14.5 L10.5 14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M9 4 L9 5M5.8 5.8 L6.5 6.5M12.2 5.8 L11.5 6.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+                </svg>
                 <p className="text-[13px] text-t2 leading-relaxed italic">{insight}</p>
               </motion.div>
 
               {/* CTAs */}
               <div className="flex flex-col gap-2.5">
                 <button
-                  onClick={() => window.open(MAILTO)}
+                  onClick={() => openModal("simulador")}
                   className="btn-primary w-full justify-center text-[14px] py-3.5"
                 >
                   Comenzar mi plan de ahorro

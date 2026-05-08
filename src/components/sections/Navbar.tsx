@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLeadModal } from "@/context/ModalContext";
 
 const NAV_LINKS = [
   { label: "El Problema", id: "problema" },
@@ -12,6 +13,7 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
+  const { openModal } = useLeadModal();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -69,7 +71,7 @@ export default function Navbar() {
         {/* CTA + hamburger */}
         <div className="flex items-center gap-3">
           <button
-            onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro")}
+            onClick={() => openModal("navbar")}
             className="btn-primary text-[13px] py-2 px-5 hidden sm:inline-flex"
           >
             Comenzar mi plan
@@ -130,7 +132,7 @@ export default function Navbar() {
               ))}
               <div className="pt-2 pb-1">
                 <button
-                  onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro")}
+                  onClick={() => openModal("navbar")}
                   className="btn-primary w-full justify-center text-[14px] py-3"
                 >
                   Comenzar mi plan

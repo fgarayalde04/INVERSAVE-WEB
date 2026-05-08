@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FadeIn } from "@/components/ui";
 import { SPYRealChart } from "@/components/charts/Charts";
 import type { SPYDataPoint } from "@/app/api/spy-data/route";
+import { useLeadModal } from "@/context/ModalContext";
 
 const CRISES = [
   { year: "2000–2002", name: "Crisis Dotcom",      drop: "−49%", recover: "5 años para recuperar" },
@@ -24,6 +25,7 @@ const STATS = [
 ];
 
 export default function SP500Section() {
+  const { openModal } = useLeadModal();
   const [range,    setRange]    = useState<Range>("max");
   const [data,     setData]     = useState<SPYDataPoint[]>([]);
   const [meta,     setMeta]     = useState<{ totalReturn: number; firstDate: string; lastDate: string; lastClose: number } | null>(null);
@@ -239,7 +241,7 @@ export default function SP500Section() {
               El tiempo en el mercado suele superar al intento de adivinar el mercado.
             </p>
             <button
-              onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro")}
+              onClick={() => openModal("sp500")}
               className="flex-shrink-0 bg-g3 text-white font-semibold text-[13px] rounded-full px-5 py-2.5 hover:bg-[#1A6638] transition-colors cursor-pointer"
             >
               Agendá una reunión

@@ -1,8 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 import { FadeIn } from "@/components/ui";
+import { useLeadModal } from "@/context/ModalContext";
 
 export function CTASection() {
+  const { openModal } = useLeadModal();
   return (
     <section id="cta" className="py-28 px-6 text-center relative overflow-hidden" style={{ background: "#0C1A11" }}>
       {/* Glow */}
@@ -35,7 +37,7 @@ export function CTASection() {
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.98 }}
               className="btn-dark"
-              onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro")}
+              onClick={() => openModal("cta")}
             >
               Comenzar mi plan de ahorro
             </motion.button>
@@ -43,7 +45,7 @@ export function CTASection() {
               whileHover={{ scale: 1.02, y: -1 }}
               whileTap={{ scale: 0.97 }}
               className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-[15px] font-semibold border border-white/20 text-white/70 hover:bg-white/[.06] transition-all duration-200 cursor-pointer"
-              onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro")}
+              onClick={() => openModal("cta")}
             >
               Hablar con un asesor
             </motion.button>

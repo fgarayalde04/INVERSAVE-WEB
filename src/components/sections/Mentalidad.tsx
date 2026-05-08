@@ -3,8 +3,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { FadeIn, QuoteBlock } from "@/components/ui";
 import { fmt, QUOTES } from "@/lib/utils";
+import { useLeadModal } from "@/context/ModalContext";
 
 export default function MentalidadSection() {
+  const { openModal } = useLeadModal();
   const [ingreso, setIngreso] = useState(2000);
   const [pct, setPct] = useState(20);
   const ahorro = Math.round(ingreso * pct / 100);
@@ -117,7 +119,7 @@ export default function MentalidadSection() {
         <FadeIn>
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
             <button
-              onClick={() => window.open("mailto:fgarayaldearrillaga@roblecapital.net?subject=Quiero%20comenzar%20mi%20plan%20de%20ahorro")}
+              onClick={() => openModal("mentalidad")}
               className="btn-primary text-[14px]"
             >
               Comenzar mi plan

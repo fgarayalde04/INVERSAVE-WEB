@@ -226,24 +226,41 @@ export function ProblemaSection() {
             <div className="grid sm:grid-cols-3 gap-4 mb-10">
               {[
                 {
-                  icon: "⏳",
+                  icon: (
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-warn">
+                      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5"/>
+                      <path d="M12 7 L12 12 L15.5 14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  ),
                   title: "El retiro dura más que antes",
                   body: "Con una esperanza de vida de 78 años y jubilación a los 65, tu retiro puede durar 15–25 años. El sistema público no fue diseñado para financiar ese horizonte con calidad de vida.",
                 },
                 {
-                  icon: "📉",
+                  icon: (
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-warn">
+                      <path d="M3 7 L8 12 L12 9 L16 14 L21 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M3 17 L21 17" stroke="currentColor" strokeWidth="1" strokeDasharray="3 2"/>
+                    </svg>
+                  ),
                   title: "La tasa de sustitución cae",
                   body: "La jubilación promedio cubre menos del 60% del último salario. A medida que el ratio cotizantes/jubilado baja, ese porcentaje seguirá descendiendo en términos reales.",
                 },
                 {
-                  icon: "🌍",
+                  icon: (
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-warn">
+                      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5"/>
+                      <path d="M12 3 C12 3 9.5 7 9.5 12 C9.5 17 12 21 12 21" stroke="currentColor" strokeWidth="1.5"/>
+                      <path d="M12 3 C12 3 14.5 7 14.5 12 C14.5 17 12 21 12 21" stroke="currentColor" strokeWidth="1.5"/>
+                      <path d="M3 12 L21 12" stroke="currentColor" strokeWidth="1.5"/>
+                    </svg>
+                  ),
                   title: "La inflación erosiona el ahorro",
                   body: "Mantener pesos inactivos pierde valor cada año. Una inversión en activos globales diversificados puede superar la inflación y crecer de forma compuesta en el largo plazo.",
                 },
               ].map((c, i) => (
                 <FadeIn key={c.title} delay={i * 0.07}>
                   <div className="bg-white border border-black/[.07] rounded-3xl p-6 h-full">
-                    <div className="text-[28px] mb-4">{c.icon}</div>
+                    <div className="mb-4">{c.icon}</div>
                     <p className="text-[15px] font-bold text-t1 mb-3">{c.title}</p>
                     <p className="text-[13px] text-t2 leading-relaxed">{c.body}</p>
                   </div>
