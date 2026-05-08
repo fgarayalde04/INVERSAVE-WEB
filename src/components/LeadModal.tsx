@@ -51,27 +51,29 @@ export default function LeadModal() {
   const set = (k: keyof FormData) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setForm(f => ({ ...f, [k]: e.target.value }));
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    setError("");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, source }),
-      });
-      if (res.ok) {
-        setSuccess(true);
-        setForm(INITIAL);
-      } else {
-        setError("Hubo un error al enviar. Por favor intentá de nuevo.");
-      }
-    } catch {
-      setError("Error de conexión. Por favor intentá de nuevo.");
-    } finally {
+
+    const lines = [
+      `Nombre: ${form.nombre} ${form.apellido}`,
+      `Email: ${form.email}`,
+      `Celular: ${form.celular}`,
+      form.edad      ? `Edad: ${form.edad} años`          : "",
+      form.objetivo  ? `Objetivo: ${form.objetivo}`        : "",
+      form.aporte    ? `Aporte estimado: USD ${form.aporte}` : "",
+      `Fuente: ${source || "web"}`,
+    ].filter(Boolean).join("\n");
+
+    const subject = encodeURIComponent(`Nuevo contacto INVERSAVE — ${form.nombre} ${form.apellido}`);
+    const body    = encodeURIComponent(lines);
+    window.location.href = `mailto:fgarayaldearrillaga@roblecapital.net?subject=${subject}&body=${body}`;
+
+    setTimeout(() => {
+      setSuccess(true);
+      setForm(INITIAL);
       setSubmitting(false);
-    }
+    }, 400);
   };
 
   const handleClose = () => {
