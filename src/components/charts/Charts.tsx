@@ -5,6 +5,7 @@ import {
   LineController, LineElement, PointElement, LinearScale, CategoryScale,
   BarController, BarElement, Filler, Tooltip, Legend,
 } from "chart.js";
+import { SP500_ANNUAL_RETURNS } from "@/data/sp500AnnualReturns";
 
 Chart.register(
   LineController, LineElement, PointElement, LinearScale, CategoryScale,
@@ -284,6 +285,104 @@ export function SPYRealChart({ data }: SPYRealChartProps) {
     });
     return () => chartRef.current?.destroy();
   }, [data]);
+
+  return <canvas ref={ref} />;
+}
+
+// ── Annual Returns Chart (S&P 500 1928–2025) ──────────────────
+export function AnnualReturnsChart() {
+  const ref = useRef<HTMLCanvasElement>(null);
+  const chartRef = useRef<Chart | null>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    if (chartRef.current) chartRef.current.destroy();
+
+    const data = SP500_ANNUAL_RETURNS;
+    const avgGeometric = 10.02;
+
+    chartRef.current = new Chart(ref.current, {
+      type: "bar",
+      data: {
+        labels: data.map(d => d.year.toString()),
+        datasets: [
+          {
+            label: "Retorno anual S&P 500",
+            data: data.map(d => d.returnPct),
+            backgroundColor: data.map(d =>
+              d.returnPct >= 0 ? "rgba(26,102,56,0.82)" : "rgba(181,69,30,0.82)"
+            ),
+            borderColor: data.map(d =>
+              d.returnPct >= 0 ? "#1A6638" : "#B5451E"
+            ),
+            borderWidth: 0,
+            borderRadius: 1.5,
+            order: 1,
+          },
+          {
+            label: `Promedio geométrico histórico (+${avgGeometric}%)`,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            type: "line" as any,
+            data: data.map(() => avgGeometric),
+            borderColor: "#6B48E8",
+            borderWidth: 1.5,
+            borderDash: [5, 4],
+            pointRadius: 0,
+            backgroundColor: "transparent",
+            order: 0,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              title: (items: any[]) => `Año ${items[0].label}`,
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              label: (ctx: any) => {
+                if (ctx.datasetIndex === 0) {
+                  const v = ctx.parsed.y ?? 0;
+                  return ` ${v >= 0 ? "+" : ""}${v.toFixed(2)}%`;
+                }
+                return ` Promedio geométrico: +${avgGeometric}%`;
+              },
+            },
+            backgroundColor: "#fff",
+            titleColor: "#1A1A1A",
+            bodyColor: "#5A5A5A",
+            borderColor: "rgba(0,0,0,.1)",
+            borderWidth: 1,
+            padding: 10,
+          },
+        },
+        scales: {
+          x: {
+            ticks: {
+              font: TICK_FONT,
+              color: AXIS_COLOR,
+              maxRotation: 0,
+              autoSkip: true,
+              maxTicksLimit: 11,
+            },
+            grid: { display: false },
+          },
+          y: {
+            ticks: {
+              font: TICK_FONT,
+              color: AXIS_COLOR,
+              callback: (v: number | string) => `${+v >= 0 ? "+" : ""}${v}%`,
+            },
+            grid: { color: GRID_COLOR },
+          },
+        },
+      },
+    });
+    return () => chartRef.current?.destroy();
+  }, []);
 
   return <canvas ref={ref} />;
 }

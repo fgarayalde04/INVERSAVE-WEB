@@ -5,6 +5,7 @@ import MentalidadSection from "@/components/sections/Mentalidad";
 import InteresCompuestoSection from "@/components/sections/InteresCompuesto";
 import DCASection from "@/components/sections/DCA";
 import SP500Section from "@/components/sections/SP500Section";
+import EvidenciaHistorica from "@/components/sections/EvidenciaHistorica";
 import SimuladorSection from "@/components/sections/Simulador";
 import AccountDashboard from "@/components/sections/AccountDashboard";
 import PlanInversaveSection from "@/components/sections/PlanInversave";
@@ -28,6 +29,8 @@ export default function Home() {
       <DCASection />
       <GlowDivider />
       <SP500Section />
+      <GlowDivider />
+      <EvidenciaHistorica />
       <GlowDivider />
       <SimuladorSection />
       <AccountDashboard />

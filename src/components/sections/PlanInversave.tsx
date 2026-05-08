@@ -37,6 +37,7 @@ const PROFILES = [
     desc: "Prioriza estabilidad. Orientado a renta fija global, bonos soberanos y activos defensivos.",
     borderColor: "#52B558",
     bg: "bg-[#EDF8E8]",
+    featured: false,
   },
   {
     name: "Balanceado",
@@ -49,7 +50,6 @@ const PROFILES = [
     desc: "Equilibrio entre crecimiento y protección. Combina renta variable global con renta fija.",
     borderColor: "#6B48E8",
     bg: "bg-white",
-    featured: true,
   },
   {
     name: "Crecimiento",
@@ -71,9 +71,10 @@ const PROFILES = [
     horizon: "15+ años",
     stocks: 95,
     bonds: 5,
-    desc: "Máximo potencial de crecimiento. S&P 500, MSCI World, mercados emergentes. Volatilidad alta.",
-    borderColor: "#B5451E",
-    bg: "bg-white",
+    desc: "Máximo potencial de crecimiento compuesto. S&P 500, MSCI World, mercados emergentes. Para quienes priorizan el largo plazo sobre la estabilidad anual.",
+    borderColor: "#1A6638",
+    bg: "bg-[#EDF8E8]",
+    featured: true,
   },
 ];
 
@@ -143,10 +144,24 @@ export default function PlanInversaveSection() {
         {/* Perfiles de riesgo */}
         <FadeIn>
           <p className="section-label mb-1">Perfiles de inversión</p>
-          <h3 className="text-h3 font-bold mb-3">Elegís tu nivel de riesgo.</h3>
-          <p className="text-[17px] text-t2 leading-relaxed mb-8">
-            Tu asesor te ayuda a encontrar el perfil correcto según tu edad, objetivos y tolerancia al riesgo.
+          <h3 className="text-h3 font-bold mb-3">
+            Para horizontes largos,{" "}
+            <span className="text-g3">el perfil agresivo lidera.</span>
+          </h3>
+          <p className="text-[17px] text-t2 leading-relaxed mb-5 max-w-xl">
+            Tu asesor te ayuda a definir el perfil correcto según tu edad, horizonte y tolerancia al riesgo.
+            Los perfiles conservador y moderado existen para objetivos de corto a mediano plazo,
+            pero el modelo INVERSAVE está diseñado para maximizar el crecimiento compuesto a largo plazo.
           </p>
+          <div className="bg-[#EDF8E8] border border-g1/25 rounded-2xl px-5 py-4 mb-8 max-w-2xl">
+            <p className="text-[14px] text-g4 leading-relaxed">
+              Para horizontes largos, una estrategia agresiva puede tener mayor sentido dentro de
+              un modelo de aportes periódicos. La volatilidad anual no desaparece, pero el DCA
+              permite construir posición gradualmente y reducir la dependencia de un único punto
+              de entrada. El objetivo no es evitar toda caída, sino{" "}
+              <strong>capturar crecimiento compuesto en el tiempo.</strong>
+            </p>
+          </div>
         </FadeIn>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
           {PROFILES.map((p, i) => (
