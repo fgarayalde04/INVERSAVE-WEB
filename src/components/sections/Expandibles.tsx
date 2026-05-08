@@ -360,6 +360,178 @@ export default function ExpandiblesSection() {
             ))}
           </div>
         </ExpandBlock>
+
+        {/* 14 Conceptos educativos */}
+        <ExpandBlock
+          icon={<IconTarget />}
+          iconVariant="g"
+          title="14 conceptos que necesitás entender"
+          subtitle="Todo lo esencial, explicado en lenguaje simple"
+        >
+          <div className="space-y-2">
+            {[
+              {
+                n: "01", title: "¿Dónde va mi dinero?",
+                body: "Tu aporte mensual se invierte en un portafolio diversificado de activos globales (acciones, índices, renta fija). No queda en una cuenta bancaria — trabaja en los mercados financieros. Dominion Capital los custodia en cuentas segregadas a tu nombre.",
+                tag: "Básico",
+              },
+              {
+                n: "02", title: "Diferencia entre ahorrar e invertir",
+                body: "Ahorrar es guardar dinero. Invertir es hacer que ese dinero trabaje y genere rendimiento. Con inflación del 4% anual, el dinero guardado pierde poder de compra cada año. Invertir es la forma de superar esa erosión.",
+                tag: "Básico",
+              },
+              {
+                n: "03", title: "¿Qué es la volatilidad?",
+                body: "Es la fluctuación normal del valor de tus inversiones. Un día puede bajar 2%, al otro subir 3%. En el largo plazo, la volatilidad es ruido de corto plazo. El S&P 500 cayó -56% en 2008 y en 2013 ya había recuperado todo y superado el máximo anterior.",
+                tag: "Inversión",
+              },
+              {
+                n: "04", title: "Por qué el tiempo importa tanto",
+                body: "USD 200/mes durante 40 años al 8% = USD 698.400. Durante 30 años = USD 297.500. La diferencia de 10 años explica USD 400.000 extra. Esto es el interés compuesto: los rendimientos generan rendimientos. El tiempo no se recupera.",
+                tag: "Clave",
+              },
+              {
+                n: "05", title: "Empezar con montos pequeños",
+                body: "El mínimo de INVERSAVE es USD 150/mes. USD 200/mes es el ejemplo de referencia. No es un obstáculo — es un punto de partida. A ese ritmo, en 20 años podés acumular más de USD 110.000 (al 8% anual). En 30 años, más de USD 297.000.",
+                tag: "Práctica",
+              },
+              {
+                n: "06", title: "Pausar o modificar aportes",
+                body: "Podés pausar temporalmente si lo necesitás. También podés ajustar el monto. El plan es flexible. Sin embargo, cada mes sin aportar tiene un costo real: ese dinero no genera rendimiento compuesto durante el resto del horizonte.",
+                tag: "Práctica",
+              },
+              {
+                n: "07", title: "Trading vs ahorro disciplinado",
+                body: "El trading implica comprar y vender activos buscando ganancias de corto plazo. Requiere tiempo, conocimiento avanzado y tolerancia al riesgo extremo. INVERSAVE es lo opuesto: un aporte mensual fijo, invertido automáticamente, sin necesidad de monitorear el mercado.",
+                tag: "Concepto",
+              },
+              {
+                n: "08", title: "El impacto de la inflación",
+                body: "USD 100.000 de hoy no comprarán lo mismo en 20 años. Con inflación del 4% anual, su valor real cae a ~USD 45.600. Invertir en activos que superan la inflación (históricamente el S&P 500 promedió +10% anual) protege y hace crecer el poder adquisitivo.",
+                tag: "Macroeconomía",
+              },
+              {
+                n: "09", title: "¿Qué es el S&P 500?",
+                body: "Es el índice que agrupa las 500 empresas más grandes de EE.UU. (Apple, Microsoft, Amazon, Google, etc.). Al invertir en él, comprás una parte de toda esa economía. Desde 1928, promedió +10,02% anual incluyendo dividendos. Es el benchmark histórico de la inversión pasiva.",
+                tag: "Mercado",
+              },
+              {
+                n: "10", title: "¿Qué pasa cuando el mercado cae?",
+                body: "Las caídas son normales: el S&P 500 cae más del 10% en promedio cada 1-2 años. Lo clave es no vender. Quien mantuvo su portafolio durante la crisis de 2008 recuperó todo en 4 años. Quien vendió en pánico cristalizó las pérdidas. Con DCA, las caídas son oportunidades: comprás más unidades al precio bajo.",
+                tag: "Mercado",
+              },
+              {
+                n: "11", title: "¿Qué significa largo plazo?",
+                body: "Históricamente, en ningún período de 15+ años el S&P 500 terminó en negativo. En períodos de 1 año, la probabilidad de pérdida es ~27%. En 5 años, ~12%. En 15 años, ~6%. El tiempo reduce el riesgo. Largo plazo significa 10, 15, 20 años o más.",
+                tag: "Riesgo",
+              },
+              {
+                n: "12", title: "¿Cómo funciona la automatización?",
+                body: "El día que configurás el plan, se establece un débito automático mensual. El dinero se invierte sin que tengas que hacer nada. Sin decisiones emocionales. Sin olvidarte. Sin tentaciones. El sistema trabaja por vos, todos los meses, durante años.",
+                tag: "Sistema",
+              },
+              {
+                n: "13", title: "¿Qué significa planificar el retiro?",
+                body: "Es definir: ¿cuánto necesitás al retirarte por mes? ¿A qué edad? Con esa cifra, se trabaja hacia atrás para determinar el capital necesario y el aporte mensual para alcanzarlo. Es un objetivo concreto, no un número vago.",
+                tag: "Planificación",
+              },
+              {
+                n: "14", title: "¿Para qué objetivos puede servir?",
+                body: "El retiro es el objetivo más común, pero no el único. También puede usarse para: objetivos familiares (estudio de los hijos, casa), independencia financiera antes de los 65, construir un colchón de largo plazo, o simplemente hacer crecer el patrimonio de forma sistemática.",
+                tag: "Objetivos",
+              },
+            ].map((item) => (
+              <div key={item.n} className="border border-black/[.06] rounded-2xl overflow-hidden">
+                <details className="group">
+                  <summary className="flex items-center gap-4 px-5 py-4 cursor-pointer list-none hover:bg-[#F8F7F3] transition-colors">
+                    <span className="text-[11px] font-bold text-t3 w-6 flex-shrink-0">{item.n}</span>
+                    <span className="flex-1 text-[14px] font-semibold text-t1">{item.title}</span>
+                    <span className="text-[10px] font-bold text-g3 bg-[#EDF8E8] border border-g1/20 rounded-full px-2.5 py-1 hidden sm:inline-flex">{item.tag}</span>
+                    <svg className="w-4 h-4 text-t3 transition-transform duration-200 group-open:rotate-180 flex-shrink-0" viewBox="0 0 16 16" fill="none">
+                      <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </summary>
+                  <div className="px-5 pb-5 pt-2 border-t border-black/[.04]">
+                    <p className="text-[13px] text-t2 leading-relaxed">{item.body}</p>
+                  </div>
+                </details>
+              </div>
+            ))}
+          </div>
+        </ExpandBlock>
+
+        {/* Pequeños hábitos, gran impacto */}
+        <ExpandBlock
+          icon={<IconTrending />}
+          iconVariant="g"
+          title="Pequeños aportes, gran impacto"
+          subtitle="Cómo USD 200 mensuales se transforman en capital real"
+        >
+          <p className="text-[15px] text-t2 leading-relaxed mb-6">
+            USD 200 mensuales equivalen a reorganizar algunos gastos recurrentes.
+            La constancia suele tener más impacto que intentar encontrar el momento perfecto.
+          </p>
+
+          <div className="grid sm:grid-cols-3 gap-4 mb-6">
+            {[
+              {
+                label: "Streaming + delivery",
+                gasto: "USD 200/mes",
+                horizon: "20 años invertidos",
+                capital: "USD 118.000",
+                note: "vs. USD 48.000 gastados en servicios",
+              },
+              {
+                label: "Salidas semanales",
+                gasto: "USD 200/mes",
+                horizon: "30 años invertidos",
+                capital: "USD 297.500",
+                note: "vs. USD 72.000 gastados en salidas",
+              },
+              {
+                label: "Suscripciones varias",
+                gasto: "USD 200/mes",
+                horizon: "40 años invertidos",
+                capital: "USD 698.400",
+                note: "vs. USD 96.000 gastados en suscripciones",
+              },
+            ].map((c, i) => (
+              <div key={i} className="bg-[#F8F6F0] border border-black/[.06] rounded-2xl p-5">
+                <p className="text-[11px] font-bold text-t3 uppercase tracking-[0.1em] mb-3">{c.label}</p>
+                <p className="text-[11px] text-t3 mb-1">Si en lugar de gastarlo lo invertís</p>
+                <p className="text-[13px] font-semibold text-t2 mb-1">{c.gasto} · {c.horizon}</p>
+                <p className="text-[22px] font-bold text-g3 tracking-tight mb-2">{c.capital}</p>
+                <p className="text-[11px] text-t3 italic">{c.note}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-[#EDF8E8] border border-g1/20 rounded-2xl p-5 mb-4">
+            <p className="text-[13px] font-semibold text-g4 mb-2">La clave no está en renunciar a nada.</p>
+            <p className="text-[13px] text-t2 leading-relaxed">
+              No se trata de "dejá de tomar café". Se trata de elegir conscientemente qué parte
+              del ingreso trabajará para vos en el largo plazo. Pequeños aportes mensuales sostenidos
+              en el tiempo pueden generar diferencias importantes. La constancia importa más que el monto inicial.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            {[
+              { from: "USD 200/mes · 10 años · 8% anual", to: "≈ USD 36.500 acumulados" },
+              { from: "USD 200/mes · 20 años · 8% anual", to: "≈ USD 118.000 acumulados" },
+              { from: "USD 200/mes · 30 años · 8% anual", to: "≈ USD 297.500 acumulados" },
+              { from: "USD 200/mes · 40 años · 8% anual", to: "≈ USD 698.400 acumulados" },
+            ].map((row, i) => (
+              <div key={i} className="flex items-center justify-between gap-4 bg-white border border-black/[.06] rounded-xl px-4 py-3">
+                <span className="text-[13px] text-t2">{row.from}</span>
+                <span className="text-[14px] font-bold text-g3 flex-shrink-0">{row.to}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-[11px] text-t3 italic mt-3">
+            Supuesto: 8% anual compuesto, capitalización mensual. Las simulaciones son ilustrativas.
+          </p>
+        </ExpandBlock>
       </div>
     </section>
   );

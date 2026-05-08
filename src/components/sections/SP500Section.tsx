@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FadeIn } from "@/components/ui";
-import { SPYRealChart } from "@/components/charts/Charts";
+import { SPYRealChart, SP500CumulativeChart } from "@/components/charts/Charts";
 import type { SPYDataPoint } from "@/app/api/spy-data/route";
 import { useLeadModal } from "@/context/ModalContext";
 
@@ -88,7 +88,9 @@ export default function SP500Section() {
               <div>
                 <p className="text-[15px] font-semibold text-t1">S&P 500 — Rendimiento histórico</p>
                 <p className="text-[13px] text-t3 mt-0.5">
-                  {loading
+                  {range === "max"
+                    ? "1928 → 2025 · Índice acumulado con dividendos · 98 años de historia real"
+                    : loading
                     ? "Cargando datos…"
                     : meta
                     ? `${meta.firstDate.slice(0, 7)} → ${meta.lastDate.slice(0, 7)} · Adjusted Close · ${data.length} puntos`
@@ -124,32 +126,46 @@ export default function SP500Section() {
             )}
 
             <div className="relative w-full h-[280px]">
-              {loading && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="flex items-center gap-3 text-t3 text-[14px]">
-                    <svg className="animate-spin w-5 h-5 text-g3" viewBox="0 0 24 24" fill="none">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
-                    </svg>
-                    Cargando datos del S&P 500…
-                  </div>
-                </div>
-              )}
-              {error && (
-                <div className="absolute inset-0 flex items-center justify-center text-warn text-[14px]">
-                  Error al cargar: {error}
-                </div>
-              )}
-              {!loading && !error && data.length > 0 && (
-                <SPYRealChart data={data} />
+              {range === "max" ? (
+                <SP500CumulativeChart />
+              ) : (
+                <>
+                  {loading && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="flex items-center gap-3 text-t3 text-[14px]">
+                        <svg className="animate-spin w-5 h-5 text-g3" viewBox="0 0 24 24" fill="none">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
+                        </svg>
+                        Cargando datos del S&P 500…
+                      </div>
+                    </div>
+                  )}
+                  {error && (
+                    <div className="absolute inset-0 flex items-center justify-center text-warn text-[14px]">
+                      Error al cargar: {error}
+                    </div>
+                  )}
+                  {!loading && !error && data.length > 0 && (
+                    <SPYRealChart data={data} />
+                  )}
+                </>
               )}
             </div>
 
             <div className="flex gap-5 mt-4 flex-wrap">
               <span className="flex items-center gap-2 text-[12px] text-t3">
                 <span className="inline-block w-5 h-0.5 rounded-full bg-g3"/>
-                S&P 500 Adjusted Close (ajustado por dividendos y splits)
+                {range === "max"
+                  ? "S&P 500 — índice acumulado desde 1928 (base 100), con dividendos · Fuente: Damodaran / NYU Stern"
+                  : "S&P 500 Adjusted Close via ETF SPY · Fuente: Yahoo Finance"}
               </span>
+              {range === "max" && (
+                <span className="flex items-center gap-2 text-[12px] text-t3">
+                  <span className="inline-block w-2 h-2 rounded-full bg-warn"/>
+                  Puntos rojos = crisis históricas (caída anual {">"} 15%)
+                </span>
+              )}
             </div>
           </div>
           <p className="text-[11px] text-t3 italic mb-4">

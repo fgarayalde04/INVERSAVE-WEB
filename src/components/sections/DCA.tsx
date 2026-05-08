@@ -49,7 +49,7 @@ export default function DCASection() {
         <FadeIn>
           <div className="bg-[#F9F8F4] border border-black/[.07] rounded-3xl p-7 mb-3">
             <p className="text-[15px] font-semibold text-t1 mb-1">
-              DGT Managed Fund — 5 años con aportes mensuales
+              Portafolio diversificado — 5 años con aportes mensuales
             </p>
             <p className="text-[13px] text-t3 mb-5">Rendimiento total: +77,3% · Jul. 2020 – Jul. 2025</p>
             <div className="relative w-full h-[200px]">
