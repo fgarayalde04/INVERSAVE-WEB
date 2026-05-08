@@ -744,7 +744,11 @@ export function SP500CumulativeChart() {
       values.push(Math.round(idx * 10) / 10);
     }
 
-    const crisisYears = raw.map(d => (d.return < -15 ? { x: d.year, y: values[raw.indexOf(d)] } : null)).filter(Boolean);
+    const isCrisis = raw.map(d => d.return < -15);
+    const pointBg = isCrisis.map(c => c ? "rgba(181,69,30,.85)" : "transparent");
+    const pointBorder = isCrisis.map(c => c ? "#B5451E" : "transparent");
+    const pointR = isCrisis.map(c => c ? 5 : 0);
+    const pointHoverR = isCrisis.map(c => c ? 7 : 5);
 
     chartRef.current = new Chart(ref.current, {
       type: "line",
@@ -757,20 +761,12 @@ export function SP500CumulativeChart() {
             borderColor: "#1A6638",
             backgroundColor: "rgba(26,102,56,.07)",
             fill: true, tension: 0.3,
-            pointRadius: 0,
-            pointHoverRadius: 5,
+            pointRadius: pointR,
+            pointHoverRadius: pointHoverR,
+            pointBackgroundColor: pointBg,
+            pointBorderColor: pointBorder,
             pointHoverBackgroundColor: "#1A6638",
             borderWidth: 2.5,
-          },
-          {
-            label: "Crisis",
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            type: "scatter" as any,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            data: crisisYears.map(p => ({ x: labels.indexOf(String(p!.x)), y: p!.y })) as any,
-            backgroundColor: "rgba(181,69,30,.75)",
-            borderColor: "#B5451E",
-            pointRadius: 5, pointHoverRadius: 7,
           },
         ],
       },
@@ -785,16 +781,13 @@ export function SP500CumulativeChart() {
               title: (items: any[]) => `Año ${items[0].label}`,
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               label: (ctx: any) => {
-                if (ctx.datasetIndex === 0) {
-                  const yr = parseInt(labels[ctx.dataIndex]);
-                  const ret = raw.find(d => d.year === yr)?.return ?? 0;
-                  return [
-                    ` Índice: ${(ctx.parsed.y ?? 0).toLocaleString("es-UY", { maximumFractionDigits: 0 })}`,
-                    ` Retorno: ${ret >= 0 ? "+" : ""}${ret.toFixed(1)}%`,
-                    CRISES[yr] ? ` ${CRISES[yr]}` : "",
-                  ].filter(Boolean);
-                }
-                return "";
+                const yr = parseInt(labels[ctx.dataIndex]);
+                const ret = raw.find(d => d.year === yr)?.return ?? 0;
+                return [
+                  ` Índice: ${(ctx.parsed.y ?? 0).toLocaleString("es-UY", { maximumFractionDigits: 0 })}`,
+                  ` Retorno: ${ret >= 0 ? "+" : ""}${ret.toFixed(1)}%`,
+                  CRISES[yr] ? ` Crisis: ${CRISES[yr]}` : "",
+                ].filter(Boolean);
               },
             },
             backgroundColor: "#fff", titleColor: "#1A1A1A", bodyColor: "#5A5A5A",
