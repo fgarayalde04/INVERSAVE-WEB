@@ -1,0 +1,13 @@
+# Environment secrets
+.env
+.env.local
+
+# Historical data (can contain sensitive portfolio info)
+data/
+
+# Build output
+dist/
+node_modules/
+
+# Logs
+*.log
