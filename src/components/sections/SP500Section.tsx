@@ -114,16 +114,16 @@ export default function SP500Section() {
               </div>
             </div>
 
-            {cagr !== null && !loading && (
-              <div className="flex gap-3 mb-5 flex-wrap">
-                <div className="inline-flex items-center gap-2 bg-[#EDF8E8] border border-g1/20 rounded-xl px-4 py-2">
-                  <span className="text-[12px] font-bold text-g3">CAGR S&P 500 (1993–hoy): +{cagr.toFixed(2)}% anual</span>
-                </div>
-                <div className="inline-flex items-center gap-2 bg-[#EDF8E8] border border-g1/20 rounded-xl px-4 py-2">
-                  <span className="text-[12px] font-bold text-g3">Retorno total: +{meta?.totalReturn?.toFixed(1)}%</span>
-                </div>
+            <div className="flex gap-3 mb-5 flex-wrap">
+              <div className="inline-flex items-center gap-2 bg-[#EDF8E8] border border-g1/20 rounded-xl px-4 py-2">
+                <span className="text-[12px] font-bold text-g3">CAGR S&P 500 (1928–2025): +10,02% anual</span>
               </div>
-            )}
+              {cagr !== null && !loading && range !== "max" && (
+                <div className="inline-flex items-center gap-2 bg-[#EDF8E8] border border-g1/20 rounded-xl px-4 py-2">
+                  <span className="text-[12px] font-bold text-g3">Retorno total (período): +{meta?.totalReturn?.toFixed(1)}%</span>
+                </div>
+              )}
+            </div>
 
             <div className="relative w-full h-[280px]">
               {range === "max" ? (

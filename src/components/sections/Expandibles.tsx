@@ -372,7 +372,7 @@ export default function ExpandiblesSection() {
             {[
               {
                 n: "01", title: "¿Dónde va mi dinero?",
-                body: "Tu aporte mensual se invierte en un portafolio diversificado de activos globales (acciones, índices, renta fija). No queda en una cuenta bancaria — trabaja en los mercados financieros. Dominion Capital los custodia en cuentas segregadas a tu nombre.",
+                body: "Tu aporte mensual se invierte en un fondo de inversión que replica los principales índices globales (S&P 500, MSCI World y otros). No queda en una cuenta bancaria — trabaja en los mercados financieros internacionales. Dominion Capital custodia los activos en cuentas segregadas a tu nombre.",
                 tag: "Básico",
               },
               {

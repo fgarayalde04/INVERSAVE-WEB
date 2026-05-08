@@ -100,31 +100,6 @@ export default function InteresCompuestoSection() {
           </p>
         </FadeIn>
 
-        {/* ICChart — secondary, 3 rates */}
-        <FadeIn>
-          <div className="bg-[#F8F6F0] border border-black/[.06] rounded-3xl p-7 mb-3 mt-6">
-            <p className="text-[14px] font-semibold text-t2 mb-1">
-              Crecimiento de USD 200/mes a distintas tasas — 40 años
-            </p>
-            <p className="text-[13px] text-t3 mb-5">Cómo varía el resultado según la rentabilidad anual</p>
-            <div className="relative w-full h-[200px]">
-              <ICChart />
-            </div>
-            <div className="flex gap-5 mt-4 flex-wrap">
-              {[
-                { color: "#1A6638", label: "10% anual" },
-                { color: "#6B48E8", label: "8% anual" },
-                { color: "#aaa", label: "6% anual (ref.)", dashed: true },
-              ].map(c => (
-                <span key={c.label} className="flex items-center gap-2 text-[12px] text-t3">
-                  <span className="inline-block w-5 h-0.5 rounded-full" style={{ background: c.color }} />
-                  {c.label}
-                </span>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
-
         <QuoteBlock text={QUOTES.buffett2.text} author={QUOTES.buffett2.author} />
       </div>
     </section>
