@@ -9,6 +9,8 @@ import DominionFAQ from "@/components/sections/dominion/DominionFAQ";
 import { CTASection, Footer } from "@/components/sections/CTAFooter";
 import { GlowDivider } from "@/components/ui";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Dominion — Tu plataforma de inversión global | INVERSAVE",
   description: "Dominion Capital Strategies: cuenta segregada, custodia BNY Mellon, regulada Guernsey FSC. Invertí globalmente desde Uruguay con asesor local BCU.",
