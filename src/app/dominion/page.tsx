@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import DominionPageHero from "@/components/sections/dominion/DominionHero";
+import DominionAccountPreview from "@/components/sections/dominion/DominionAccountPreview";
 import DominionProblema from "@/components/sections/dominion/DominionProblema";
 import DominionQue from "@/components/sections/dominion/DominionQue";
 import PlanInversaveSection from "@/components/sections/PlanInversave";
@@ -17,12 +18,13 @@ export default function DominionPage() {
   return (
     <main>
       <DominionPageHero />
+      <DominionAccountPreview />
       <GlowDivider />
       <DominionProblema />
       <GlowDivider />
       <DominionQue />
       <GlowDivider />
-      <PlanInversaveSection />
+      <PlanInversaveSection hideAccountPreview />
       <GlowDivider />
       <DominionComparativa />
       <GlowDivider />

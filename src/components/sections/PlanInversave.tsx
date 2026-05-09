@@ -85,7 +85,7 @@ const FUNDS = [
   { name: "Emerging Markets", region: "Asia/LatAm", type: "Renta variable", pct: "Alto potencial, alta volatilidad" },
 ];
 
-export default function PlanInversaveSection() {
+export default function PlanInversaveSection({ hideAccountPreview = false }: { hideAccountPreview?: boolean }) {
   return (
     <section id="plan" className="section-wrap">
       <div className="inner">
@@ -281,6 +281,7 @@ export default function PlanInversaveSection() {
         </FadeIn>
 
         {/* Account preview */}
+        {!hideAccountPreview && (
         <FadeIn>
           <div className="mt-14 mb-4">
             <p className="section-label mb-1">Visualizá tu inversión</p>
@@ -328,6 +329,7 @@ export default function PlanInversaveSection() {
             Imagen ilustrativa. Los valores mostrados pueden variar y no representan una garantía de rendimiento.
           </p>
         </FadeIn>
+        )}
 
         {/* Feature pills */}
         <FadeIn>
