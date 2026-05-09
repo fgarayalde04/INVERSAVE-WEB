@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLeadModal } from "@/context/ModalContext";
 
 const NAV_LINKS = [
+  { label: "Sistema previsional", href: "/sistema-previsional" },
   { label: "Cómo funciona", href: "/como-funciona" },
   { label: "Mercado", href: "/mercado" },
   { label: "Simulador", href: "/simulador" },
