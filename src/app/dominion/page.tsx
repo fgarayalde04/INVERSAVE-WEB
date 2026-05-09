@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import DominionPageHero from "@/components/sections/dominion/DominionHero";
-import DominionAccountPreview from "@/components/sections/dominion/DominionAccountPreview";
+import DominionKeyInfo from "@/components/sections/dominion/DominionKeyInfo";
+import DominionPartners from "@/components/sections/dominion/DominionPartners";
 import DominionProblema from "@/components/sections/dominion/DominionProblema";
 import DominionQue from "@/components/sections/dominion/DominionQue";
 import PlanInversaveSection from "@/components/sections/PlanInversave";
@@ -13,14 +14,17 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Dominion — Tu plataforma de inversión global | INVERSAVE",
-  description: "Dominion Capital Strategies: cuenta segregada, custodia BNY Mellon, regulada Guernsey FSC. Invertí globalmente desde Uruguay con asesor local BCU.",
+  description:
+    "Dominion Capital Strategies: cuenta segregada, custodia BNY Mellon, regulada Guernsey FSC. Invertí globalmente desde Uruguay con asesor local BCU.",
 };
 
 export default function DominionPage() {
   return (
     <main>
       <DominionPageHero />
-      <DominionAccountPreview />
+      <DominionKeyInfo />
+      <GlowDivider />
+      <DominionPartners />
       <GlowDivider />
       <DominionProblema />
       <GlowDivider />
