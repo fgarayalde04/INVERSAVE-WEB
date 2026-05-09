@@ -77,6 +77,30 @@ export default function DominionPageHero() {
           </motion.button>
         </motion.div>
 
+        {/* Video — S&P 500 Tracker */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="relative z-10 max-w-4xl mx-auto w-full mt-2 mb-10"
+        >
+          <div className="rounded-3xl overflow-hidden border border-white/10" style={{ boxShadow: "0 32px 80px rgba(0,0,0,0.4)" }}>
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-auto block"
+              poster="/account-preview.png"
+            >
+              <source src="/dcs-sp500-tracker.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <p className="text-center text-[11px] text-white/25 mt-3">
+            S&P 500 Tracker — Pacific Asset Management · Fondo disponible en Dominion
+          </p>
+        </motion.div>
+
         {/* Trust row */}
         <motion.div
           initial={{ opacity: 0 }}
