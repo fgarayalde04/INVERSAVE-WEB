@@ -1,3 +1,4 @@
+"use client";
 import { FadeIn } from "@/components/ui";
 
 export default function DominionAccountPreview() {
