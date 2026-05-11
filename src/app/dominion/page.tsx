@@ -4,6 +4,7 @@ import DominionKeyInfo from "@/components/sections/dominion/DominionKeyInfo";
 import DominionPartners from "@/components/sections/dominion/DominionPartners";
 import DominionProblema from "@/components/sections/dominion/DominionProblema";
 import DominionQue from "@/components/sections/dominion/DominionQue";
+import DominionAccountPreview from "@/components/sections/dominion/DominionAccountPreview";
 import PlanInversaveSection from "@/components/sections/PlanInversave";
 import DominionComparativa from "@/components/sections/dominion/DominionComparativa";
 import DominionFAQ from "@/components/sections/dominion/DominionFAQ";
@@ -29,6 +30,8 @@ export default function DominionPage() {
       <DominionProblema />
       <GlowDivider />
       <DominionQue />
+      <GlowDivider />
+      <DominionAccountPreview />
       <GlowDivider />
       <PlanInversaveSection hideAccountPreview />
       <GlowDivider />

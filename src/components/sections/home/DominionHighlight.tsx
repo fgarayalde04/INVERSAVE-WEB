@@ -54,7 +54,7 @@ export default function DominionHighlight() {
                     className="inline-flex items-center gap-2.5 bg-g3 text-white font-semibold text-[14px] rounded-full px-7 py-3.5 hover:bg-[#1A6638] transition-colors"
                     style={{ boxShadow: "0 2px 20px rgba(26,102,56,.4)" }}
                   >
-                    Explorar Dominion
+                    Conocé el plan
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                       <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>

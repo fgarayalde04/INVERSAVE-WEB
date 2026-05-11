@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLeadModal } from "@/context/ModalContext";
 
 const TRUST_BADGES = [
   "Regulado BCU",
@@ -35,16 +35,12 @@ function Particle({ style }: { style: React.CSSProperties }) {
 }
 
 export default function Hero() {
-  const { openModal } = useLeadModal();
   const [phraseIdx, setPhraseIdx] = useState(0);
 
   useEffect(() => {
     const id = setInterval(() => setPhraseIdx(i => (i + 1) % PHRASES.length), 4000);
     return () => clearInterval(id);
   }, []);
-
-  const scrollTo = (id: string) =>
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <section
@@ -160,20 +156,17 @@ export default function Hero() {
           transition={{ delay: 0.44, duration: 0.5 }}
           className="flex justify-center gap-3 flex-wrap mb-10"
         >
-          <motion.button
-            whileHover={{ scale: 1.03, y: -2 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => openModal("hero")}
-            className="btn-hero"
-          >
-            Comenzar mi plan
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </motion.button>
-          <button onClick={() => scrollTo("sim")} className="btn-hero-outline">
-            Simulá mi futuro
-          </button>
+          <motion.div whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
+            <Link href="/dominion" className="btn-hero inline-flex items-center gap-2">
+              Conocé el plan
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Link>
+          </motion.div>
+          <Link href="/simulador" className="btn-hero-outline inline-flex items-center">
+            Simulá tu futuro
+          </Link>
         </motion.div>
 
         {/* Trust badges */}
