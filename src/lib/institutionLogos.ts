@@ -16,6 +16,7 @@ export const INSTITUTION_LOGOS: Record<string, string> = {
   "Scotiabank Uruguay":      "/logos/institutions/scotiabank.png",
   "Scotiabank":              "/logos/institutions/scotiabank.png",
   "Banque Heritage":         "/logos/institutions/heritage.png",
+  "Banque Heritage Uruguay": "/logos/institutions/heritage.png",
   "Heritage":                "/logos/institutions/heritage.png",
   "Bandes Uruguay":          "/logos/institutions/bandes.png",
   "Bandes":                  "/logos/institutions/bandes.png",

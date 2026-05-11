@@ -3,6 +3,7 @@ import { useState } from "react";
 import { BANCOS, AFAPS, FED, INDICADORES } from "@/data/market";
 import { bankIndicators } from "@/data/bank-indicators";
 import type { BankIndicatorCurrency } from "@/data/bank-indicators";
+import { InstitutionLogoLabel } from "@/components/ui/InstitutionLogoLabel";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -132,9 +133,9 @@ function TabAFAPs() {
         {AFAPS.map((afap) => (
           <div key={afap.id} className="bg-[#F8F8F6] border border-black/[.07] rounded-2xl p-5">
             <div className="flex items-start justify-between gap-2 mb-3">
-              <div>
-                <p className="text-[14px] font-bold text-t1">{afap.nombre}</p>
-                <p className="text-[11px] text-t3">{afap.grupo}</p>
+              <div className="flex flex-col gap-0.5">
+                <InstitutionLogoLabel name={afap.nombre} size="sm" />
+                <p className="text-[11px] text-t3 pl-10">{afap.grupo}</p>
               </div>
               <a href={afap.sitioWeb} target="_blank" rel="noopener noreferrer"
                 className="text-[10px] text-g3 font-medium hover:underline flex-shrink-0">
@@ -367,11 +368,9 @@ function BankCard({ item }: { item: typeof bankIndicators[number] }) {
     <div className="bg-white border border-black/[.07] rounded-2xl p-5 flex flex-col gap-3 hover:shadow-sm transition-shadow">
       {/* Header */}
       <div className="flex items-start justify-between gap-2">
-        <div>
-          <p className="text-[12px] font-bold text-t3 uppercase tracking-[0.07em] mb-0.5">
-            {item.entity}
-          </p>
-          <p className="text-[14px] font-semibold text-t1 leading-snug">{item.title}</p>
+        <div className="flex flex-col gap-1 min-w-0">
+          <InstitutionLogoLabel name={item.entity} size="sm" />
+          <p className="text-[13px] font-semibold text-t1 leading-snug">{item.title}</p>
         </div>
         <span
           className="inline-flex items-center text-[10px] font-bold rounded-full px-2.5 py-0.5 flex-shrink-0"
