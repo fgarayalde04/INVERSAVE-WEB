@@ -5,6 +5,22 @@ import { FadeIn } from "@/components/ui";
 
 const FAQS = [
   {
+    q: "¿Qué es El Plan de INVERSAVE?",
+    a: "El Plan es un esquema de ahorro e inversión mensual automatizado, diseñado para construir patrimonio a largo plazo desde Uruguay. Aportás un monto mensual fijo —desde USD 150— y ese dinero se invierte en mercados globales a través de Dominion Capital Strategies. No necesitás saber de finanzas ni tomar decisiones de mercado.",
+  },
+  {
+    q: "¿Cómo funciona el aporte mensual automático?",
+    a: "Una vez configurado el plan, tu aporte mensual se debita automáticamente y se destina a los fondos elegidos según tu perfil de inversión. Este método se conoce como Dollar-Cost Averaging (DCA): invertir un monto fijo de forma periódica, sin depender del momento exacto del mercado. No necesitás monitorear precios ni tomar decisiones mes a mes.",
+  },
+  {
+    q: "¿Puedo pausar o modificar mis aportes?",
+    a: "Sí. Podés ajustar el monto de tus aportes, pausarlos temporalmente o retomarlos cuando lo necesités. También podés acceder a tu capital sin permanencia mínima obligatoria. El plan está diseñado para el largo plazo, pero entendemos que la vida no es lineal.",
+  },
+  {
+    q: "¿El plan garantiza algún rendimiento?",
+    a: "No. Ninguna inversión garantiza rendimientos. El valor de tu portafolio puede subir y bajar a lo largo del tiempo. El plan está diseñado para el largo plazo, lo que históricamente ha ayudado a los inversores a navegar la volatilidad del mercado, pero el pasado no garantiza resultados futuros. Toda la información tiene fines educativos y no constituye asesoramiento financiero personalizado.",
+  },
+  {
     q: "¿Qué es Dominion Capital Strategies?",
     a: "Dominion Capital Strategies Limited es una plataforma de inversión regulada por la Guernsey Financial Services Commission (Registro No. 63978) bajo la Protection of Investors Law 2020. Actúa como vehículo institucional para tu portafolio personal, con custodia a través de BNY Mellon y administración vía FNZ.",
   },
@@ -80,7 +96,7 @@ export default function DominionFAQ() {
           <p className="section-label">Preguntas frecuentes</p>
           <h2 className="text-h2 font-bold mb-10">
             Todo lo que querés saber{" "}
-            <span className="text-g3">sobre Dominion.</span>
+            <span className="text-g3">sobre el plan.</span>
           </h2>
         </FadeIn>
         <FadeIn>
