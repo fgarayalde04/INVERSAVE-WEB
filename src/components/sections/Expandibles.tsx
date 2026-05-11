@@ -272,8 +272,8 @@ const CONCEPTS = [
     tag: "Estrategia",
     title: "Construcción de portafolio",
     def: "Proceso de combinar distintos activos según los objetivos, el horizonte y la tolerancia al riesgo de cada persona. No existe un portafolio universal.",
-    image: null,
-    imageAlt: "",
+    image: "/education/portafolio.jpg",
+    imageAlt: "Construcción de portafolio de inversión",
   },
   {
     key: "ahorro",
