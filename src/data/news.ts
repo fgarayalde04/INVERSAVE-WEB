@@ -22,6 +22,8 @@ export interface NewsItem {
   category: NewsCategory;
   summary: string;
   tag: string;
+  image?: string;      // ruta desde /public, ej: "/news/infobae-afap.jpg"
+  imageAlt?: string;
 }
 
 export const NEWS: NewsItem[] = [
@@ -36,6 +38,8 @@ export const NEWS: NewsItem[] = [
     summary:
       "Editorial sobre la reforma jubilatoria uruguaya: los cambios propuestos, el debate político y las implicancias para los trabajadores activos y futuros jubilados del país.",
     tag: "Reforma previsional",
+    image: "/news/lanacion-reforma-jubilatoria.jpg",
+    imageAlt: "Reforma jubilatoria uruguaya — La Nación",
   },
   {
     id: "infobae-riesgos-fiscales-afap-2026",
@@ -47,8 +51,10 @@ export const NEWS: NewsItem[] = [
     date: "2026-05-08",
     category: "reforma",
     summary:
-      "Economistas y organismos advierten sobre los riesgos fiscales de las propuestas que buscan modificar el sistema de AFAPs y reducir la edad de retiro en Uruguay. El debate pone en tensión la sostenibilidad del sistema y el costo para las arcas del Estado.",
+      "Economistas y organismos advierten sobre los riesgos fiscales de las propuestas que buscan modificar el sistema de AFAPs y reducir la edad de retiro en Uruguay.",
     tag: "Riesgo fiscal",
+    image: "/news/infobae-afap.jpg",
+    imageAlt: "Riesgos fiscales del sistema previsional uruguayo — Infobae",
   },
   {
     id: "ambito-riesgo-pais-sistema-previsional-2026",
@@ -60,8 +66,10 @@ export const NEWS: NewsItem[] = [
     date: "2026-04-20",
     category: "mercado",
     summary:
-      "Los mercados reaccionaron ante las propuestas de cambio al sistema previsional uruguayo. El riesgo país registró movimientos ante la incertidumbre sobre el futuro de las AFAPs y las modificaciones a la reforma jubilatoria de 2023.",
+      "Los mercados reaccionaron ante las propuestas de cambio al sistema previsional uruguayo. El riesgo país registró movimientos ante la incertidumbre sobre el futuro de las AFAPs.",
     tag: "Mercado & riesgo país",
+    image: "/news/ambito-riesgo-pais.jpg",
+    imageAlt: "Riesgo país Uruguay ante cambios al sistema previsional — Ámbito",
   },
   {
     id: "elpais-uy-reforma-seguridad-social-2026",
@@ -73,8 +81,10 @@ export const NEWS: NewsItem[] = [
     date: "2026-03-15",
     category: "reforma",
     summary:
-      "El País Uruguay analiza las principales propuestas en debate para modificar la reforma de la seguridad social aprobada en 2023: posibles cambios en la edad de jubilación, el rol de las AFAPs y las condiciones de acceso a la jubilación común.",
+      "El País Uruguay analiza las principales propuestas en debate para modificar la reforma de la seguridad social aprobada en 2023: cambios en la edad de jubilación y el rol de las AFAPs.",
     tag: "Reforma — AFAPs",
+    image: "/news/elpais-seguridad-social.jpg",
+    imageAlt: "Reforma seguridad social Uruguay 2026 — El País",
   },
   {
     id: "uypress-mtss-seguridad-social-envejecimiento-2026",
@@ -86,8 +96,10 @@ export const NEWS: NewsItem[] = [
     date: "2026-03-10",
     category: "bps",
     summary:
-      "El Ministerio de Trabajo y Seguridad Social alerta sobre la necesidad de adaptar el sistema previsional uruguayo al envejecimiento de la población y a las nuevas formas de trabajo. La informalidad laboral y la longevidad creciente presionan la sostenibilidad del sistema.",
+      "El Ministerio de Trabajo y Seguridad Social alerta sobre la necesidad de adaptar el sistema previsional uruguayo al envejecimiento de la población y las nuevas formas de trabajo.",
     tag: "Sostenibilidad",
+    image: "/news/uypress-envejecimiento.jpg",
+    imageAlt: "Envejecimiento poblacional y seguridad social Uruguay — Uypress",
   },
   {
     id: "ambito-afap-ganancias-2025-gobierno-cambios-2026",
@@ -99,8 +111,10 @@ export const NEWS: NewsItem[] = [
     date: "2026-02-15",
     category: "afaps",
     summary:
-      "Las AFAPs uruguayas registraron una caída en sus ganancias durante 2025, en un contexto de volatilidad financiera regional. El gobierno evalúa ajustes al sistema previsional en respuesta al desempeño de los fondos y a las presiones políticas por una nueva reforma.",
+      "Las AFAPs uruguayas registraron una caída en sus ganancias durante 2025. El gobierno evalúa ajustes al sistema previsional ante el desempeño de los fondos y las presiones por una nueva reforma.",
     tag: "AFAPs 2025",
+    image: "/news/ambito-afap-ganancias.jpg",
+    imageAlt: "Ganancias AFAPs Uruguay 2025 — Ámbito",
   },
 ];
 
