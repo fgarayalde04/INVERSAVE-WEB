@@ -2,8 +2,6 @@ import { Metadata }           from "next";
 import MercadoDashboard       from "@/components/sections/mercado/MercadoDashboard";
 import { CTASection, Footer } from "@/components/sections/CTAFooter";
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
   title: "Indicadores financieros y previsionales en Uruguay | INVERSAVE",
   description:

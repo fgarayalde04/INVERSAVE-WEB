@@ -1,3 +1,4 @@
+"use client";
 import { FadeIn } from "@/components/ui";
 import { PLAN_PARTNERS } from "@/data/partners";
 
