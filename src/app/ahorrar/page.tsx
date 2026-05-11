@@ -7,9 +7,9 @@ import { CTASection, Footer } from "@/components/sections/CTAFooter";
 import { GlowDivider } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Cómo funciona el ahorro — Interés compuesto y disciplina financiera",
+  title: "Ahorrar — Interés compuesto, DCA y disciplina financiera | INVERSAVE",
   description:
-    "Cómo ahorrar mejor, qué es el interés compuesto, diferencia entre ahorrar e invertir, automatización del ahorro, inflación y largo plazo. Conceptos clave explicados en simple.",
+    "Cómo funciona el ahorro a largo plazo, cómo hacerlo, el costo de esperar y la estrategia Dollar Cost Averaging. Conceptos clave explicados en simple.",
   keywords: [
     "cómo ahorrar mejor",
     "interés compuesto",
@@ -24,34 +24,49 @@ export const metadata: Metadata = {
     "planificación financiera",
     "costo de esperar en inversión",
   ],
-  alternates: { canonical: "https://inversave.com/como-funciona" },
+  alternates: { canonical: "https://inversave.com/ahorrar" },
 };
 
-export default function ComoFuncionaPage() {
+export default function AhorrarPage() {
   return (
     <main>
-      {/* H1 — único, indexable */}
+      {/* H1 */}
       <section className="page-hero">
         <div className="inner text-center">
-          <p className="section-label">Cómo funciona el ahorro</p>
+          <p className="section-label">Ahorrar</p>
           <h1 className="text-[clamp(26px,3.2vw,42px)] font-bold leading-tight tracking-tight mb-3">
             Simple, automático,{" "}
             <span className="text-g3">a largo plazo.</span>
           </h1>
           <p className="text-[16px] text-t2 max-w-2xl mx-auto leading-relaxed">
-            Interés compuesto, el costo de esperar, automatización, inflación y disciplina
-            financiera. Todo lo que necesitás entender para tomar mejores decisiones de ahorro.
+            Interés compuesto, el costo de esperar, cómo hacerlo y Dollar Cost Averaging.
+            Todo lo que necesitás entender para tomar mejores decisiones de ahorro.
           </p>
         </div>
       </section>
 
-      <PorQueFunciona />
+      {/* Cómo funciona */}
+      <div id="como-funciona" className="scroll-mt-20">
+        <PorQueFunciona />
+      </div>
+
+      {/* Cómo hacerlo */}
       <GlowDivider />
-      <MentalidadSection />
+      <div id="como-hacerlo" className="scroll-mt-20">
+        <MentalidadSection />
+      </div>
+
+      {/* Costo de esperar */}
       <GlowDivider />
-      <InteresCompuestoSection />
+      <div id="costo-de-esperar" className="scroll-mt-20">
+        <InteresCompuestoSection />
+      </div>
+
+      {/* Dollar Cost Averaging */}
       <GlowDivider />
-      <DCASection />
+      <div id="dollar-cost-averaging" className="scroll-mt-20">
+        <DCASection />
+      </div>
 
       <CTASection />
       <Footer />

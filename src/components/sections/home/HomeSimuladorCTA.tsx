@@ -9,14 +9,14 @@ export default function HomeSimuladorCTA() {
         <FadeIn>
           <div className="bg-white border border-black/[.07] rounded-3xl p-10 md:p-14 flex flex-col md:flex-row items-center gap-10">
             <div className="flex-1">
-              <p className="section-label">Simulador</p>
+              <p className="section-label">Simulador de jubilación</p>
               <h2 className="text-h2 font-bold mb-4">
-                ¿Cuánto tendrías{" "}
-                <span className="text-g3">si empezaras hoy?</span>
+                Simulá tu futuro{" "}
+                <span className="text-g3">financiero.</span>
               </h2>
               <p className="text-[17px] text-t2 leading-relaxed mb-8 max-w-md">
-                Con USD 200 al mes durante 30 años, al 8% anual: más de USD 270.000.
-                Calculá tu escenario exacto.
+                Ingresás tu aporte mensual, el plazo y una tasa estimada.
+                El simulador te muestra cuánto capital podrías construir en distintos escenarios.
               </p>
               <Link
                 href="/simulador"

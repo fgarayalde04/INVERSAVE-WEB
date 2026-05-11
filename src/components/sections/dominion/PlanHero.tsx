@@ -1,17 +1,15 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useLeadModal } from "@/context/ModalContext";
 
 export default function PlanHero() {
-  const { openModal } = useLeadModal();
 
   return (
     <section
       className="relative overflow-hidden text-white"
       style={{
         background: "linear-gradient(160deg,#0C1A11 0%,#0F2118 50%,#0A160E 100%)",
-        minHeight: "min(85svh,760px)",
+        minHeight: "min(78svh,660px)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -31,7 +29,7 @@ export default function PlanHero() {
         }}
       />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-10 py-14 text-center">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -85,9 +83,6 @@ export default function PlanHero() {
               </svg>
             </Link>
           </motion.div>
-          <button onClick={() => openModal("plan_hero")} className="btn-hero-outline">
-            Hablar con un asesor
-          </button>
         </motion.div>
 
         {/* Trust badges */}
@@ -95,7 +90,7 @@ export default function PlanHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="flex justify-center gap-3 flex-wrap mb-16"
+          className="flex justify-center gap-3 flex-wrap"
         >
           {[
             "Regulado BCU",
@@ -110,33 +105,6 @@ export default function PlanHero() {
           ))}
         </motion.div>
 
-        {/* Video — secondary support, with controls, no autoplay */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-3xl mx-auto"
-        >
-          <p className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/20 mb-3">
-            S&P 500 Tracker · Pacific Asset Management · Fondo disponible en el plan
-          </p>
-          <div
-            className="rounded-2xl overflow-hidden border border-white/[.08]"
-            style={{ boxShadow: "0 24px 60px rgba(0,0,0,0.35)" }}
-          >
-            <video
-              controls
-              playsInline
-              className="w-full h-auto block"
-              poster="/account-preview.png"
-            >
-              <source src="/dcs-sp500-tracker.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <p className="text-[10px] text-white/15 mt-2 italic">
-            Los rendimientos mostrados son históricos y no garantizan resultados futuros.
-          </p>
-        </motion.div>
       </div>
     </section>
   );

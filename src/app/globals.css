@@ -181,13 +181,17 @@ input[type='range']::-moz-range-thumb {
 
   /* ── Section wrapper ─────────────────────────────────── */
   .section-wrap {
-    @apply py-24 px-6;
+    @apply py-16 px-6;
   }
   .section-wrap-white {
-    @apply bg-white py-24 px-6;
+    @apply bg-white py-16 px-6;
   }
   .inner {
-    @apply max-w-4xl mx-auto;
+    @apply max-w-5xl mx-auto;
+  }
+  /* Header compacto de cada página interna */
+  .page-hero {
+    @apply bg-white pt-10 pb-0 px-6;
   }
 
   /* ── Stat number ─────────────────────────────────────── */

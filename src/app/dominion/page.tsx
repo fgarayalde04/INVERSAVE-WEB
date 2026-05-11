@@ -1,10 +1,12 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import PlanHero from "@/components/sections/dominion/PlanHero";
-import PlanPasos from "@/components/sections/dominion/PlanPasos";
-import PlanBeneficios from "@/components/sections/dominion/PlanBeneficios";
-import PlanDCA from "@/components/sections/dominion/PlanDCA";
-import PlanCapital from "@/components/sections/dominion/PlanCapital";
 import DominionAccountPreview from "@/components/sections/dominion/DominionAccountPreview";
+import PlanPasos from "@/components/sections/dominion/PlanPasos";
+import PlanComoFunciona from "@/components/sections/dominion/PlanComoFunciona";
+import SP500Companies from "@/components/sections/dominion/SP500Companies";
+import PlanCapital from "@/components/sections/dominion/PlanCapital";
+import PlanVideoBlock from "@/components/sections/dominion/PlanVideoBlock";
 import RobleCapitalBlock from "@/components/sections/dominion/RobleCapitalBlock";
 import DominionQue from "@/components/sections/dominion/DominionQue";
 import DominionPartners from "@/components/sections/dominion/DominionPartners";
@@ -22,55 +24,91 @@ export const metadata: Metadata = {
     "Un plan de ahorro mensual automatizado, invertido en mercados globales. Aportes desde USD 150/mes. Cuenta segregada BNY Mellon. Asesor regulado BCU. Dominion Capital Strategies · Guernsey FSC.",
 };
 
+// ── Navegación interna ───────────────────────────────────────────────────────
+function PlanInternalNav() {
+  const LINKS = [
+    { label: "Cómo funciona",       href: "#como-funciona" },
+    { label: "Cómo se ve la cuenta", href: "#como-se-ve-una-cuenta" },
+    { label: "Instituciones",        href: "#instituciones" },
+    { label: "Flexibilidad y riesgos", href: "#flexibilidad-riesgos" },
+  ];
+
+  return (
+    <nav
+      aria-label="Secciones de El Plan"
+      className="px-5 py-3 bg-white border-b border-black/[.06] overflow-x-auto"
+    >
+      <div className="flex items-center gap-2 max-w-5xl mx-auto min-w-max">
+        <span className="text-[11px] font-semibold text-t3 uppercase tracking-[0.08em] flex-shrink-0 mr-1">
+          En esta página:
+        </span>
+        {LINKS.map((l) => (
+          <Link
+            key={l.href}
+            href={l.href}
+            className="flex-shrink-0 text-[13px] font-medium text-t2 bg-[#F4F4F1] hover:bg-[#EDF8E8] hover:text-g3 rounded-full px-4 py-1.5 transition-colors"
+          >
+            {l.label}
+          </Link>
+        ))}
+      </div>
+    </nav>
+  );
+}
+
+// ── Page ─────────────────────────────────────────────────────────────────────
 export default function DominionPage() {
   return (
     <main>
-      {/* 1. Hero — qué es el plan */}
+      {/* Hero */}
       <PlanHero />
 
-      {/* 2. Cómo funciona — 3 pasos simples */}
-      <GlowDivider />
-      <PlanPasos />
+      {/* Navegación interna — debajo del hero */}
+      <PlanInternalNav />
 
-      {/* 3. Por qué funciona — 6 beneficios */}
-      <GlowDivider />
-      <PlanBeneficios />
+      {/* Cómo se ve la cuenta — mockup arriba */}
+      <div id="como-se-ve-una-cuenta" className="scroll-mt-20">
+        <DominionAccountPreview />
+      </div>
 
-      {/* 4. DCA + Flexibilidad + Riesgo */}
+      {/* Cómo funciona */}
       <GlowDivider />
-      <PlanDCA />
+      <div id="como-funciona" className="scroll-mt-20">
+        <PlanPasos />
+        <PlanComoFunciona />
+      </div>
 
-      {/* 5. Largo plazo — visual + CTA simulador */}
+      {/* Índice S&P 500 + crecimiento */}
+      <GlowDivider />
+      <SP500Companies />
       <GlowDivider />
       <PlanCapital />
 
-      {/* 6. Mockup de cuenta Dominion */}
+      {/* Video */}
       <GlowDivider />
-      <DominionAccountPreview />
+      <PlanVideoBlock />
 
-      {/* 7. Roble Capital + Dominion — respaldo institucional */}
+      {/* Instituciones */}
       <GlowDivider />
-      <RobleCapitalBlock />
+      <div id="instituciones" className="scroll-mt-20">
+        <RobleCapitalBlock />
+        <GlowDivider />
+        <DominionQue />
+        <GlowDivider />
+        <DominionPartners />
+      </div>
 
-      {/* 8. Qué es Dominion — estructura técnica */}
-      <GlowDivider />
-      <DominionQue />
-
-      {/* 9. Partners — infraestructura institucional */}
-      <GlowDivider />
-      <DominionPartners />
-
-      {/* 10. Perfiles de inversión + fondos */}
+      {/* Perfiles + comparativa */}
       <GlowDivider />
       <PlanInversaveSection hideAccountPreview />
-
-      {/* 11. Comparativa */}
       <GlowDivider />
       <DominionComparativa />
 
-      {/* 12. FAQ */}
+      {/* Flexibilidad y riesgos */}
       <GlowDivider />
-      <DominionFAQ />
+      <div id="flexibilidad-riesgos" className="scroll-mt-20">
+        <DominionFAQ />
+      </div>
 
       <CTASection />
       <Footer />

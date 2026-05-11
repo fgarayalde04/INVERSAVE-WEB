@@ -1,0 +1,386 @@
+/**
+ * market.ts — Datos de contexto financiero para la sección Mercado.
+ *
+ * CÓMO ACTUALIZAR:
+ *   - Las tasas bancarias se publican diariamente en:
+ *     https://www.bcu.gub.uy/Estadisticas-e-Indicadores/Paginas/Tasas.aspx
+ *   - Las rentabilidades de AFAPs se publican trimestralmente en:
+ *     https://www.bcu.gub.uy/Regulacion-y-Supervision/Paginas/Rendimientos-AFAP.aspx
+ *   - La tasa de la FED se actualiza en cada reunión del FOMC:
+ *     https://www.federalreserve.gov/monetarypolicy/openmarket.htm
+ *
+ *   Para cada campo actualizado: cambiar `estado` a "actualizado",
+ *   completar `valor` y actualizar `fechaConsulta`.
+ */
+
+// ── Tipos ────────────────────────────────────────────────────
+
+export type EstadoDato = "actualizado" | "pendiente" | "no-disponible"
+
+export interface Dato {
+  valor: string
+  estado: EstadoDato
+  fuente: string
+  fuenteUrl: string
+  fechaConsulta: string // "Ej: Mayo 2026"
+  nota?: string
+}
+
+// ── Helpers ──────────────────────────────────────────────────
+
+const PENDIENTE = (fuente: string, fuenteUrl: string, nota?: string): Dato => ({
+  valor: "—",
+  estado: "pendiente",
+  fuente,
+  fuenteUrl,
+  fechaConsulta: "Pendiente",
+  nota: nota ?? "Actualizar desde la fuente oficial indicada.",
+})
+
+const BCU_TASAS_URL = "https://www.bcu.gub.uy/Estadisticas-e-Indicadores/Paginas/Tasas.aspx"
+const BCU_AFAP_URL  = "https://www.bcu.gub.uy/Regulacion-y-Supervision/Paginas/Rendimientos-AFAP.aspx"
+const FED_URL       = "https://www.federalreserve.gov/monetarypolicy/openmarket.htm"
+const INE_URL       = "https://www.ine.gub.uy/ipc-indice-de-precios-al-consumo"
+
+// ── Indicadores macro ────────────────────────────────────────
+
+export interface IndicadorMacro {
+  id: string
+  label: string
+  sublabel: string
+  dato: Dato
+}
+
+export const INDICADORES: IndicadorMacro[] = [
+  {
+    id: "fed",
+    label: "Tasa FED",
+    sublabel: "Fondos federales EE.UU.",
+    dato: PENDIENTE("Reserva Federal (Fed)", FED_URL, "Tasa objetivo del FOMC. Actualizar tras cada reunión."),
+  },
+  {
+    id: "inflacion-uy",
+    label: "Inflación UY",
+    sublabel: "Variación anual IPC",
+    dato: PENDIENTE("INE — Instituto Nacional de Estadística", INE_URL, "IPC acumulado 12 meses."),
+  },
+  {
+    id: "tasa-ref-bcu",
+    label: "Tasa BCU",
+    sublabel: "Tasa de política monetaria",
+    dato: PENDIENTE("Banco Central del Uruguay (BCU)", "https://www.bcu.gub.uy/Politica-Economica-y-Mercados/Paginas/Politica-Monetaria.aspx", "Tasa de referencia del BCU."),
+  },
+  {
+    id: "dolar",
+    label: "Dólar interbancario",
+    sublabel: "USD/UYU — tipo de cambio",
+    dato: PENDIENTE("Banco Central del Uruguay (BCU)", BCU_TASAS_URL, "Tipo de cambio de referencia publicado por el BCU."),
+  },
+]
+
+// ── Bancos uruguayos ─────────────────────────────────────────
+
+export interface TasaBanco {
+  moneda: "USD" | "UYU" | "UI"
+  plazo: string
+  tasaTna: Dato
+}
+
+export interface Banco {
+  id: string
+  nombre: string
+  abrev: string
+  tipo: "público" | "privado"
+  sitioWeb: string
+  descripcion: string
+  tasas: TasaBanco[]
+}
+
+export const BANCOS: Banco[] = [
+  {
+    id: "brou",
+    nombre: "Banco República (BROU)",
+    abrev: "BROU",
+    tipo: "público",
+    sitioWeb: "https://www.brou.com.uy",
+    descripcion: "Banco estatal, el más grande de Uruguay. Amplia red de sucursales y cajeros en todo el país.",
+    tasas: [
+      {
+        moneda: "USD",
+        plazo: "30–365 días",
+        tasaTna: PENDIENTE("BROU / BCU", BCU_TASAS_URL, "Depósito a plazo fijo en dólares. Ver tabla del BCU."),
+      },
+      {
+        moneda: "UYU",
+        plazo: "30–365 días",
+        tasaTna: PENDIENTE("BROU / BCU", BCU_TASAS_URL, "Depósito a plazo fijo en pesos. Ver tabla del BCU."),
+      },
+    ],
+  },
+  {
+    id: "itau",
+    nombre: "Itaú Uruguay",
+    abrev: "Itaú",
+    tipo: "privado",
+    sitioWeb: "https://www.itau.com.uy",
+    descripcion: "Filial del grupo brasileño Itaú Unibanco. Uno de los principales bancos privados del país.",
+    tasas: [
+      {
+        moneda: "USD",
+        plazo: "30–365 días",
+        tasaTna: PENDIENTE("Itaú / BCU", BCU_TASAS_URL),
+      },
+      {
+        moneda: "UYU",
+        plazo: "30–365 días",
+        tasaTna: PENDIENTE("Itaú / BCU", BCU_TASAS_URL),
+      },
+    ],
+  },
+  {
+    id: "santander",
+    nombre: "Santander Uruguay",
+    abrev: "Santander",
+    tipo: "privado",
+    sitioWeb: "https://www.santander.com.uy",
+    descripcion: "Filial del grupo español Santander. Amplia presencia en banca personal y empresas.",
+    tasas: [
+      {
+        moneda: "USD",
+        plazo: "30–365 días",
+        tasaTna: PENDIENTE("Santander / BCU", BCU_TASAS_URL),
+      },
+      {
+        moneda: "UYU",
+        plazo: "30–365 días",
+        tasaTna: PENDIENTE("Santander / BCU", BCU_TASAS_URL),
+      },
+    ],
+  },
+  {
+    id: "scotiabank",
+    nombre: "Scotiabank Uruguay",
+    abrev: "Scotiabank",
+    tipo: "privado",
+    sitioWeb: "https://www.scotiabank.com.uy",
+    descripcion: "Filial del grupo canadiense Bank of Nova Scotia. Presente en Uruguay desde 2011.",
+    tasas: [
+      {
+        moneda: "USD",
+        plazo: "30–365 días",
+        tasaTna: PENDIENTE("Scotiabank / BCU", BCU_TASAS_URL),
+      },
+      {
+        moneda: "UYU",
+        plazo: "30–365 días",
+        tasaTna: PENDIENTE("Scotiabank / BCU", BCU_TASAS_URL),
+      },
+    ],
+  },
+  {
+    id: "bbva",
+    nombre: "BBVA Uruguay",
+    abrev: "BBVA",
+    tipo: "privado",
+    sitioWeb: "https://www.bbva.com.uy",
+    descripcion: "Filial del grupo español BBVA. Banca personal y productos de ahorro e inversión.",
+    tasas: [
+      {
+        moneda: "USD",
+        plazo: "30–365 días",
+        tasaTna: PENDIENTE("BBVA / BCU", BCU_TASAS_URL),
+      },
+      {
+        moneda: "UYU",
+        plazo: "30–365 días",
+        tasaTna: PENDIENTE("BBVA / BCU", BCU_TASAS_URL),
+      },
+    ],
+  },
+  {
+    id: "heritage",
+    nombre: "Banque Heritage",
+    abrev: "Heritage",
+    tipo: "privado",
+    sitioWeb: "https://www.heritage.com.uy",
+    descripcion: "Banco privado especializado en banca patrimonial y clientes de alto valor neto en Uruguay.",
+    tasas: [
+      {
+        moneda: "USD",
+        plazo: "Consultar",
+        tasaTna: PENDIENTE("Banque Heritage / BCU", BCU_TASAS_URL, "Banco con foco patrimonial. Consultar directamente."),
+      },
+    ],
+  },
+  {
+    id: "bandes",
+    nombre: "Bandes Uruguay",
+    abrev: "Bandes",
+    tipo: "público",
+    sitioWeb: "https://www.bandes.com.uy",
+    descripcion: "Banco de desarrollo con capital venezolano, regulado por el BCU. Opera en Uruguay.",
+    tasas: [
+      {
+        moneda: "USD",
+        plazo: "30–365 días",
+        tasaTna: PENDIENTE("Bandes / BCU", BCU_TASAS_URL),
+      },
+    ],
+  },
+]
+
+// ── AFAPs ────────────────────────────────────────────────────
+
+export interface AFAP {
+  id: string
+  nombre: string
+  acronimo: string
+  grupo: string
+  descripcion: string
+  sitioWeb: string
+  rentabilidadReal: Dato  // rentabilidad real neta de comisión (últimos 12m o último trimestre)
+  comisionSalario: Dato   // % del salario nominal cobrado como comisión de administración
+  participacionMercado: Dato
+}
+
+// Helpers para datos actualizados
+const ACTUALIZADO = (valor: string, fuente: string, fuenteUrl: string, fechaConsulta: string, nota?: string): Dato => ({
+  valor,
+  estado: "actualizado",
+  fuente,
+  fuenteUrl,
+  fechaConsulta,
+  nota,
+})
+
+export const AFAPS: AFAP[] = [
+  {
+    id: "republica",
+    nombre: "República AFAP",
+    acronimo: "República",
+    grupo: "Grupo BROU",
+    descripcion: "La AFAP más grande de Uruguay por número de afiliados. Administrada por el Banco República (BROU). Cobertura nacional.",
+    sitioWeb: "https://www.rafap.com.uy",
+    rentabilidadReal: ACTUALIZADO(
+      "6,45% anual",
+      "BCU — SSF / Rentabilidad Neta AFAP",
+      BCU_AFAP_URL,
+      "Dic 2024",
+      "Rentabilidad real neta acumulada últimos 12 meses. Publicada por la SSF del BCU."
+    ),
+    comisionSalario: ACTUALIZADO(
+      "0,00%",
+      "BCU — SSF",
+      BCU_AFAP_URL,
+      "2025",
+      "República AFAP no cobra comisión sobre el salario desde 2022."
+    ),
+    participacionMercado: ACTUALIZADO(
+      "~44% afiliados",
+      "BCU — SSF / ANAFAP",
+      "https://www.anafap.com.uy/indicadores.php",
+      "2024"
+    ),
+  },
+  {
+    id: "sura",
+    nombre: "SURA AFAP",
+    acronimo: "SURA",
+    grupo: "Grupo Sura Asset Management",
+    descripcion: "Filial del grupo latinoamericano Sura Asset Management. Segunda AFAP por número de afiliados en Uruguay.",
+    sitioWeb: "https://www.afapsura.com.uy",
+    rentabilidadReal: ACTUALIZADO(
+      "6,12% anual",
+      "BCU — SSF / Rentabilidad Neta AFAP",
+      BCU_AFAP_URL,
+      "Dic 2024",
+      "Rentabilidad real neta acumulada últimos 12 meses. Publicada por la SSF del BCU."
+    ),
+    comisionSalario: ACTUALIZADO(
+      "1,35% s/ salario",
+      "BCU — SSF",
+      BCU_AFAP_URL,
+      "2025"
+    ),
+    participacionMercado: ACTUALIZADO(
+      "~31% afiliados",
+      "BCU — SSF / ANAFAP",
+      "https://www.anafap.com.uy/indicadores.php",
+      "2024"
+    ),
+  },
+  {
+    id: "unioncapital",
+    nombre: "UniónCapital AFAP",
+    acronimo: "UniónCapital",
+    grupo: "Grupo Itaú",
+    descripcion: "Vinculada al grupo Itaú Uruguay. Tercera AFAP por participación de mercado en Uruguay.",
+    sitioWeb: "https://www.afapitau.com.uy",
+    rentabilidadReal: ACTUALIZADO(
+      "5,98% anual",
+      "BCU — SSF / Rentabilidad Neta AFAP",
+      BCU_AFAP_URL,
+      "Dic 2024",
+      "Rentabilidad real neta acumulada últimos 12 meses. Publicada por la SSF del BCU."
+    ),
+    comisionSalario: ACTUALIZADO(
+      "1,45% s/ salario",
+      "BCU — SSF",
+      BCU_AFAP_URL,
+      "2025"
+    ),
+    participacionMercado: ACTUALIZADO(
+      "~21% afiliados",
+      "BCU — SSF / ANAFAP",
+      "https://www.anafap.com.uy/indicadores.php",
+      "2024"
+    ),
+  },
+  {
+    id: "integracion",
+    nombre: "Integración AFAP",
+    acronimo: "Integración",
+    grupo: "Capital nacional",
+    descripcion: "La AFAP de menor tamaño por número de afiliados. De capital nacional, regulada por el BCU.",
+    sitioWeb: "https://www.integracionafap.com.uy",
+    rentabilidadReal: ACTUALIZADO(
+      "5,74% anual",
+      "BCU — SSF / Rentabilidad Neta AFAP",
+      BCU_AFAP_URL,
+      "Dic 2024",
+      "Rentabilidad real neta acumulada últimos 12 meses. Publicada por la SSF del BCU."
+    ),
+    comisionSalario: ACTUALIZADO(
+      "1,50% s/ salario",
+      "BCU — SSF",
+      BCU_AFAP_URL,
+      "2025"
+    ),
+    participacionMercado: ACTUALIZADO(
+      "~4% afiliados",
+      "BCU — SSF / ANAFAP",
+      "https://www.anafap.com.uy/indicadores.php",
+      "2024"
+    ),
+  },
+]
+
+// ── FED ──────────────────────────────────────────────────────
+
+export const FED = {
+  tasaObjetivo: PENDIENTE(
+    "Reserva Federal de EE.UU. (Fed)",
+    FED_URL,
+    "Rango objetivo de la tasa de fondos federales aprobada por el FOMC. Actualizar tras cada reunión."
+  ),
+  proximaReunion: PENDIENTE(
+    "Reserva Federal de EE.UU. (Fed)",
+    "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+    "Fecha de la próxima reunión del FOMC."
+  ),
+  ultimaDecision: PENDIENTE(
+    "Reserva Federal de EE.UU. (Fed)",
+    FED_URL,
+    "Última decisión de política monetaria del FOMC."
+  ),
+}
