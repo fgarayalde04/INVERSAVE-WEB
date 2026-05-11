@@ -3,36 +3,42 @@ import { useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui";
 
 const COMPANIES = [
-  { name: "Apple",      sector: "Tecnología",      initial: "A" },
-  { name: "Microsoft",  sector: "Tecnología",      initial: "M" },
-  { name: "Google",     sector: "Tecnología",      initial: "G" },
-  { name: "Amazon",     sector: "Consumo",         initial: "A" },
-  { name: "Nvidia",     sector: "Semiconductores", initial: "N" },
-  { name: "Visa",       sector: "Pagos globales",  initial: "V" },
-  { name: "Coca-Cola",  sector: "Consumo masivo",  initial: "C" },
-  { name: "McDonald's", sector: "Gastronomía",     initial: "M" },
+  { name: "Apple",      logo: "/logos/companies/apple.svg"     },
+  { name: "Microsoft",  logo: "/logos/companies/microsoft.png" },
+  { name: "Google",     logo: "/logos/companies/google.jpeg"   },
+  { name: "Amazon",     logo: "/logos/companies/amazon.png"    },
+  { name: "Coca-Cola",  logo: "/logos/companies/coca-cola.png" },
+  { name: "Visa",       logo: "/logos/companies/visa.png"      },
+  { name: "Nvidia",     logo: "/logos/companies/nvidia.png"    },
+  { name: "McDonald's", logo: "/logos/companies/mcdonalds.jpeg"},
 ];
 
 const TRACK = [...COMPANIES, ...COMPANIES];
 
-function CompanyCard({ name, sector, initial }: { name: string; sector: string; initial: string }) {
+function CompanyCard({ name, logo }: { name: string; logo: string }) {
   return (
     <div
-      className="flex-shrink-0 flex items-center gap-3 bg-white border border-black/[.07] rounded-2xl px-5 py-4"
-      style={{ minWidth: 172, boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}
-      aria-label={`${name} — ${sector}`}
+      className="flex-shrink-0 flex items-center gap-3 bg-white border border-black/[.07] rounded-2xl px-4 py-3"
+      style={{ minWidth: 160, boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}
+      aria-label={name}
     >
-      <div
-        className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 text-[14px] font-bold text-g3"
-        style={{ background: "#EDF8E8" }}
-        aria-hidden="true"
-      >
-        {initial}
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 bg-[#F8F8F8] overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={logo}
+          alt={name}
+          className="w-6 h-6 object-contain"
+          onError={(e) => {
+            const target = e.currentTarget;
+            target.style.display = "none";
+            const parent = target.parentElement;
+            if (parent) {
+              parent.innerHTML = `<span style="font-size:13px;font-weight:700;color:#1A6638">${name[0]}</span>`;
+            }
+          }}
+        />
       </div>
-      <div>
-        <p className="text-[13px] font-semibold text-t1 leading-tight">{name}</p>
-        <p className="text-[11px] text-t3 mt-0.5">{sector}</p>
-      </div>
+      <p className="text-[13px] font-semibold text-t1 leading-tight whitespace-nowrap">{name}</p>
     </div>
   );
 }
@@ -58,7 +64,7 @@ export default function PlanVideoAndSP500() {
           </p>
         </FadeIn>
 
-        {/* Video — centrado, tamaño moderado */}
+        {/* Video */}
         <FadeIn delay={0.08}>
           <div className="max-w-2xl mx-auto mb-10">
             <p className="text-[10px] font-bold tracking-[0.1em] uppercase text-t3 mb-2 text-center">
@@ -84,7 +90,7 @@ export default function PlanVideoAndSP500() {
           </div>
         </FadeIn>
 
-        {/* Marquee — ancho completo del bloque */}
+        {/* Marquee */}
         <FadeIn delay={0.14}>
           {reduced ? (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
@@ -94,7 +100,6 @@ export default function PlanVideoAndSP500() {
             </div>
           ) : (
             <div className="relative mb-6 overflow-hidden" aria-hidden="true">
-              {/* Fade edges */}
               <div
                 className="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
                 style={{ background: "linear-gradient(to right,#F8F6F0,transparent)" }}
@@ -125,7 +130,6 @@ export default function PlanVideoAndSP500() {
               `}</style>
             </div>
           )}
-
           <p className="text-[11px] text-t3 italic text-center leading-relaxed">
             Los ejemplos son ilustrativos. No implican recomendación de inversión ni alianza
             con las empresas mencionadas.
