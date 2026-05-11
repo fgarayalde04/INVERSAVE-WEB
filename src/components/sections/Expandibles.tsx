@@ -272,8 +272,8 @@ const CONCEPTS = [
     tag: "Estrategia",
     title: "Construcción de portafolio",
     def: "Proceso de combinar distintos activos según los objetivos, el horizonte y la tolerancia al riesgo de cada persona. No existe un portafolio universal.",
-    image: "/education/casco.jpg",
-    imageAlt: "Estrategia de construcción de portafolio de inversión",
+    image: null,
+    imageAlt: "",
   },
   {
     key: "ahorro",
@@ -296,8 +296,8 @@ const CONCEPTS = [
     tag: "Clave",
     title: "Largo plazo",
     def: "Horizonte de 10, 15, 20 años o más. La evidencia histórica muestra que a mayor plazo, menor la probabilidad de terminar con pérdida en mercados diversificados.",
-    image: null,
-    imageAlt: "",
+    image: "/education/largo-plazo.jpg",
+    imageAlt: "Inversión a largo plazo — horizonte temporal extendido",
   },
   {
     key: "tasas",
@@ -323,16 +323,19 @@ function ConceptCard({ concept }: { concept: typeof CONCEPTS[0] }) {
   return (
     <article className="bg-white border border-black/[.07] rounded-2xl overflow-hidden flex flex-col hover:shadow-sm transition-shadow duration-200">
       {/* Visual header — image or icon fallback */}
-      <div className="relative w-full h-[112px] flex-shrink-0 overflow-hidden bg-[#F0EFE8]">
+      <div className="relative w-full h-[112px] flex-shrink-0 overflow-hidden bg-white">
         {concept.image ? (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
             src={concept.image}
             alt={concept.imageAlt}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain object-center"
             loading="lazy"
+            style={{ imageRendering: "auto" }}
             onError={(e) => {
               e.currentTarget.style.display = "none";
+              const parent = e.currentTarget.parentElement;
+              if (parent) parent.style.background = "#EDF8E8";
             }}
           />
         ) : (
