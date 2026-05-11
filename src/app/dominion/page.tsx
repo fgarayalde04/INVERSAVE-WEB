@@ -4,14 +4,11 @@ import PlanHero from "@/components/sections/dominion/PlanHero";
 import DominionAccountPreview from "@/components/sections/dominion/DominionAccountPreview";
 import PlanPasos from "@/components/sections/dominion/PlanPasos";
 import PlanComoFunciona from "@/components/sections/dominion/PlanComoFunciona";
-import SP500Companies from "@/components/sections/dominion/SP500Companies";
+import PlanVideoAndSP500 from "@/components/sections/dominion/PlanVideoAndSP500";
 import PlanCapital from "@/components/sections/dominion/PlanCapital";
-import PlanVideoBlock from "@/components/sections/dominion/PlanVideoBlock";
 import RobleCapitalBlock from "@/components/sections/dominion/RobleCapitalBlock";
 import DominionQue from "@/components/sections/dominion/DominionQue";
 import DominionPartners from "@/components/sections/dominion/DominionPartners";
-import PlanInversaveSection from "@/components/sections/PlanInversave";
-import DominionComparativa from "@/components/sections/dominion/DominionComparativa";
 import DominionFAQ from "@/components/sections/dominion/DominionFAQ";
 import { CTASection, Footer } from "@/components/sections/CTAFooter";
 import { GlowDivider } from "@/components/ui";
@@ -27,10 +24,10 @@ export const metadata: Metadata = {
 // ── Navegación interna ───────────────────────────────────────────────────────
 function PlanInternalNav() {
   const LINKS = [
-    { label: "Cómo funciona",       href: "#como-funciona" },
+    { label: "Cómo funciona",        href: "#como-funciona" },
     { label: "Cómo se ve la cuenta", href: "#como-se-ve-una-cuenta" },
     { label: "Instituciones",        href: "#instituciones" },
-    { label: "Flexibilidad y riesgos", href: "#flexibilidad-riesgos" },
+    { label: "Preguntas frecuentes", href: "#flexibilidad-riesgos" },
   ];
 
   return (
@@ -78,15 +75,11 @@ export default function DominionPage() {
         <PlanComoFunciona />
       </div>
 
-      {/* Índice S&P 500 + crecimiento */}
+      {/* Video + empresas del índice */}
       <GlowDivider />
-      <SP500Companies />
+      <PlanVideoAndSP500 />
       <GlowDivider />
       <PlanCapital />
-
-      {/* Video */}
-      <GlowDivider />
-      <PlanVideoBlock />
 
       {/* Instituciones */}
       <GlowDivider />
@@ -98,13 +91,7 @@ export default function DominionPage() {
         <DominionPartners />
       </div>
 
-      {/* Perfiles + comparativa */}
-      <GlowDivider />
-      <PlanInversaveSection hideAccountPreview />
-      <GlowDivider />
-      <DominionComparativa />
-
-      {/* Flexibilidad y riesgos */}
+      {/* Preguntas frecuentes */}
       <GlowDivider />
       <div id="flexibilidad-riesgos" className="scroll-mt-20">
         <DominionFAQ />
