@@ -1,5 +1,5 @@
 import type { NewsItem } from "@/data/news";
-import { NewsCard } from "./NewsCard";
+import { NewsCardPreview } from "./NewsCardPreview";
 
 interface NewsGridProps {
   items: NewsItem[];
@@ -17,7 +17,7 @@ export function NewsGrid({ items }: NewsGridProps) {
   return (
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {items.map((item) => (
-        <NewsCard key={item.id} item={item} />
+        <NewsCardPreview key={item.id} item={item} />
       ))}
     </div>
   );
