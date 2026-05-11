@@ -10,4 +10,5 @@ export const PLAN_PARTNERS: Partner[] = [
   { name: "dLocal",         logo: "/logos/partners/dlocal.png"        },
   { name: "FNZ",            logo: "/logos/partners/fnz.png"           },
   { name: "PwC",            logo: "/logos/partners/pwc.png"           },
+  { name: "Pacific AM",    logo: "/logos/partners/pacific.png"       },
 ];

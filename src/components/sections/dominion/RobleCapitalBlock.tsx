@@ -1,3 +1,4 @@
+"use client";
 import { FadeIn } from "@/components/ui";
 
 export default function RobleCapitalBlock() {
@@ -23,17 +24,17 @@ export default function RobleCapitalBlock() {
           <FadeIn>
             <div className="bg-white border border-black/[.07] rounded-3xl p-8 h-full flex flex-col">
               <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-[#0C1A11] flex items-center justify-center flex-shrink-0">
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                    <path
-                      d="M11 2L3 6.5v5c0 4.8 3.5 9.3 8 10.5 4.5-1.2 8-5.7 8-10.5v-5L11 2z"
-                      stroke="white"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path d="M8 11l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                <div className="w-14 h-14 rounded-2xl bg-white border border-black/[.07] flex items-center justify-center flex-shrink-0 overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/logos/partners/roble-capital.png"
+                    alt="Roble Capital"
+                    className="w-11 h-11 object-contain"
+                    loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                    }}
+                  />
                 </div>
                 <div>
                   <p className="text-[17px] font-bold text-t1 leading-tight">Roble Capital Wealth Management</p>
@@ -83,15 +84,17 @@ export default function RobleCapitalBlock() {
               />
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex items-start gap-4 mb-6">
-                  <div
-                    className="w-12 h-12 rounded-2xl border border-white/10 flex items-center justify-center flex-shrink-0"
-                    style={{ background: "rgba(255,255,255,0.08)" }}
-                  >
-                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                      <circle cx="11" cy="11" r="9" stroke="white" strokeWidth="1.5" />
-                      <ellipse cx="11" cy="11" rx="3.5" ry="9" stroke="white" strokeWidth="1.5" />
-                      <line x1="2" y1="11" x2="20" y2="11" stroke="white" strokeWidth="1.5" />
-                    </svg>
+                  <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/logos/partners/dominion.png"
+                      alt="Dominion Capital Strategies"
+                      className="w-11 h-11 object-contain"
+                      loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
+                    />
                   </div>
                   <div>
                     <p className="text-[17px] font-bold text-white leading-tight">Dominion Capital Strategies</p>

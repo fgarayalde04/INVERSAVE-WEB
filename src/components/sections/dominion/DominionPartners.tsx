@@ -93,7 +93,7 @@ export default function DominionPartners() {
             <p className="text-[12px] font-semibold text-white/30 uppercase tracking-[0.1em] mb-6">
               Empresas que forman parte de la estructura
             </p>
-            <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+            <div className="grid grid-cols-4 sm:grid-cols-7 gap-3">
               {PLAN_PARTNERS.map((p) => {
                 const initials = p.name
                   .split(/\s+/)
@@ -104,15 +104,15 @@ export default function DominionPartners() {
                 return (
                   <div
                     key={p.name}
-                    className="flex flex-col items-center gap-2.5 rounded-2xl px-3 py-4 border border-white/[.08] hover:border-white/[.16] transition-colors duration-200"
-                    style={{ background: "rgba(255,255,255,0.04)" }}
+                    className="flex flex-col items-center gap-3 rounded-2xl px-2 py-5 border border-white/[.08] hover:border-white/[.18] transition-colors duration-200"
+                    style={{ background: "rgba(255,255,255,0.05)" }}
                   >
-                    <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0 bg-white/90">
+                    <div className="w-14 h-14 rounded-2xl overflow-hidden flex items-center justify-center flex-shrink-0 bg-white">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={p.logo}
                         alt={p.name}
-                        className="w-8 h-8 object-contain"
+                        className="w-11 h-11 object-contain"
                         loading="lazy"
                         onError={(e) => {
                           const target = e.currentTarget;
