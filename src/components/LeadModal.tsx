@@ -51,29 +51,35 @@ export default function LeadModal() {
   const set = (k: keyof FormData) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setForm(f => ({ ...f, [k]: e.target.value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-
-    const lines = [
-      `Nombre: ${form.nombre} ${form.apellido}`,
-      `Email: ${form.email}`,
-      `Celular: ${form.celular}`,
-      form.edad      ? `Edad: ${form.edad} años`          : "",
-      form.objetivo  ? `Objetivo: ${form.objetivo}`        : "",
-      form.aporte    ? `Aporte estimado: USD ${form.aporte}` : "",
-      `Fuente: ${source || "web"}`,
-    ].filter(Boolean).join("\n");
-
-    const subject = encodeURIComponent(`Nuevo contacto INVERSAVE — ${form.nombre} ${form.apellido}`);
-    const body    = encodeURIComponent(lines);
-    window.location.href = `mailto:fgarayaldearrillaga@roblecapital.net?subject=${subject}&body=${body}`;
-
-    setTimeout(() => {
-      setSuccess(true);
-      setForm(INITIAL);
+    setError("");
+    try {
+      const res = await fetch("https://formspree.io/f/FORMSPREE_ID", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          nombre:   `${form.nombre} ${form.apellido}`,
+          email:    form.email,
+          celular:  form.celular,
+          edad:     form.edad,
+          objetivo: form.objetivo,
+          aporte:   form.aporte,
+          fuente:   source || "web",
+        }),
+      });
+      if (res.ok) {
+        setSuccess(true);
+        setForm(INITIAL);
+      } else {
+        setError("Hubo un error al enviar. Por favor intentá de nuevo.");
+      }
+    } catch {
+      setError("Error de conexión. Por favor intentá de nuevo.");
+    } finally {
       setSubmitting(false);
-    }, 400);
+    }
   };
 
   const handleClose = () => {

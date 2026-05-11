@@ -1,0 +1,10 @@
+# Colocar aquí los PDFs de fuentes oficiales para extracción de indicadores.
+#
+# Convención de nombres:
+#   bcu_TPM_MES_AÑO.pdf
+#   bcu_tasas_medias_MES_AÑO.pdf
+#   afap_NOMBRE_TRIMESTRE_AÑO.pdf   (republica, sura, unioncapital, integracion)
+#   bps_indicadores_AÑO.pdf
+#   banks_BANCO_MES_AÑO.pdf         (BROU, ITAU, SANTANDER, etc.)
+#
+# Ejecutar luego: npm run update:indicators

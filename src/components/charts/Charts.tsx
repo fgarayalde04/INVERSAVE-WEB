@@ -718,6 +718,99 @@ export function PersonaABChart() {
   return <canvas ref={ref} />;
 }
 
+// ── SimLineChart — interactive line chart for Simulador ───────
+interface SimLineChartProps {
+  monthly: number;
+  years: number;
+  rate: number;
+  capitalInicial?: number;
+}
+
+export function SimLineChart({ monthly, years, rate, capitalInicial = 0 }: SimLineChartProps) {
+  const ref = useRef<HTMLCanvasElement>(null);
+  const chartRef = useRef<Chart | null>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    if (chartRef.current) chartRef.current.destroy();
+
+    const labels: string[] = [];
+    const capitalData: number[] = [];
+    const aportadoData: number[] = [];
+    const r = rate / 100 / 12;
+
+    for (let y = 0; y <= years; y++) {
+      labels.push(
+        y === 0 ? "Hoy" :
+        y === years ? `Año ${y}` :
+        y % 5 === 0 ? `Año ${y}` : ""
+      );
+      const mo = y * 12;
+      const fvPMT = r > 0 ? monthly * ((Math.pow(1 + r, mo) - 1) / r) : monthly * mo;
+      capitalData.push(Math.round(fvPMT + capitalInicial * Math.pow(1 + r, mo)));
+      aportadoData.push(monthly * mo + capitalInicial);
+    }
+
+    chartRef.current = new Chart(ref.current, {
+      type: "line",
+      data: {
+        labels,
+        datasets: [
+          {
+            label: "Capital total",
+            data: capitalData,
+            borderColor: "#52B558",
+            backgroundColor: "rgba(82,181,88,.12)",
+            fill: true, tension: 0.35, pointRadius: 0,
+            pointHoverRadius: 5, pointHoverBackgroundColor: "#52B558",
+            borderWidth: 2.5, order: 1,
+          },
+          {
+            label: "Solo aportes",
+            data: aportadoData,
+            borderColor: "rgba(107,72,232,.45)",
+            backgroundColor: "transparent",
+            fill: false, tension: 0, pointRadius: 0,
+            borderWidth: 1.5, borderDash: [5, 4], order: 2,
+          },
+        ],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => {
+                const v = ctx.parsed.y ?? 0;
+                const lbl = ctx.datasetIndex === 0 ? "Capital total" : "Solo aportes";
+                return ` ${lbl}: USD ${Math.round(v).toLocaleString("es-UY")}`;
+              },
+            },
+            backgroundColor: "rgba(12,26,17,.96)",
+            titleColor: "#fff", bodyColor: "rgba(255,255,255,.6)",
+            borderColor: "rgba(255,255,255,.08)", borderWidth: 1, padding: 10,
+          },
+        },
+        scales: {
+          x: {
+            ticks: { font: TICK_FONT, color: AXIS_COLOR, maxRotation: 0, autoSkip: false },
+            grid: { display: false },
+          },
+          y: {
+            ticks: { font: TICK_FONT, color: AXIS_COLOR, callback: (v) => "$" + Math.round(+v / 1000) + "k" },
+            grid: { color: GRID_COLOR },
+          },
+        },
+      },
+    });
+    return () => chartRef.current?.destroy();
+  }, [monthly, years, rate, capitalInicial]);
+
+  return <canvas ref={ref} />;
+}
+
 // ── S&P 500 Cumulative Index from 1928 ────────────────────────
 export function SP500CumulativeChart() {
   const ref = useRef<HTMLCanvasElement>(null);
