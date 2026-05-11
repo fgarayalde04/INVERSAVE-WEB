@@ -1,6 +1,3 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import type { NewsItem, NewsCategory } from "@/data/news";
 import { NewsTag } from "./NewsTag";
 import { NewsSourceBadge } from "./NewsSourceBadge";
@@ -46,96 +43,38 @@ interface Props {
 }
 
 export function NewsCardPreview({ item }: Props) {
-  const [image, setImage] = useState<string | null>(item.image ?? null);
-  const [imgReady, setImgReady] = useState(false);
-
-  useEffect(() => {
-    if (item.image) return;
-
-    let cancelled = false;
-
-    (async () => {
-      try {
-        const res = await fetch(
-          `/api/news-preview?url=${encodeURIComponent(item.url)}`
-        );
-        if (!res.ok || cancelled) return;
-        const data = await res.json();
-        if (!cancelled && data.success && data.image) {
-          setImage(data.image);
-        }
-      } catch {
-        // silently fallback to placeholder
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [item.url, item.image]);
+  const ph = CATEGORY_PLACEHOLDER[item.category];
 
   return (
     <article className="relative group flex flex-col bg-white border border-black/[.07] rounded-2xl overflow-hidden hover:shadow-md transition-shadow duration-200">
 
-      {/* Image slot — fixed 16:9 */}
-      <div className="relative w-full aspect-[16/9] overflow-hidden bg-[#0C1A11] flex-shrink-0">
-
-        {image && (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            src={image}
-            alt={item.imageAlt ?? item.title}
-            className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-[1.03] ${
-              imgReady ? "opacity-100" : "opacity-0"
-            }`}
-            loading="lazy"
-            onLoad={() => setImgReady(true)}
-            onError={() => {
-              setImage(null);
-              setImgReady(false);
-            }}
-          />
-        )}
-
-        {/* Category placeholder — fades out when image is ready */}
-        {(() => {
-          const ph = CATEGORY_PLACEHOLDER[item.category];
-          return (
-            <div
-              className={`absolute inset-0 flex flex-col items-center justify-center gap-3 transition-opacity duration-500 ${
-                image && imgReady ? "opacity-0 pointer-events-none" : "opacity-100"
-              }`}
-              style={{ background: ph.gradient }}
-            >
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="white"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                opacity="0.4"
-              >
-                <path d={ph.icon} />
-              </svg>
-              <span className="text-[10px] font-semibold text-white/40 tracking-[0.1em] uppercase">
-                {ph.label}
-              </span>
-            </div>
-          );
-        })()}
+      {/* Visual header — category gradient */}
+      <div
+        className="relative w-full aspect-[16/9] flex-shrink-0 flex flex-col items-center justify-center gap-3"
+        style={{ background: ph.gradient }}
+      >
+        <svg
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.4"
+        >
+          <path d={ph.icon} />
+        </svg>
+        <span className="text-[10px] font-semibold text-white/40 tracking-[0.1em] uppercase">
+          {ph.label}
+        </span>
 
         {/* Source badge */}
-        <div className="absolute top-3 left-3 z-10">
+        <div className="absolute top-3 left-3">
           <span
             className="text-[10px] font-bold tracking-[0.06em] uppercase px-2.5 py-1 rounded-full"
-            style={{
-              background: "rgba(0,0,0,0.55)",
-              color: "#fff",
-              backdropFilter: "blur(6px)",
-            }}
+            style={{ background: "rgba(0,0,0,0.55)", color: "#fff", backdropFilter: "blur(6px)" }}
           >
             {item.source}
           </span>
