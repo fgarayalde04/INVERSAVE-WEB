@@ -1,6 +1,5 @@
 import { FadeIn } from "@/components/ui";
 import SP500Companies from "@/components/sections/dominion/SP500Companies";
-import PlanVideoBlock from "@/components/sections/dominion/PlanVideoBlock";
 
 export default function MercadoEnDonde() {
   return (
@@ -46,8 +45,6 @@ export default function MercadoEnDonde() {
       {/* Empresas marquee */}
       <SP500Companies />
 
-      {/* Video de la plataforma */}
-      <PlanVideoBlock />
     </div>
   );
 }
