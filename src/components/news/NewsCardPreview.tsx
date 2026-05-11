@@ -1,9 +1,45 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import type { NewsItem } from "@/data/news";
+import type { NewsItem, NewsCategory } from "@/data/news";
 import { NewsTag } from "./NewsTag";
 import { NewsSourceBadge } from "./NewsSourceBadge";
+
+const CATEGORY_PLACEHOLDER: Record<
+  NewsCategory,
+  { gradient: string; label: string; icon: string }
+> = {
+  reforma: {
+    gradient: "linear-gradient(135deg,#2D1B69 0%,#5B3FA6 100%)",
+    label: "Reforma previsional",
+    icon: "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5",
+  },
+  afaps: {
+    gradient: "linear-gradient(135deg,#0C2A4A 0%,#1A5276 100%)",
+    label: "AFAPs",
+    icon: "M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z",
+  },
+  bps: {
+    gradient: "linear-gradient(135deg,#4A1A00 0%,#923B0A 100%)",
+    label: "BPS",
+    icon: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm14 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75",
+  },
+  mercado: {
+    gradient: "linear-gradient(135deg,#0C3320 0%,#1A6638 100%)",
+    label: "Mercado",
+    icon: "M23 6l-9.5 9.5-5-5L1 18M17 6h6v6",
+  },
+  educacion: {
+    gradient: "linear-gradient(135deg,#3D2B00 0%,#7A5500 100%)",
+    label: "Educación financiera",
+    icon: "M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z",
+  },
+  internacional: {
+    gradient: "linear-gradient(135deg,#1A2035 0%,#2D3A5C 100%)",
+    label: "Internacional",
+    icon: "M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 0c-1.66 2.92-2.5 5.9-2.5 10s.84 7.08 2.5 10m0-20c1.66 2.92 2.5 5.9 2.5 10s-.84 7.08-2.5 10M2 12h20",
+  },
+};
 
 interface Props {
   item: NewsItem;
@@ -61,27 +97,35 @@ export function NewsCardPreview({ item }: Props) {
           />
         )}
 
-        {/* Placeholder — always present, fades out when image is ready */}
-        <div
-          className={`absolute inset-0 flex flex-col items-center justify-center gap-2 transition-opacity duration-500 ${
-            image && imgReady ? "opacity-0 pointer-events-none" : "opacity-100"
-          }`}
-          style={{
-            background: "linear-gradient(135deg,#0C1A11 0%,#1A3A22 100%)",
-          }}
-        >
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" opacity="0.35">
-            <path
-              d="M4 20h20M4 14h14M4 8h8"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
-          <span className="text-[11px] font-semibold text-white/40 tracking-[0.08em] uppercase">
-            Actualidad previsional
-          </span>
-        </div>
+        {/* Category placeholder — fades out when image is ready */}
+        {(() => {
+          const ph = CATEGORY_PLACEHOLDER[item.category];
+          return (
+            <div
+              className={`absolute inset-0 flex flex-col items-center justify-center gap-3 transition-opacity duration-500 ${
+                image && imgReady ? "opacity-0 pointer-events-none" : "opacity-100"
+              }`}
+              style={{ background: ph.gradient }}
+            >
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                opacity="0.4"
+              >
+                <path d={ph.icon} />
+              </svg>
+              <span className="text-[10px] font-semibold text-white/40 tracking-[0.1em] uppercase">
+                {ph.label}
+              </span>
+            </div>
+          );
+        })()}
 
         {/* Source badge */}
         <div className="absolute top-3 left-3 z-10">
