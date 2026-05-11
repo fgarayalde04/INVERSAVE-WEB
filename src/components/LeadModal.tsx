@@ -70,7 +70,8 @@ export default function LeadModal() {
           source:   source || "web",
         }),
       });
-      if (res.ok) {
+      const data = await res.json();
+      if (data.success) {
         setSuccess(true);
         setForm(INITIAL);
       } else {

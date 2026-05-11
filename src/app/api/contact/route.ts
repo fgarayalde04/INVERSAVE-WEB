@@ -1,18 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
 
 export async function POST(req: NextRequest) {
+  const apiKey      = process.env.RESEND_API_KEY;
+  const toEmail     = process.env.RESEND_TO_EMAIL;
+  const fromEmail   = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+
+  console.log("RESEND_API_KEY configured:",   Boolean(apiKey));
+  console.log("RESEND_TO_EMAIL configured:",  Boolean(toEmail));
+  console.log("RESEND_FROM_EMAIL configured:", Boolean(process.env.RESEND_FROM_EMAIL));
+
+  if (!apiKey) {
+    return NextResponse.json({ success: false, error: "Missing RESEND_API_KEY" }, { status: 500 });
+  }
+  if (!toEmail) {
+    return NextResponse.json({ success: false, error: "Missing RESEND_TO_EMAIL" }, { status: 500 });
+  }
+
   const body = await req.json();
   const { nombre, apellido, email, celular, edad, objetivo, aporte, source } = body;
 
   if (!nombre || !apellido || !email || !celular) {
-    return NextResponse.json({ error: "Campos requeridos incompletos" }, { status: 400 });
-  }
-
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.warn("RESEND_API_KEY not set — logging contact data");
-    console.log("Contact:", { nombre, apellido, email, celular, edad, objetivo, aporte, source });
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ success: false, error: "Campos requeridos incompletos" }, { status: 400 });
   }
 
   const html = `
@@ -26,34 +35,29 @@ export async function POST(req: NextRequest) {
           <tr><td style="padding:8px 0;color:#666;font-size:13px;width:40%">Nombre</td><td style="padding:8px 0;font-weight:600;font-size:13px">${nombre} ${apellido}</td></tr>
           <tr><td style="padding:8px 0;color:#666;font-size:13px">Email</td><td style="padding:8px 0;font-weight:600;font-size:13px"><a href="mailto:${email}" style="color:#1A6638">${email}</a></td></tr>
           <tr><td style="padding:8px 0;color:#666;font-size:13px">Celular</td><td style="padding:8px 0;font-weight:600;font-size:13px">${celular}</td></tr>
-          ${edad ? `<tr><td style="padding:8px 0;color:#666;font-size:13px">Edad</td><td style="padding:8px 0;font-weight:600;font-size:13px">${edad} años</td></tr>` : ""}
+          ${edad    ? `<tr><td style="padding:8px 0;color:#666;font-size:13px">Edad</td><td style="padding:8px 0;font-weight:600;font-size:13px">${edad} años</td></tr>` : ""}
           ${objetivo ? `<tr><td style="padding:8px 0;color:#666;font-size:13px">Objetivo</td><td style="padding:8px 0;font-weight:600;font-size:13px">${objetivo}</td></tr>` : ""}
-          ${aporte ? `<tr><td style="padding:8px 0;color:#666;font-size:13px">Aporte estimado</td><td style="padding:8px 0;font-weight:600;font-size:13px">${aporte}</td></tr>` : ""}
+          ${aporte  ? `<tr><td style="padding:8px 0;color:#666;font-size:13px">Aporte estimado</td><td style="padding:8px 0;font-weight:600;font-size:13px">${aporte}</td></tr>` : ""}
         </table>
       </div>
     </div>
   `;
 
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      from: "INVERSAVE <onboarding@resend.dev>",
-      to: ["fgarayaldearrillaga@roblecapital.net"],
-      subject: `Nuevo contacto INVERSAVE — ${nombre} ${apellido}`,
-      html,
-      reply_to: email,
-    }),
+  const resend = new Resend(apiKey);
+
+  const { data, error } = await resend.emails.send({
+    from:     fromEmail,
+    to:       toEmail,
+    subject:  `Nuevo contacto INVERSAVE — ${nombre} ${apellido}`,
+    html,
+    replyTo:  email,
   });
 
-  if (!res.ok) {
-    const err = await res.text();
-    console.error("Resend error:", err);
-    return NextResponse.json({ error: "Error enviando email" }, { status: 500 });
+  if (error) {
+    console.error("Resend error:", error);
+    return NextResponse.json({ success: false, error: "Email could not be sent" }, { status: 500 });
   }
 
-  return NextResponse.json({ ok: true });
+  console.log("Email sent successfully:", data?.id);
+  return NextResponse.json({ success: true, id: data?.id }, { status: 200 });
 }
