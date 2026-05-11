@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FadeIn } from "@/components/ui";
+import { InstitutionLogoLabel } from "@/components/ui/InstitutionLogoLabel";
 import { BANCOS } from "@/data/market";
 import type { EstadoDato } from "@/data/market";
 
@@ -68,18 +69,11 @@ export default function MercadoBancos() {
               <div className="bg-white border border-black/[.07] rounded-2xl overflow-hidden">
                 {/* Header del banco */}
                 <div className="flex items-center justify-between gap-4 px-5 py-4 border-b border-black/[.05]">
-                  <div className="flex items-center gap-3">
-                    <div
-                      className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 text-[13px] font-bold text-g3"
-                      style={{ background: "#EDF8E8" }}
-                      aria-hidden="true"
-                    >
-                      {banco.abrev.charAt(0)}
-                    </div>
-                    <div>
-                      <p className="text-[14px] font-semibold text-t1 leading-tight">{banco.nombre}</p>
-                      <p className="text-[11px] text-t3 capitalize">{banco.tipo}</p>
-                    </div>
+                  <div className="flex flex-col gap-0.5">
+                    <p className="text-[14px] font-semibold text-t1 leading-tight">
+                      <InstitutionLogoLabel name={banco.nombre} />
+                    </p>
+                    <p className="text-[11px] text-t3 capitalize pl-12">{banco.tipo}</p>
                   </div>
                   <Link
                     href={banco.sitioWeb}

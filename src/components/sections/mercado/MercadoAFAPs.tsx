@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FadeIn } from "@/components/ui";
+import { InstitutionLogoLabel } from "@/components/ui/InstitutionLogoLabel";
 import { AFAPS } from "@/data/market";
 
 export default function MercadoAFAPs() {
@@ -68,18 +69,11 @@ export default function MercadoAFAPs() {
               <article className="bg-white border border-black/[.07] rounded-2xl p-6 h-full flex flex-col">
                 {/* Header */}
                 <div className="flex items-start justify-between gap-3 mb-4">
-                  <div className="flex items-center gap-3">
-                    <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-[13px] font-bold text-g3"
-                      style={{ background: "#EDF8E8" }}
-                      aria-hidden="true"
-                    >
-                      {afap.acronimo.charAt(0)}
-                    </div>
-                    <div>
-                      <h3 className="text-[15px] font-bold text-t1 leading-tight">{afap.nombre}</h3>
-                      <p className="text-[11px] text-t3">{afap.grupo}</p>
-                    </div>
+                  <div className="flex flex-col gap-0.5">
+                    <h3 className="text-[15px] font-bold text-t1 leading-tight">
+                      <InstitutionLogoLabel name={afap.nombre} />
+                    </h3>
+                    <p className="text-[11px] text-t3 pl-12">{afap.grupo}</p>
                   </div>
                   <Link
                     href={afap.sitioWeb}
