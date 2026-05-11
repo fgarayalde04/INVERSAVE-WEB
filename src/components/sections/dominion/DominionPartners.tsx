@@ -1,4 +1,5 @@
 import { FadeIn } from "@/components/ui";
+import { PLAN_PARTNERS } from "@/data/partners";
 
 const PARTNERS = [
   {
@@ -83,6 +84,58 @@ export default function DominionPartners() {
           <p className="text-[16px] text-white/40 max-w-2xl leading-relaxed mb-14">
             Cada capa del sistema — custodia, tecnología, gestión, regulación y pagos — está operada por líderes globales de clase institucional.
           </p>
+        </FadeIn>
+
+        {/* ── Logo grid ── */}
+        <FadeIn>
+          <div className="mb-14">
+            <p className="text-[12px] font-semibold text-white/30 uppercase tracking-[0.1em] mb-6">
+              Empresas que forman parte de la estructura
+            </p>
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+              {PLAN_PARTNERS.map((p) => {
+                const initials = p.name
+                  .split(/\s+/)
+                  .slice(0, 2)
+                  .map((w) => w[0])
+                  .join("")
+                  .toUpperCase();
+                return (
+                  <div
+                    key={p.name}
+                    className="flex flex-col items-center gap-2.5 rounded-2xl px-3 py-4 border border-white/[.08] hover:border-white/[.16] transition-colors duration-200"
+                    style={{ background: "rgba(255,255,255,0.04)" }}
+                  >
+                    <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0 bg-white/90">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={p.logo}
+                        alt={p.name}
+                        className="w-8 h-8 object-contain"
+                        loading="lazy"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          target.style.display = "none";
+                          const parent = target.parentElement;
+                          if (parent) {
+                            parent.innerHTML = `<span style="font-size:11px;font-weight:700;color:#1A6638">${initials}</span>`;
+                          }
+                        }}
+                      />
+                    </div>
+                    <p className="text-[10px] font-semibold text-white/50 text-center leading-tight">
+                      {p.name}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+            <p className="text-[11px] text-white/20 mt-5 leading-relaxed max-w-2xl">
+              Una red de instituciones y proveedores que participan en distintas partes
+              del proceso operativo, tecnológico y de custodia. Cada uno cumple un rol
+              específico dentro de la estructura.
+            </p>
+          </div>
         </FadeIn>
 
         <div className="grid sm:grid-cols-2 gap-5">
