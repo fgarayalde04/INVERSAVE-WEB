@@ -192,96 +192,128 @@ const CONCEPTS = [
     tag: "Macroeconomía",
     title: "Inflación",
     def: "Proceso por el cual los precios suben con el tiempo, reduciendo el poder de compra del dinero. USD 100 de hoy no compran lo mismo en 10 años.",
+    image: "/education/inflacion.jpg",
+    imageAlt: "Precios subiendo — ilustración de inflación",
   },
   {
     key: "compuesto",
     tag: "Clave",
     title: "Interés compuesto",
     def: "Los rendimientos generan nuevos rendimientos. A medida que pasa el tiempo, el crecimiento se acelera. El efecto se vuelve más poderoso cuanto más temprano se empieza.",
+    image: "/education/interes-compuesto.jpg",
+    imageAlt: "Crecimiento exponencial — interés compuesto",
   },
   {
     key: "diversificacion",
     tag: "Estrategia",
     title: "Diversificación",
     def: "Distribuir el capital en distintos activos o mercados para reducir el impacto de una caída individual. No concentrar todo en una sola opción.",
+    image: "/education/diversificacion.jpg",
+    imageAlt: "Distintos activos — diversificación de portafolio",
   },
   {
     key: "riesgo",
     tag: "Concepto",
     title: "Riesgo vs retorno",
     def: "Mayor potencial de retorno suele ir acompañado de mayor variabilidad. Entender esta relación es fundamental para tomar decisiones financieras informadas.",
+    image: "/education/riesgo-vs-retorno.jpg",
+    imageAlt: "Balanza de riesgo y retorno en inversiones",
   },
   {
     key: "horizonte",
     tag: "Planificación",
     title: "Horizonte de inversión",
     def: "El período de tiempo durante el cual se mantiene una inversión. A mayor horizonte, mayor capacidad de tolerar la volatilidad del corto plazo.",
+    image: "/education/horizonte.jpg",
+    imageAlt: "Horizonte temporal de largo plazo en inversiones",
   },
   {
     key: "liquidez",
     tag: "Concepto",
     title: "Liquidez",
     def: "Facilidad con la que una inversión puede convertirse en dinero disponible. Un bien raíz tiene baja liquidez; una cuenta bancaria tiene alta liquidez.",
+    image: "/education/liquidez.png",
+    imageAlt: "Disponibilidad de dinero — concepto de liquidez",
   },
   {
     key: "fondos",
     tag: "Instrumento",
     title: "Fondos de inversión",
     def: "Vehículos que agrupan el capital de múltiples inversores para invertir en una cartera administrada de activos. Permiten acceder a diversificación con montos menores.",
+    image: "/education/fondo.jpg",
+    imageAlt: "Fondo de inversión colectivo",
   },
   {
     key: "etf",
     tag: "Instrumento",
     title: "ETFs",
     def: "Fondos cotizados en bolsa que suelen replicar índices o canastas de activos. Combinan la diversificación de un fondo con la facilidad de compraventa de una acción.",
+    image: "/education/etf.jpg",
+    imageAlt: "ETF — fondo cotizado en bolsa",
   },
   {
     key: "sp500",
     tag: "Mercado",
     title: "S&P 500",
     def: "Índice que agrupa las 500 empresas de mayor capitalización de EE.UU. Se usa globalmente como referencia del desempeño del mercado de renta variable.",
+    image: "/education/sp500.jpg",
+    imageAlt: "Índice S&P 500 — 500 empresas líderes de EE.UU.",
   },
   {
     key: "volatilidad",
     tag: "Riesgo",
     title: "Volatilidad",
     def: "Medida de cuánto fluctúa el valor de una inversión en el tiempo. Alta volatilidad en el corto plazo no implica mal resultado en el largo plazo.",
+    image: "/education/volatilidad.jpg",
+    imageAlt: "Fluctuaciones de mercado — volatilidad financiera",
   },
   {
     key: "portafolio",
     tag: "Estrategia",
     title: "Construcción de portafolio",
     def: "Proceso de combinar distintos activos según los objetivos, el horizonte y la tolerancia al riesgo de cada persona. No existe un portafolio universal.",
+    image: "/education/casco.jpg",
+    imageAlt: "Estrategia de construcción de portafolio de inversión",
   },
   {
     key: "ahorro",
     tag: "Básico",
     title: "Ahorro vs inversión",
     def: "Ahorrar es guardar dinero. Invertir es hacer que ese dinero trabaje y genere rendimiento. Con inflación persistente, el dinero guardado pierde valor real con el tiempo.",
+    image: "/education/ahorro-vs-inversion.jpg",
+    imageAlt: "Diferencia entre ahorrar e invertir",
   },
   {
     key: "automatizacion",
     tag: "Hábito",
     title: "Automatización",
     def: "Configurar aportes periódicos automáticos elimina la necesidad de decisiones emocionales. La disciplina queda integrada en el sistema, no en la fuerza de voluntad.",
+    image: "/education/automatizacion.jpg",
+    imageAlt: "Ahorro automático y aportes periódicos",
   },
   {
     key: "largoplazo",
     tag: "Clave",
     title: "Largo plazo",
     def: "Horizonte de 10, 15, 20 años o más. La evidencia histórica muestra que a mayor plazo, menor la probabilidad de terminar con pérdida en mercados diversificados.",
+    image: null,
+    imageAlt: "",
   },
   {
     key: "tasas",
     tag: "Macroeconomía",
     title: "Tasas de interés",
     def: "Precio del dinero en el tiempo. Impactan en el costo de los préstamos, el rendimiento del ahorro y la valoración de activos financieros en general.",
+    image: "/education/tasas-de-interes.png",
+    imageAlt: "Tasas de interés y costo del dinero",
   },
   {
     key: "mercado",
     tag: "Contexto",
     title: "Mercado de capitales",
     def: "Sistema que conecta a quienes tienen capital para invertir con quienes necesitan financiamiento. Incluye acciones, bonos, fondos, ETFs y otros instrumentos.",
+    image: "/education/mercado-de-capitales.jpg",
+    imageAlt: "Mercado de capitales — bolsa y activos financieros",
   },
 ];
 
@@ -289,22 +321,40 @@ const CONCEPTS = [
 function ConceptCard({ concept }: { concept: typeof CONCEPTS[0] }) {
   const Icon = icons[concept.key];
   return (
-    <article className="bg-white border border-black/[.07] rounded-2xl p-5 flex flex-col gap-3 hover:shadow-sm transition-shadow duration-200">
-      <div className="flex items-start justify-between gap-2">
-        <div
-          className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-g3"
-          style={{ background: "#EDF8E8" }}
-          aria-hidden="true"
-        >
-          {Icon && <Icon />}
-        </div>
-        <span className="text-[10px] font-bold text-g3 bg-[#EDF8E8] border border-g1/20 rounded-full px-2.5 py-1 leading-none self-start mt-1">
-          {concept.tag}
-        </span>
+    <article className="bg-white border border-black/[.07] rounded-2xl overflow-hidden flex flex-col hover:shadow-sm transition-shadow duration-200">
+      {/* Visual header — image or icon fallback */}
+      <div className="relative w-full h-[112px] flex-shrink-0 overflow-hidden bg-[#F0EFE8]">
+        {concept.image ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={concept.image}
+            alt={concept.imageAlt}
+            className="w-full h-full object-cover"
+            loading="lazy"
+            onError={(e) => {
+              e.currentTarget.style.display = "none";
+            }}
+          />
+        ) : (
+          <div
+            className="w-full h-full flex items-center justify-center text-g3"
+            style={{ background: "#EDF8E8" }}
+            aria-hidden="true"
+          >
+            {Icon && <Icon />}
+          </div>
+        )}
       </div>
-      <div>
-        <h3 className="text-[15px] font-semibold text-t1 mb-1.5 leading-tight">{concept.title}</h3>
-        <p className="text-[13px] text-t2 leading-relaxed">{concept.def}</p>
+
+      {/* Content */}
+      <div className="p-5 flex flex-col gap-2.5 flex-1">
+        <div className="flex items-center justify-between gap-2">
+          <h3 className="text-[14px] font-semibold text-t1 leading-tight">{concept.title}</h3>
+          <span className="text-[10px] font-bold text-g3 bg-[#EDF8E8] border border-g1/20 rounded-full px-2.5 py-1 leading-none flex-shrink-0">
+            {concept.tag}
+          </span>
+        </div>
+        <p className="text-[12px] text-t2 leading-relaxed">{concept.def}</p>
       </div>
     </article>
   );
