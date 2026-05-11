@@ -63,7 +63,7 @@ export default function NoticiasPage() {
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto">
             <Link
-              href="/el-plan"
+              href="/dominion"
               className="block bg-white border border-black/[.07] rounded-2xl p-4 hover:shadow-sm transition-shadow text-center"
             >
               <p className="text-[13px] font-bold text-t1 mb-1">El Plan →</p>

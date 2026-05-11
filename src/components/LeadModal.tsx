@@ -56,17 +56,18 @@ export default function LeadModal() {
     setSubmitting(true);
     setError("");
     try {
-      const res = await fetch("https://formspree.io/f/FORMSPREE_ID", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          nombre:   `${form.nombre} ${form.apellido}`,
+          nombre:   form.nombre,
+          apellido: form.apellido,
           email:    form.email,
           celular:  form.celular,
           edad:     form.edad,
           objetivo: form.objetivo,
           aporte:   form.aporte,
-          fuente:   source || "web",
+          source:   source || "web",
         }),
       });
       if (res.ok) {

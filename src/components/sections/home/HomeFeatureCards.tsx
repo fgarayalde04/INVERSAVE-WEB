@@ -23,7 +23,7 @@ const CARDS = [
     title: "Empezá",
     description:
       "Conocé un plan de ahorro e inversión mensual, automatizado y flexible.",
-    href: "/el-plan",
+    href: "/dominion",
     linkLabel: "Ver el Plan",
     highlight: true,
   },

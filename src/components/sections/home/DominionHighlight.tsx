@@ -84,7 +84,7 @@ export default function DominionHighlight() {
               <div>
                 <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }} className="inline-block">
                   <Link
-                    href="/el-plan"
+                    href="/dominion"
                     className="inline-flex items-center gap-2.5 bg-g3 text-white font-semibold text-[14px] rounded-full px-7 py-3.5 hover:bg-[#1A6638] transition-colors"
                     style={{ boxShadow: "0 2px 20px rgba(26,102,56,.4)" }}
                   >

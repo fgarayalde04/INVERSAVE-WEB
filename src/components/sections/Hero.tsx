@@ -85,7 +85,7 @@ export default function Hero() {
 
             <div className="flex gap-3 flex-wrap mb-5">
               <Link
-                href="/el-plan"
+                href="/dominion"
                 className="inline-flex items-center gap-2 font-bold text-[15px] rounded-full px-7 py-3.5 text-white transition-colors"
                 style={{
                   background: "#1A6638",
