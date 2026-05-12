@@ -170,10 +170,10 @@ export default function Navbar() {
               >
                 <Link
                   href={item.href}
-                  className={`inline-flex items-center gap-1 text-[12.5px] font-medium px-3 py-1.5 rounded-full whitespace-nowrap transition-all duration-150 ${
+                  className={`inline-flex items-center gap-1 text-[13.5px] px-3 py-1.5 rounded-full whitespace-nowrap transition-all duration-150 ${
                     isActive(item.href)
-                      ? "bg-black/[.06] text-t1 font-semibold"
-                      : "text-t3 hover:text-t1 hover:bg-black/[.04]"
+                      ? "bg-black/[.07] text-t1 font-bold"
+                      : "text-[#3A3A3A] font-semibold hover:text-t1 hover:bg-black/[.05]"
                   }`}
                 >
                   {item.label}
@@ -205,16 +205,15 @@ export default function Navbar() {
         <div className="flex items-center gap-2 flex-shrink-0">
           <Link
             href="/dominion"
-            className={`hidden sm:inline-flex items-center gap-1.5 text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-150 ${
-              pathname === "/dominion"
-                ? "bg-[#0C1A11] text-white"
-                : "bg-[#0C1A11] text-white hover:bg-g3"
-            }`}
-            style={{ boxShadow: "0 1px 8px rgba(12,26,17,.18)" }}
+            className="hidden sm:inline-flex items-center gap-2 text-[14px] font-bold px-6 py-2.5 rounded-full text-white transition-all duration-150 hover:opacity-90 active:scale-[.98]"
+            style={{
+              background: "linear-gradient(135deg,#1A6638 0%,#0C1A11 100%)",
+              boxShadow: "0 2px 12px rgba(12,26,17,.28)",
+            }}
           >
             El Plan
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-              <path d="M2 8L8 2M8 2H4M8 2V6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+            <svg width="11" height="11" viewBox="0 0 10 10" fill="none">
+              <path d="M2 8L8 2M8 2H4M8 2V6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
             </svg>
           </Link>
 
