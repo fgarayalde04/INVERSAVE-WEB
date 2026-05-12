@@ -13,7 +13,7 @@ export default function MentalidadSection() {
   const gasto = ingreso - ahorro;
 
   return (
-    <section className="section-wrap-white">
+    <section className="section-wrap" style={{ background: "#F8F6F0" }}>
       <div className="inner">
         <FadeIn>
           <p className="section-label">El cambio más importante</p>

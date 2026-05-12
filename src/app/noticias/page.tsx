@@ -56,7 +56,7 @@ export default function NoticiasPage() {
       </section>
 
       {/* Internal links */}
-      <section className="section-wrap bg-[#F9FAFB]">
+      <section className="section-wrap" style={{ background: "#F8F6F0" }}>
         <div className="inner">
           <p className="text-center text-[13px] font-semibold text-t2 uppercase tracking-wider mb-6">
             Seguí explorando

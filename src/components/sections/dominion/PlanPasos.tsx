@@ -66,7 +66,7 @@ const STEPS = [
 
 export default function PlanPasos() {
   return (
-    <section className="py-20 px-6" style={{ background: "#F8F6F0" }}>
+    <section className="py-20 px-6 bg-white">
       <div className="max-w-5xl mx-auto">
         <FadeIn>
           <p className="section-label text-center">Cómo funciona</p>

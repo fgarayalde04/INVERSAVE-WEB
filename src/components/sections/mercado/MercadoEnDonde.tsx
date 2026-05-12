@@ -5,7 +5,7 @@ export default function MercadoEnDonde() {
   return (
     <div id="en-donde-se-invierte" className="scroll-mt-20">
       {/* Explicación */}
-      <section className="section-wrap-white">
+      <section className="section-wrap" style={{ background: "#F8F6F0" }}>
         <div className="inner">
           <FadeIn>
             <p className="section-label">En dónde se invierte</p>

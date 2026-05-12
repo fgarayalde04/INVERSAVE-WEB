@@ -508,7 +508,7 @@ export default function MercadoDashboard() {
   const [active, setActive] = useState<TabId>("plazos");
 
   return (
-    <section id="dashboard" className="section-wrap-white">
+    <section id="dashboard" className="section-wrap" style={{ background: "#F8F6F0" }}>
       <div className="inner">
         <p className="section-label">Dashboard</p>
         <h2 className="text-h2 font-bold mb-2">

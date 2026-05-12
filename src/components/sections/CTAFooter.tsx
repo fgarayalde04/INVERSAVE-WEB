@@ -32,22 +32,14 @@ export function CTASection() {
             Invertir no es para hacerse rico rápido. Es para vivir más tranquilo después.
             Una conversación sin compromiso para entender tu situación y mostrarte exactamente qué opciones tenés.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-5">
+          <div className="flex justify-center mb-5">
             <motion.button
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="btn-dark"
+              className="btn-dark text-[17px] px-14 py-5"
               onClick={() => openModal("cta")}
             >
-              Comenzar mi plan de ahorro
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.02, y: -1 }}
-              whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-[15px] font-semibold border border-white/20 text-white/70 hover:bg-white/[.06] transition-all duration-200 cursor-pointer"
-              onClick={() => openModal("cta")}
-            >
-              Hablar con un asesor
+              Comenzar mi plan
             </motion.button>
           </div>
           <p className="text-[12px] text-white/20 mt-3">

@@ -182,7 +182,7 @@ export function ProblemaSection() {
           <FadeIn>
             <div className="grid grid-cols-3 gap-4 mb-4">
               {[
-                { yr: "1950", num: "66", sub: "años — Uruguay", bg: "bg-[#F5F2EA]", numColor: "text-t2", badge: "" },
+                { yr: "1950", num: "66", sub: "años — Uruguay", bg: "bg-white border border-black/[.07] shadow-sm", numColor: "text-t2", badge: "" },
                 { yr: "2025", num: "78", sub: "años — Uruguay", bg: "bg-white border border-black/[.07]", numColor: "text-t1", badge: "" },
                 { yr: "2100 proy.", num: "88", sub: "años — CEPAL", bg: "bg-[#EDF8E8] border border-g1/20", numColor: "text-g3", badge: "text-g3" },
               ].map((col, i) => (

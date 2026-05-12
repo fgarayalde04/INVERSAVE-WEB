@@ -42,15 +42,6 @@ export default function Hero() {
             "radial-gradient(ellipse 55% 70% at 15% 60%, rgba(82,181,88,.10) 0%, transparent 65%), radial-gradient(ellipse 40% 45% at 85% 15%, rgba(82,181,88,.06) 0%, transparent 55%)",
         }}
       />
-      {/* Subtle grid */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(82,181,88,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(82,181,88,.03) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-10 py-12 md:py-18">
@@ -127,7 +118,7 @@ export default function Hero() {
           >
             {/* Card principal */}
             <div
-              className="rounded-2xl border border-white/[.09] p-6"
+              className="rounded-2xl p-6"
               style={{
                 background: "rgba(255,255,255,0.05)",
                 backdropFilter: "blur(16px)",
