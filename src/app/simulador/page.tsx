@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function SimuladorPage() {
   return (
     <main>
-      <section className="page-hero">
+      <section className="page-hero" style={{ background: "#F8F6F0" }}>
         <div className="inner text-center">
           <p className="section-label">Simulador de ahorro</p>
           <h1 className="text-[clamp(26px,3.2vw,42px)] font-bold leading-tight tracking-tight mb-3">
