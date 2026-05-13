@@ -28,6 +28,42 @@ export interface NewsItem {
 
 export const NEWS: NewsItem[] = [
   {
+    id: "elpais-uy-jubilacion-anticipada-60-anos-2026",
+    title: "Propuesta de jubilación anticipada a los 60 años para algunos trabajadores: a quiénes incluye",
+    source: "El País",
+    sourceCountry: "UY",
+    url: "https://www.elpais.com.uy/negocios/noticias/propuesta-de-jubilacion-anticipada-a-los-60-anos-para-algunos-trabajadores-a-quienes-incluye",
+    date: "2026-05-13",
+    category: "reforma",
+    summary:
+      "Una propuesta busca habilitar la jubilación anticipada a partir de los 60 años para determinadas categorías de trabajadores. El artículo detalla qué sectores quedarían incluidos y cuáles son las condiciones para acceder al beneficio.",
+    tag: "Jubilación anticipada",
+  },
+  {
+    id: "elpais-uy-ceres-estado-cuentas-ahorro-2026",
+    title: "Jubilaciones: CERES cuestionó que el Estado uruguayo sea capaz de gestionar las cuentas de ahorro individual",
+    source: "El País",
+    sourceCountry: "UY",
+    url: "https://www.elpais.com.uy/negocios/noticias/jubilaciones-ceres-cuestiono-que-el-estado-uruguayo-sea-capaz-de-gestionar-las-cuentas-de-ahorro-individual",
+    date: "2026-05-09",
+    category: "reforma",
+    summary:
+      "El centro de estudios CERES cuestionó la capacidad del Estado uruguayo para administrar las cuentas de ahorro individual que hoy gestionan las AFAPs. El análisis advierte sobre los riesgos de estatizar la gestión previsional.",
+    tag: "AFAPs — Estado",
+  },
+  {
+    id: "elobservador-caja-profesionales-perdida-2025",
+    title: "Caja de Profesionales perdió más de US$ 30 millones en 2025 pese a asistencia financiera del Estado y mayor aporte de jubilados",
+    source: "El Observador",
+    sourceCountry: "UY",
+    url: "https://www.elobservador.com.uy/economia-y-empresas/caja-profesionales-perdio-mas-us-30-millones-2025-pese-asistencia-financiera-del-estado-y-mayor-aporte-jubilados-n6043665",
+    date: "2026-02-28",
+    category: "bps",
+    summary:
+      "La Caja de Profesionales Universitarios registró pérdidas superiores a los 30 millones de dólares en 2025, a pesar de recibir asistencia financiera del Estado y del mayor aporte de sus jubilados. El resultado evidencia la fragilidad de las cajas paraestatales.",
+    tag: "Cajas paraestatales",
+  },
+  {
     id: "lanacion-reforma-jubilatoria-uy-2026",
     title: "La reforma jubilatoria uruguaya",
     source: "La Nación",
