@@ -28,18 +28,6 @@ export interface NewsItem {
 
 export const NEWS: NewsItem[] = [
   {
-    id: "inversave-vivimos-mas-anos-jubilacion-larga-2026",
-    title: "Vivimos más años: el nuevo desafío de financiar una jubilación más larga",
-    source: "INVERSAVE",
-    sourceCountry: "UY",
-    url: "/articulos/vivimos-mas-anos.html",
-    date: "2026-05-25",
-    category: "educacion",
-    summary:
-      "Una mujer que se jubila hoy en Uruguay a los 65 años tiene en promedio 23 años más de vida por delante. Un hombre, 17. El artículo analiza cómo el aumento de la esperanza de vida transforma el desafío de financiar el retiro.",
-    tag: "Esperanza de vida",
-  },
-  {
     id: "elpais-uy-dialogo-social-desafios-demograficos-2026",
     title: "Diálogo social: desafíos demográficos, compromisos políticos y riesgos fiscales",
     source: "El País",
