@@ -33,7 +33,7 @@ export const NEWS: NewsItem[] = [
     source: "El País",
     sourceCountry: "UY",
     url: "https://www.elpais.com.uy/negocios/noticias/caja-de-profesionales-comision-de-expertos-llego-a-diagnostico-consensuado-sobre-crisis-pero-discrepa-en-medidas-de-reforma",
-    date: "2026-05-13",
+    date: "2026-05-24",
     category: "reforma",
     summary:
       "La comisión de expertos convocada para analizar la crisis de la Caja de Profesionales alcanzó un diagnóstico común sobre sus causas estructurales, pero no logró consenso en las medidas concretas de reforma para revertir su situación financiera.",
