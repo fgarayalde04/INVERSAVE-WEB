@@ -28,6 +28,18 @@ export interface NewsItem {
 
 export const NEWS: NewsItem[] = [
   {
+    id: "elpais-uy-dialogo-social-desafios-demograficos-2026",
+    title: "Diálogo social: desafíos demográficos, compromisos políticos y riesgos fiscales",
+    source: "El País",
+    sourceCountry: "UY",
+    url: "https://www.elpais.com.uy/economia-y-mercado/dialogo-social-desafios-demograficos-compromisos-politicos-y-riesgos-fiscales",
+    date: "2026-05-25",
+    category: "reforma",
+    summary:
+      "Un análisis sobre el diálogo social en torno a la reforma previsional uruguaya: los desafíos que plantea el envejecimiento de la población, los compromisos políticos en juego y los riesgos fiscales que condicionan cualquier solución de fondo.",
+    tag: "Reforma previsional",
+  },
+  {
     id: "elpais-uy-caja-profesionales-comision-expertos-2026",
     title: "Caja de Profesionales: comisión de expertos llegó a diagnóstico consensuado sobre la crisis pero discrepa en medidas de reforma",
     source: "El País",
