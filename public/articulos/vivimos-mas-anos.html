@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vivimos más años: el nuevo desafío de financiar una jubilación más larga — INVERSAVE</title>
+  <meta name="description" content="Una mujer que se jubila hoy en Uruguay a los 65 años tiene en promedio 23 años más de vida por delante. Un hombre, 17. Eso son dos décadas que el sistema previsional debe financiar." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:   #3a7d44;
+      --green-light: #f0f7f1;
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --text-muted: #9ca3af;
+      --border: #e5e7eb;
+      --bg-page: #ffffff;
+      --bg-aside: #f9fafb;
+      --bg-chart: #f3f4f6;
+      --warn: #b91c1c;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ─────────────────────────────────────── */
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Top bar ─────────────────────────────────────── */
+    .topbar {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+    }
+    .topbar-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .topbar-brand {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--green);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Hero ────────────────────────────────────────── */
+    .hero {
+      padding: 56px 0 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .series-label {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 22px;
+    }
+    .hero-lead {
+      font-size: 18px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      max-width: 640px;
+    }
+    .hero-meta {
+      margin-top: 28px;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Body ────────────────────────────────────────── */
+    .body {
+      padding: 48px 0 24px;
+    }
+
+    p {
+      font-size: 16.5px;
+      line-height: 1.78;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      margin: 44px 0 14px;
+      padding-top: 4px;
+    }
+
+    /* ── Pull question ───────────────────────────────── */
+    .pull-question {
+      background: var(--bg-aside);
+      border-left: 3px solid var(--green);
+      border-radius: 0 8px 8px 0;
+      padding: 24px 28px;
+      margin: 36px 0;
+    }
+    .pull-question p {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    /* ── Bullet list ─────────────────────────────────── */
+    ul.dashed {
+      list-style: none;
+      margin: 0 0 20px 0;
+      padding: 0;
+    }
+    ul.dashed li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 16.5px;
+      line-height: 1.7;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    ul.dashed li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    ul.dashed li strong {
+      font-weight: 700;
+    }
+
+    /* ── Charts ──────────────────────────────────────── */
+    .chart-block {
+      background: var(--bg-chart);
+      border-radius: 10px;
+      padding: 0;
+      margin: 36px 0;
+      overflow: hidden;
+    }
+    .chart-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 14px 20px 0;
+    }
+    .chart-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 4px 20px 16px;
+    }
+    .chart-area {
+      padding: 0 20px 20px;
+    }
+    .chart-caption {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-top: 14px;
+      padding: 0 20px 16px;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+
+    /* Bar chart helpers */
+    .bar-chart { display: flex; flex-direction: column; gap: 10px; }
+    .bar-row { display: flex; align-items: center; gap: 10px; }
+    .bar-year {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      width: 38px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+    .bar-track {
+      flex: 1;
+      background: var(--border);
+      border-radius: 4px;
+      height: 26px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+    }
+    .bar-fill span {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: white;
+      white-space: nowrap;
+    }
+    .bar-fill.green  { background: var(--green); }
+    .bar-fill.green-70  { background: #5a9e65; }
+    .bar-fill.green-50  { background: #7dbb87; }
+    .bar-fill.green-30  { background: #a8d4ae; }
+    .bar-fill.green-proj { background: #c3e0c7; }
+    .bar-fill.green-proj span { color: var(--text-secondary); }
+
+    /* Timeline bars for life expectancy at retirement */
+    .timeline { display: flex; flex-direction: column; gap: 14px; }
+    .timeline-row { display: flex; align-items: center; gap: 12px; }
+    .timeline-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      width: 44px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+    .timeline-bar {
+      flex: 1;
+      display: flex;
+      height: 34px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .seg-work {
+      background: #d1d5db;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #6b7280;
+    }
+    .seg-ret {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: white;
+    }
+    .seg-ret.green { background: var(--green); }
+    .seg-ret.green-50 { background: #7dbb87; }
+    .seg-ret.green-30 { background: #a8d4ae; }
+    .seg-ret.green-30 span, .seg-ret.green-proj span { color: var(--text-secondary); }
+    .seg-ret.green-proj { background: #c3e0c7; }
+
+    .timeline-legend {
+      display: flex;
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .legend-dot {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .dot-work { background: #d1d5db; }
+    .dot-ret  { background: var(--green); }
+
+    /* Stat mini in chart */
+    .stat-mini {
+      display: flex;
+      gap: 16px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .stat-mini-item {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      min-width: 130px;
+    }
+    .stat-mini-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .stat-mini-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    /* Horizontal stat comparison */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .compare-cell {
+      padding: 18px 20px;
+      background: white;
+      border: 1px solid var(--border);
+    }
+    .compare-cell:first-child { border-radius: 8px 0 0 8px; }
+    .compare-cell:last-child  { border-radius: 0 8px 8px 0; }
+    .compare-year {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .compare-num {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .compare-num.muted { color: #9ca3af; }
+    .compare-num.green { color: var(--green); }
+    .compare-desc {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      margin-top: 6px;
+      line-height: 1.45;
+    }
+
+    /* Projection table */
+    .proj-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .proj-table th {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .proj-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+    .proj-table tr:last-child td { border-bottom: none; }
+    .proj-table td:nth-child(2),
+    .proj-table td:nth-child(3) {
+      font-weight: 600;
+      color: var(--green);
+    }
+    .proj-table .row-proj td { color: var(--text-secondary); }
+    .proj-table .row-proj td:nth-child(2),
+    .proj-table .row-proj td:nth-child(3) { color: #7dbb87; }
+    .proj-badge {
+      display: inline-block;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: #e5f0e6;
+      color: var(--green);
+      border-radius: 4px;
+      padding: 2px 6px;
+      margin-left: 6px;
+    }
+
+    /* ── Key data section ────────────────────────────── */
+    .keydata {
+      margin: 48px 0 0;
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+    .keydata-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .keydata-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .keydata-card {
+      background: var(--bg-aside);
+      padding: 22px 24px 20px;
+    }
+    .keydata-card:nth-child(1) { border-radius: 10px 0 0 0; }
+    .keydata-card:nth-child(2) { border-radius: 0 10px 0 0; }
+    .keydata-card:nth-child(3) { border-radius: 0 0 0 10px; }
+    .keydata-card:nth-child(4) { border-radius: 0 0 10px 0; }
+    .keydata-num {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .keydata-source {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .keydata-desc {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ── Sources ─────────────────────────────────────── */
+    .sources {
+      padding: 32px 0 60px;
+      border-top: 1px solid var(--border);
+    }
+    .sources-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+    .source-item {
+      margin-bottom: 14px;
+    }
+    .source-item p {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin: 0;
+    }
+    .source-item a {
+      font-size: 12px;
+      color: var(--green);
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2px;
+    }
+    .source-item a:hover { text-decoration: underline; }
+
+    /* ── Disclaimer ──────────────────────────────────── */
+    .disclaimer {
+      background: var(--bg-aside);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 0 0 40px;
+    }
+    .disclaimer p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* ── Footer ──────────────────────────────────────── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 20px 0;
+    }
+    .footer-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .footer a {
+      font-size: 12px;
+      color: var(--green);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* ── Responsive ──────────────────────────────────── */
+    @media (max-width: 560px) {
+      .keydata-grid { grid-template-columns: 1fr; }
+      .keydata-card:nth-child(1) { border-radius: 10px 10px 0 0; }
+      .keydata-card:nth-child(2) { border-radius: 0; }
+      .keydata-card:nth-child(3) { border-radius: 0; }
+      .keydata-card:nth-child(4) { border-radius: 0 0 10px 10px; }
+      .compare-grid { grid-template-columns: 1fr; }
+      .compare-cell:first-child { border-radius: 8px 8px 0 0; }
+      .compare-cell:last-child  { border-radius: 0 0 8px 8px; }
+      .topbar-brand { display: none; }
+      .stat-mini { flex-direction: column; }
+    }
+
+    @media print {
+      .topbar-brand { display: none; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <span class="topbar-label">Sistema Previsional &nbsp;·&nbsp; Biblioteca</span>
+      <a href="https://inversave.com" class="topbar-brand">INVERSAVE</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="wrap">
+    <header class="hero">
+      <span class="series-label">Educación financiera &nbsp;·&nbsp; Retiro</span>
+      <h1>Vivimos más años: el nuevo desafío de financiar una jubilación más larga</h1>
+      <p class="hero-lead">
+        Una mujer que se jubila hoy en Uruguay a los 65 años tiene en promedio
+        <strong>23 años más de vida por delante</strong>. Un hombre, <strong>17</strong>.
+        Eso no es un detalle menor: son dos décadas que el sistema previsional —y el
+        propio jubilado— deben financiar.
+      </p>
+      <p class="hero-meta">Mayo 2026 &nbsp;·&nbsp; Fuentes: BPS, INE Uruguay, ONU/DESA</p>
+    </header>
+  </div>
+
+  <!-- Body -->
+  <div class="wrap">
+    <article class="body">
+
+      <!-- Pull question -->
+      <div class="pull-question">
+        <p>¿Cuántos años de jubilación debería financiar una persona?<br>
+        La respuesta cambió radicalmente en el último siglo. Y sigue cambiando.</p>
+      </div>
+
+      <!-- Section 1 -->
+      <h2>El tiempo que nadie calculaba</h2>
+
+      <p>
+        En 1950, la esperanza de vida al nacer en Uruguay era de aproximadamente
+        <strong>66 años</strong>. La edad de jubilación también era 65. Eso significaba
+        que, en promedio, el sistema previsional debía financiar alrededor de un año
+        de prestación por persona. Un año.
+      </p>
+
+      <p>
+        Hoy la esperanza de vida al nacer es de <strong>78,5 años</strong> (INE/ONU, 2025).
+        Pero el dato más relevante no es el de la expectativa al nacer, sino lo que
+        sucede <em>desde</em> la jubilación: cuántos años de prestación debe
+        pagar el sistema una vez que alguien se retira.
+      </p>
+
+      <!-- GRÁFICO 1 -->
+      <div class="chart-block">
+        <p class="chart-label">Gráfico 1</p>
+        <p class="chart-title">Años de jubilación esperados al retirarse a los 65 — Uruguay</p>
+        <div class="chart-area">
+          <div class="compare-grid">
+            <div class="compare-cell">
+              <p class="compare-year">1950</p>
+              <p class="compare-num muted">~1</p>
+              <p class="compare-desc">año promedio de jubilación.<br>Esperanza de vida al nacer: 66 años.</p>
+            </div>
+            <div class="compare-cell">
+              <p class="compare-year">2026</p>
+              <p class="compare-num green">17–23</p>
+              <p class="compare-desc">años esperados según sexo.<br>Mujeres: 23 años · Hombres: 17 años.</p>
+            </div>
+          </div>
+        </div>
+        <p class="chart-caption">
+          La diferencia entre los años de jubilación esperados en 1950 y en 2026 ilustra cuánto creció
+          el horizonte que el sistema previsional debe financiar. Fuente: BPS — Comentarios de Seguridad Social Nº 132, febrero 2026.
+        </p>
+      </div>
+
+      <!-- Section 2 -->
+      <h2>Lo que muestran los datos del BPS</h2>
+
+      <p>
+        El Banco de Previsión Social publica proyecciones actuariales con horizonte de décadas.
+        El análisis más reciente trabaja con año base 2024 y horizonte 2030–2100
+        (BPS, 2026). Sus cifras sobre esperanza de vida al momento del retiro son directas:
+      </p>
+
+      <ul class="dashed">
+        <li><strong>Mujeres que se jubilan a los 65:</strong> esperanza de vida de 23 años adicionales.</li>
+        <li><strong>Hombres que se jubilan a los 65:</strong> esperanza de vida de 17 años adicionales.</li>
+      </ul>
+
+      <p>
+        Esos números no son proyecciones futuras. Son la realidad de 2026.
+        Alguien que hoy firma su retiro asumirá, en promedio, casi dos décadas
+        de vida financiada sin salario activo.
+      </p>
+
+      <!-- GRÁFICO 2 -->
+      <div class="chart-block">
+        <p class="chart-label">Gráfico 2</p>
+        <p class="chart-title">Años de vida esperados a partir de los 65 — por sexo</p>
+        <div class="chart-area">
+          <div class="stat-mini">
+            <div class="stat-mini-item">
+              <div class="stat-mini-num">23</div>
+              <div class="stat-mini-label">años promedio<br><strong>Mujeres</strong> desde los 65</div>
+            </div>
+            <div class="stat-mini-item">
+              <div class="stat-mini-num">17</div>
+              <div class="stat-mini-label">años promedio<br><strong>Hombres</strong> desde los 65</div>
+            </div>
+            <div class="stat-mini-item">
+              <div class="stat-mini-num">20</div>
+              <div class="stat-mini-label">años promedio<br><strong>ambos sexos</strong> (estimación)</div>
+            </div>
+          </div>
+        </div>
+        <p class="chart-caption">
+          Esperanza de vida condicionada al llegar a los 65 años. Una mujer que alcanza la edad de jubilación
+          puede esperar vivir hasta los 88; un hombre, hasta los 82.
+          Fuente: BPS — Comentarios de Seguridad Social Nº 132, febrero 2026.
+        </p>
+      </div>
+
+      <!-- Section 3 -->
+      <h2>La tendencia: la jubilación seguirá siendo más larga</h2>
+
+      <p>
+        La esperanza de vida no dejó de crecer desde mediados del siglo XX y
+        las proyecciones no anticipan un cambio de dirección. La ONU estima que
+        Uruguay alcanzará una esperanza de vida al nacer de <strong>82,3 años hacia 2050</strong>
+        (ONU/DESA, World Population Prospects 2024).
+      </p>
+
+      <p>
+        Eso implica que las personas que hoy tienen 35 o 40 años —y que se jubilarán
+        alrededor de 2045–2050— vivirán, en promedio, más tiempo después de retirarse
+        que la generación actual. El horizonte de financiación del retiro seguirá
+        expandiéndose.
+      </p>
+
+      <!-- GRÁFICO 3 -->
+      <div class="chart-block">
+        <p class="chart-label">Gráfico 3</p>
+        <p class="chart-title">Evolución y proyección de la esperanza de vida al nacer — Uruguay</p>
+        <div class="chart-area">
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-year">1950</span>
+              <div class="bar-track">
+                <div class="bar-fill green-30" style="width:72%"><span>~66 años</span></div>
+              </div>
+            </div>
+            <div class="bar-row">
+              <span class="bar-year">1980</span>
+              <div class="bar-track">
+                <div class="bar-fill green-50" style="width:79%"><span>~70 años</span></div>
+              </div>
+            </div>
+            <div class="bar-row">
+              <span class="bar-year">2000</span>
+              <div class="bar-track">
+                <div class="bar-fill green-70" style="width:84%"><span>~75 años</span></div>
+              </div>
+            </div>
+            <div class="bar-row">
+              <span class="bar-year">2025</span>
+              <div class="bar-track">
+                <div class="bar-fill green" style="width:88%"><span>78,5 años</span></div>
+              </div>
+            </div>
+            <div class="bar-row">
+              <span class="bar-year">2050 ▸</span>
+              <div class="bar-track">
+                <div class="bar-fill green-proj" style="width:92%"><span>~82,3 años (proyectado)</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="chart-caption">
+          Esperanza de vida al nacer en Uruguay, 1950–2025 (estimado) y proyección 2050.
+          El crecimiento sostenido amplía el período de retiro que cada generación deberá financiar.
+          Fuentes: INE Uruguay — Proyecciones de población, revisión 2025; ONU/DESA — World Population Prospects 2024.
+        </p>
+      </div>
+
+      <!-- Section 4 -->
+      <h2>El doble efecto demográfico</h2>
+
+      <p>
+        El envejecimiento poblacional presiona al sistema previsional desde
+        dos direcciones al mismo tiempo:
+      </p>
+
+      <ul class="dashed">
+        <li>
+          <strong>Más años de prestación por jubilado.</strong> Cada persona
+          que se retira genera una obligación de pago durante más tiempo.
+          Lo que antes era una prestación de 10 años hoy puede ser de 20 o más.
+        </li>
+        <li>
+          <strong>Menos aportantes por cada jubilado.</strong> A medida que la
+          pirámide poblacional envejece, hay proporcionalmente menos trabajadores
+          activos sosteniendo a cada pasivo. En 2024, la relación activo-pasivo
+          del BPS era de 2,50. Las proyecciones la ubican en 1,23 para 2100
+          (BPS, 2026).
+        </li>
+      </ul>
+
+      <p>
+        Ambos efectos actúan simultáneamente. No se compensan entre sí.
+        Y ninguno de los dos es reversible en el corto plazo: son el resultado
+        de décadas de cambios en la fecundidad y la mortalidad.
+      </p>
+
+      <!-- GRÁFICO 4 -->
+      <div class="chart-block">
+        <p class="chart-label">Gráfico 4</p>
+        <p class="chart-title">Proyección de la relación activo-pasivo y esperanza de vida — largo plazo</p>
+        <div class="chart-area">
+          <table class="proj-table">
+            <thead>
+              <tr>
+                <th>Año</th>
+                <th>Cotizantes / Jubilado</th>
+                <th>Esp. vida al nacer (est.)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2024 <span style="font-size:10px;color:#9ca3af">(actual)</span></td>
+                <td>2,50</td>
+                <td>78,5 años</td>
+              </tr>
+              <tr class="row-proj">
+                <td>2030 <span class="proj-badge">proy.</span></td>
+                <td>2,59</td>
+                <td>~79,5 años</td>
+              </tr>
+              <tr class="row-proj">
+                <td>2050 <span class="proj-badge">proy.</span></td>
+                <td>2,09</td>
+                <td>~82,3 años</td>
+              </tr>
+              <tr class="row-proj">
+                <td>2100 <span class="proj-badge">proy.</span></td>
+                <td>1,23</td>
+                <td>~86+ años</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="chart-caption">
+          A medida que sube la esperanza de vida, la relación activo-pasivo cae: el sistema paga
+          prestaciones durante más tiempo con proporcionalmente menos aportantes.
+          Fuentes: BPS — Comentarios de Seguridad Social Nº 132, febrero 2026; ONU/DESA, WPP 2024.
+        </p>
+      </div>
+
+      <!-- Section 5 -->
+      <h2>Qué significa esto para una persona</h2>
+
+      <p>
+        La jubilación del BPS aporta una base. Para la mayoría de los trabajadores
+        formales, esa base representa entre el 45% y el 55% del salario previo
+        al retiro —lo que se llama <em>tasa de sustitución</em>—. El resto
+        depende de los fondos acumulados en la AFAP y, si existe, de ahorro
+        complementario adicional.
+      </p>
+
+      <p>
+        Cuando el retiro dura 17 o 23 años, esa brecha se hace más relevante.
+        No porque el sistema vaya a colapsar, sino porque el capital acumulado
+        debe rendir durante más tiempo. Un fondo de retiro que dura 10 años
+        da tranquilidad. El mismo fondo que debe durar 23 cambia completamente
+        el cálculo.
+      </p>
+
+      <ul class="dashed">
+        <li>
+          <strong>Horizonte largo favorece al ahorro.</strong> El interés
+          compuesto necesita tiempo para funcionar. Quien empieza a ahorrar
+          a los 30 tiene 35 años de capitalización antes de retirarse; quien
+          empieza a los 45, solo 20.
+        </li>
+        <li>
+          <strong>La tasa de sustitución no cubre todo.</strong> Con una
+          tasa de 50%, alguien que ganaba $80.000 recibirá ~$40.000 de
+          prestación mensual. La diferencia, durante 20 años, es un monto
+          que debe venir de algún otro lado.
+        </li>
+        <li>
+          <strong>El ahorro complementario es independiente de la demografía.</strong>
+          El capital acumulado en un fondo propio no depende de cuántos
+          trabajadores haya en 2050. Eso lo diferencia estructuralmente
+          del sistema de reparto.
+        </li>
+      </ul>
+
+      <p>
+        Entender cuántos años dura una jubilación no es pesimismo. Es el
+        dato de entrada para cualquier plan de ahorro que tenga sentido.
+      </p>
+
+    </article>
+  </div>
+
+  <!-- Key data -->
+  <div class="wrap">
+    <section class="keydata">
+      <p class="keydata-label">Datos clave</p>
+      <div class="keydata-grid">
+        <div class="keydata-card">
+          <div class="keydata-num">23</div>
+          <div class="keydata-source">BPS, 2026</div>
+          <div class="keydata-desc">años de vida esperados a partir de los 65 — mujeres uruguayas</div>
+        </div>
+        <div class="keydata-card">
+          <div class="keydata-num">17</div>
+          <div class="keydata-source">BPS, 2026</div>
+          <div class="keydata-desc">años de vida esperados a partir de los 65 — hombres uruguayos</div>
+        </div>
+        <div class="keydata-card">
+          <div class="keydata-num">78,5</div>
+          <div class="keydata-source">INE / ONU, 2025</div>
+          <div class="keydata-desc">años de esperanza de vida al nacer en Uruguay (2025)</div>
+        </div>
+        <div class="keydata-card">
+          <div class="keydata-num">82,3</div>
+          <div class="keydata-source">ONU / DESA, 2024</div>
+          <div class="keydata-desc">años de esperanza de vida proyectada para Uruguay en 2050</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Disclaimer -->
+  <div class="wrap">
+    <div class="disclaimer">
+      <p>
+        La información presentada tiene fines exclusivamente educativos e informativos.
+        No constituye asesoramiento financiero personalizado. Los datos de esperanza de
+        vida son promedios estadísticos y no predicen resultados individuales.
+        Consultá siempre a un asesor financiero habilitado antes de tomar decisiones
+        de inversión o retiro.
+      </p>
+    </div>
+  </div>
+
+  <!-- Sources -->
+  <div class="wrap">
+    <section class="sources">
+      <p class="sources-label">Fuentes</p>
+
+      <div class="source-item">
+        <p><strong>BPS (2026).</strong> Proyección Financiera del Sistema Previsional Contributivo. Período 2030–2100. <em>Comentarios de Seguridad Social Nº 132</em>, febrero 2026.</p>
+        <a href="https://www.bps.gub.uy" target="_blank" rel="noopener">bps.gub.uy →</a>
+      </div>
+
+      <div class="source-item">
+        <p><strong>BPS (2025).</strong> Relación Activo Cotizante – Pasivo. Período 1995–2024. <em>Comentarios de Seguridad Social Nº 123</em>, mayo 2025.</p>
+        <a href="https://www.bps.gub.uy" target="_blank" rel="noopener">bps.gub.uy →</a>
+      </div>
+
+      <div class="source-item">
+        <p><strong>INE Uruguay (2025).</strong> Estimaciones y proyecciones de población, revisión 2025.</p>
+        <a href="https://www.ine.gub.uy" target="_blank" rel="noopener">ine.gub.uy →</a>
+      </div>
+
+      <div class="source-item">
+        <p><strong>ONU/DESA (2024).</strong> World Population Prospects 2024. Naciones Unidas, División de Población.</p>
+        <a href="https://population.un.org/wpp/" target="_blank" rel="noopener">population.un.org →</a>
+      </div>
+
+      <div class="source-item">
+        <p><strong>CEPAL (2024).</strong> Panorama Social de América Latina y el Caribe 2024. Comisión Económica para América Latina y el Caribe.</p>
+        <a href="https://www.cepal.org" target="_blank" rel="noopener">cepal.org →</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>© 2026 INVERSAVE · Contenido educativo</p>
+      <a href="https://inversave.com/noticias">← Volver a noticias</a>
+    </div>
+  </footer>
+
+</body>
+</html>
