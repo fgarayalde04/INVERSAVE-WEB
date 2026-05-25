@@ -28,6 +28,18 @@ export interface NewsItem {
 
 export const NEWS: NewsItem[] = [
   {
+    id: "elpais-uy-caja-profesionales-comision-expertos-2026",
+    title: "Caja de Profesionales: comisión de expertos llegó a diagnóstico consensuado sobre la crisis pero discrepa en medidas de reforma",
+    source: "El País",
+    sourceCountry: "UY",
+    url: "https://www.elpais.com.uy/negocios/noticias/caja-de-profesionales-comision-de-expertos-llego-a-diagnostico-consensuado-sobre-crisis-pero-discrepa-en-medidas-de-reforma",
+    date: "2026-05-13",
+    category: "reforma",
+    summary:
+      "La comisión de expertos convocada para analizar la crisis de la Caja de Profesionales alcanzó un diagnóstico común sobre sus causas estructurales, pero no logró consenso en las medidas concretas de reforma para revertir su situación financiera.",
+    tag: "Cajas paraestatales",
+  },
+  {
     id: "elpais-uy-jubilacion-anticipada-60-anos-2026",
     title: "Propuesta de jubilación anticipada a los 60 años para algunos trabajadores: a quiénes incluye",
     source: "El País",
