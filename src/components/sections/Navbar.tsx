@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,37 +15,43 @@ const NAV: NavItem[] = [
     label: "Sistema Previsional",
     href: "/sistema-previsional",
     items: [
-      { label: "Situación actual",        desc: "Cómo funciona la base del sistema.",     href: "/sistema-previsional#situacion-actual" },
-      { label: "Evolución histórica",     desc: "Datos y tendencias del sistema.",         href: "/sistema-previsional#evolucion-historica" },
-      { label: "Esperanza de vida",       desc: "Qué implica vivir más años.",             href: "/sistema-previsional#esperanza-de-vida" },
-      { label: "Evidencia internacional", desc: "Cómo resolvieron esto en otros países.", href: "/sistema-previsional#evidencia-internacional" },
+      { label: "Situación actual",        desc: "Cómo funciona la base del sistema.",      href: "/sistema-previsional#situacion-actual" },
+      { label: "Evolución histórica",     desc: "Datos y tendencias del sistema.",          href: "/sistema-previsional#evolucion-historica" },
+      { label: "Esperanza de vida",       desc: "Qué implica vivir más años.",              href: "/sistema-previsional#esperanza-de-vida" },
+      { label: "Evidencia internacional", desc: "Cómo resolvieron esto en otros países.",  href: "/sistema-previsional#evidencia-internacional" },
     ],
   },
   {
     label: "Ahorrar",
     href: "/ahorrar",
     items: [
-      { label: "Cómo funciona",         desc: "Los principios del ahorro sostenido.",     href: "/ahorrar#como-funciona" },
-      { label: "Cómo hacerlo",          desc: "Pasos concretos para empezar.",            href: "/ahorrar#como-hacerlo" },
-      { label: "Costo de esperar",      desc: "Lo que cuesta cada mes de demora.",        href: "/ahorrar#costo-de-esperar" },
-      { label: "Dollar Cost Averaging", desc: "Aportá todos los meses, igual resultado.", href: "/ahorrar#dollar-cost-averaging" },
+      { label: "Cómo funciona",         desc: "Los principios del ahorro sostenido.",      href: "/ahorrar#como-funciona" },
+      { label: "Cómo hacerlo",          desc: "Pasos concretos para empezar.",             href: "/ahorrar#como-hacerlo" },
+      { label: "Costo de esperar",      desc: "Lo que cuesta cada mes de demora.",         href: "/ahorrar#costo-de-esperar" },
+      { label: "Dollar Cost Averaging", desc: "Aportá todos los meses, igual resultado.",  href: "/ahorrar#dollar-cost-averaging" },
     ],
   },
   {
     label: "Mercado",
     href: "/mercado",
     items: [
-      { label: "Historia del mercado",    desc: "98 años del S&P 500 explicados simple.",   href: "/mercado#historia-del-mercado" },
+      { label: "Historia del mercado",    desc: "98 años del S&P 500 explicados simple.",    href: "/mercado#historia-del-mercado" },
       { label: "En dónde se invierte",    desc: "Canasta diversificada de empresas reales.", href: "/mercado#en-donde-se-invierte" },
       { label: "Rendimiento por período", desc: "Cómo se comportó en distintos horizontes.", href: "/mercado#rendimiento-por-periodo" },
       { label: "Crisis",                  desc: "Caídas, recuperaciones y el largo plazo.",  href: "/mercado#crisis" },
     ],
   },
-  { label: "Simulador",   href: "/simulador" },
-  { label: "Educación",   href: "/educacion" },
-  { label: "Noticias",    href: "/noticias" },
-  { label: "Indicadores", href: "/indicadores" },
+  { label: "Simulador", href: "/simulador" },
+  { label: "Blog",      href: "/blog" },
 ];
+
+// ── "+" more items ───────────────────────────────────────────────────────────
+const MORE_ITEMS: SubItem[] = [
+  { label: "Educación",   desc: "Conceptos financieros explicados simple.",  href: "/educacion" },
+  { label: "Noticias",    desc: "Actualidad previsional y económica.",        href: "/noticias" },
+  { label: "Indicadores", desc: "Tasas, bancos, AFAPs y datos de mercado.",  href: "/indicadores" },
+];
+
 
 // ── Dropdown panel (desktop) ─────────────────────────────────────────────────
 function DropdownPanel({
@@ -104,9 +110,12 @@ export default function Navbar() {
   const [menuOpen,       setMenuOpen]       = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const [moreOpen,       setMoreOpen]       = useState(false);
   const pathname = usePathname();
 
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const moreCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const moreRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -118,10 +127,38 @@ export default function Navbar() {
     setActiveDropdown(null);
     setMenuOpen(false);
     setMobileExpanded(null);
+    setMoreOpen(false);
   }, [pathname]);
+
+  // Close "+" dropdown on click outside
+  const handleClickOutside = useCallback((e: MouseEvent) => {
+    if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+      setMoreOpen(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (moreOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [moreOpen, handleClickOutside]);
+
+  // Close "+" dropdown on Escape
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMoreOpen(false);
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, []);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+  const isMoreActive = MORE_ITEMS.some((i) => pathname.startsWith(i.href));
 
   const openDD = (key: string) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -132,6 +169,17 @@ export default function Navbar() {
   };
   const cancelCloseDD = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
+  };
+
+  const openMore = () => {
+    if (moreCloseTimer.current) clearTimeout(moreCloseTimer.current);
+    setMoreOpen(true);
+  };
+  const startCloseMore = () => {
+    moreCloseTimer.current = setTimeout(() => setMoreOpen(false), 160);
+  };
+  const cancelCloseMore = () => {
+    if (moreCloseTimer.current) clearTimeout(moreCloseTimer.current);
   };
 
   return (
@@ -159,8 +207,11 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <div className="hidden xl:flex items-center gap-0.5 absolute left-1/2 -translate-x-1/2">
+
+          {/* Main nav items */}
           {NAV.map((item) => {
             const hasItems = item.items && item.items.length > 0;
+            const isSimulador = item.href === "/simulador";
             return (
               <div
                 key={item.href}
@@ -173,6 +224,8 @@ export default function Navbar() {
                   className={`inline-flex items-center gap-1 text-[13.5px] px-3 py-1.5 rounded-full whitespace-nowrap transition-all duration-150 ${
                     isActive(item.href)
                       ? "bg-black/[.07] text-t1 font-bold"
+                      : isSimulador
+                      ? "text-[#1d3557] font-bold hover:bg-[#e8eef4] hover:text-[#1d3557]"
                       : "text-[#3A3A3A] font-semibold hover:text-t1 hover:bg-black/[.05]"
                   }`}
                 >
@@ -199,6 +252,70 @@ export default function Navbar() {
               </div>
             );
           })}
+
+          {/* "+" more button */}
+          <div
+            ref={moreRef}
+            className="relative"
+            onMouseEnter={openMore}
+            onMouseLeave={startCloseMore}
+          >
+            <button
+              onClick={() => setMoreOpen((v) => !v)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setMoreOpen((v) => !v);
+                }
+              }}
+              aria-label="Ver más secciones"
+              aria-expanded={moreOpen}
+              aria-haspopup="true"
+              className={`inline-flex items-center justify-center w-7 h-7 rounded-full text-[14px] font-semibold transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1d3557]/40 ${
+                isMoreActive
+                  ? "bg-black/[.07] text-t1"
+                  : moreOpen
+                  ? "bg-black/[.08] text-t1"
+                  : "text-[#5a5a5a] hover:bg-black/[.06] hover:text-t1"
+              }`}
+            >
+              +
+            </button>
+
+            <AnimatePresence>
+              {moreOpen && (
+                <motion.div
+                  role="menu"
+                  initial={{ opacity: 0, y: 6, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 4, scale: 0.98 }}
+                  transition={{ duration: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                  onMouseEnter={cancelCloseMore}
+                  onMouseLeave={startCloseMore}
+                  className="absolute top-full mt-1.5 right-0 z-50 bg-white border border-black/[.08] rounded-2xl shadow-xl overflow-hidden"
+                  style={{ minWidth: 240 }}
+                >
+                  <div className="p-2">
+                    {MORE_ITEMS.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        role="menuitem"
+                        className="flex flex-col gap-0.5 px-3.5 py-2.5 rounded-xl hover:bg-[#F4F4F1] transition-colors group focus:outline-none focus-visible:bg-[#F4F4F1]"
+                        tabIndex={0}
+                      >
+                        <span className="text-[13px] font-semibold text-t1 group-hover:text-g3 transition-colors leading-snug">
+                          {item.label}
+                        </span>
+                        <span className="text-[11.5px] text-t3 leading-snug">{item.desc}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
         </div>
 
         {/* Right: El Plan + hamburger */}
@@ -334,6 +451,75 @@ export default function Navbar() {
                     </motion.div>
                   );
                 })}
+
+                {/* "+" more row */}
+                <motion.div
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: NAV.length * 0.03 }}
+                >
+                  <div className="flex items-center rounded-xl overflow-hidden">
+                    <button
+                      onClick={() => setMobileExpanded(mobileExpanded === "__more__" ? null : "__more__")}
+                      aria-label="Ver más secciones"
+                      aria-expanded={mobileExpanded === "__more__"}
+                      className={`flex-1 flex items-center gap-2 text-[15px] px-4 py-3 transition-colors text-left ${
+                        isMoreActive
+                          ? "bg-[#F0EFE8] text-t1 font-semibold"
+                          : "text-t2 font-medium hover:bg-[#F0EFE8] hover:text-t1"
+                      }`}
+                    >
+                      <span
+                        className="inline-flex items-center justify-center w-5 h-5 rounded-full text-[13px] font-bold leading-none"
+                        style={{ background: "rgba(0,0,0,0.06)", color: "#3a3a3a" }}
+                      >
+                        +
+                      </span>
+                      Más
+                    </button>
+                    <button
+                      onClick={() => setMobileExpanded(mobileExpanded === "__more__" ? null : "__more__")}
+                      className="px-3 py-3 text-t3 hover:bg-[#F0EFE8] transition-colors"
+                      tabIndex={-1}
+                      aria-hidden
+                    >
+                      <motion.svg
+                        width="14" height="14" viewBox="0 0 14 14" fill="none"
+                        animate={{ rotate: mobileExpanded === "__more__" ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <path d="M2 4.5l5 5 5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                      </motion.svg>
+                    </button>
+                  </div>
+
+                  <AnimatePresence>
+                    {mobileExpanded === "__more__" && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+                        style={{ overflow: "hidden" }}
+                      >
+                        <div className="ml-4 mt-0.5 mb-1 space-y-0.5">
+                          {MORE_ITEMS.map((sub) => (
+                            <Link
+                              key={sub.label}
+                              href={sub.href}
+                              onClick={() => setMenuOpen(false)}
+                              className="flex flex-col gap-0.5 px-4 py-2.5 rounded-lg hover:bg-[#F4F4F1] transition-colors"
+                            >
+                              <span className="text-[13px] font-semibold text-t1">{sub.label}</span>
+                              <span className="text-[11px] text-t3">{sub.desc}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+
               </div>
 
               {/* CTA bottom */}

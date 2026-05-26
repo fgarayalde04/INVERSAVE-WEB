@@ -42,7 +42,6 @@ export default function MercadoPage() {
       </section>
 
       {/* 1. Historia del mercado */}
-      <GlowDivider />
       <div id="historia-del-mercado" className="scroll-mt-20">
         <SP500Section />
       </div>
