@@ -28,6 +28,21 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: '401k-incentivos-ahorro',
+    title: 'El 401(k): por qué el diseño del incentivo importa más que el producto',
+    excerpt:
+      'El 401(k) acumula hoy más de 10 billones de dólares en activos. Pero su verdadero logro no es financiero: es haber logrado que millones de personas ahorren voluntariamente durante décadas. La pregunta es cómo.',
+    category: 'educacion-financiera',
+    categoryLabel: 'Mercado · Educación Financiera',
+    date: '2026-05-07',
+    readingTime: 9,
+    seo: {
+      title: 'El 401(k): diseño de incentivos para el ahorro | Inversave',
+      description:
+        'Por qué el 401(k) de EE.UU. acumula USD 10 billones: inscripción automática, matching del empleador y beneficio fiscal. Qué aprendizajes deja para fomentar el ahorro de largo plazo.',
+    },
+  },
+  {
     slug: 'dca-aportes-periodicos',
     title: 'Dollar Cost Averaging: invertir de forma periódica sin intentar adivinar el mercado',
     excerpt:
