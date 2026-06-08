@@ -123,12 +123,12 @@ export default function MercadoBancos() {
             <span className="text-[12px] font-semibold text-g3">
               Tasas oficiales:{" "}
               <Link
-                href="https://www.bcu.gub.uy/Estadisticas-e-Indicadores/Paginas/Tasas.aspx"
+                href="https://www.bcu.gub.uy/Servicios-Financieros-SSF/Paginas/Tasas-Medias.aspx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline underline-offset-2 hover:text-g2"
               >
-                bcu.gub.uy → Estadísticas → Tasas ↗
+                BCU → Tasas Medias ↗
               </Link>
             </span>
           </div>
@@ -183,7 +183,7 @@ export default function MercadoBancos() {
             <p className="text-[12px] text-t3 leading-relaxed">
               <strong className="text-t2">Fuente:</strong> Banco Central del Uruguay (BCU) ·{" "}
               <Link
-                href="https://www.bcu.gub.uy/Estadisticas-e-Indicadores/Paginas/Tasas.aspx"
+                href="https://www.bcu.gub.uy/Servicios-Financieros-SSF/Paginas/Tasas-Medias.aspx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-g3 hover:underline"

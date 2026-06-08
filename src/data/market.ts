@@ -46,7 +46,7 @@ const ACTUALIZADO = (valor: string, fuente: string, fuenteUrl: string, fechaCons
   nota,
 })
 
-const BCU_TASAS_URL = "https://www.bcu.gub.uy/Estadisticas-e-Indicadores/Paginas/Tasas.aspx"
+const BCU_TASAS_URL = "https://www.bcu.gub.uy/Servicios-Financieros-SSF/Paginas/Tasas-Medias.aspx"
 const BCU_AFAP_URL  = "https://www.bcu.gub.uy/Servicios-Financieros-SSF/paginas/memoria-afap.aspx"
 const BCU_AFAP_RENT_URL = "https://www.bcu.gub.uy/Servicios-Financieros-SSF/AFAPRentabilidades/cocf02d0526.pdf"
 const FED_URL       = "https://www.federalreserve.gov/monetarypolicy/openmarket.htm"
