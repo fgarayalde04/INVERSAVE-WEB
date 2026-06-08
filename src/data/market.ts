@@ -37,6 +37,15 @@ const PENDIENTE = (fuente: string, fuenteUrl: string, nota?: string): Dato => ({
   nota: nota ?? "Actualizar desde la fuente oficial indicada.",
 })
 
+const ACTUALIZADO = (valor: string, fuente: string, fuenteUrl: string, fechaConsulta: string, nota?: string): Dato => ({
+  valor,
+  estado: "actualizado",
+  fuente,
+  fuenteUrl,
+  fechaConsulta,
+  nota,
+})
+
 const BCU_TASAS_URL = "https://www.bcu.gub.uy/Estadisticas-e-Indicadores/Paginas/Tasas.aspx"
 const BCU_AFAP_URL  = "https://www.bcu.gub.uy/Regulacion-y-Supervision/Paginas/Rendimientos-AFAP.aspx"
 const FED_URL       = "https://www.federalreserve.gov/monetarypolicy/openmarket.htm"
@@ -80,9 +89,11 @@ export const INDICADORES: IndicadorMacro[] = [
 
 // ── Bancos uruguayos ─────────────────────────────────────────
 
+export type PlazoDPF = "30d" | "60d" | "90d" | "180d" | "365d"
+
 export interface TasaBanco {
   moneda: "USD" | "UYU" | "UI"
-  plazo: string
+  plazo: PlazoDPF
   tasaTna: Dato
 }
 
@@ -96,6 +107,30 @@ export interface Banco {
   tasas: TasaBanco[]
 }
 
+// Helpers por moneda para no repetir fuentes
+const tasaUSD = (plazo: PlazoDPF, fuente: string, url: string, nota?: string): TasaBanco => ({
+  moneda: "USD",
+  plazo,
+  tasaTna: PENDIENTE(fuente, url, nota),
+})
+
+const tasaUYU = (plazo: PlazoDPF, fuente: string, url: string, nota?: string): TasaBanco => ({
+  moneda: "UYU",
+  plazo,
+  tasaTna: PENDIENTE(fuente, url, nota),
+})
+
+const PLAZOS_STD: PlazoDPF[] = ["30d", "60d", "90d", "180d", "365d"]
+
+// Scotiabank USD confirmado (tramo $2.000–$50.000) — mayo 2026
+const scotiaUSD: TasaBanco[] = [
+  { moneda: "USD", plazo: "30d",  tasaTna: ACTUALIZADO("0,10% TNA", "Scotiabank Uruguay", "https://www.scotiabank.com.uy/tasas", "Jun 2026", "Tramo $2.000–$50.000 USD. Tasas superiores para montos mayores.") },
+  { moneda: "USD", plazo: "60d",  tasaTna: ACTUALIZADO("0,90% TNA", "Scotiabank Uruguay", "https://www.scotiabank.com.uy/tasas", "Jun 2026", "Tramo $2.000–$50.000 USD.") },
+  { moneda: "USD", plazo: "90d",  tasaTna: ACTUALIZADO("1,15% TNA", "Scotiabank Uruguay", "https://www.scotiabank.com.uy/tasas", "Jun 2026", "Tramo $2.000–$50.000 USD.") },
+  { moneda: "USD", plazo: "180d", tasaTna: ACTUALIZADO("1,50% TNA", "Scotiabank Uruguay", "https://www.scotiabank.com.uy/tasas", "Jun 2026", "Tramo $2.000–$50.000 USD.") },
+  { moneda: "USD", plazo: "365d", tasaTna: ACTUALIZADO("1,90% TNA", "Scotiabank Uruguay", "https://www.scotiabank.com.uy/tasas", "Jun 2026", "Tramo $2.000–$50.000 USD.") },
+]
+
 export const BANCOS: Banco[] = [
   {
     id: "brou",
@@ -105,16 +140,8 @@ export const BANCOS: Banco[] = [
     sitioWeb: "https://www.brou.com.uy",
     descripcion: "Banco estatal, el más grande de Uruguay. Amplia red de sucursales y cajeros en todo el país.",
     tasas: [
-      {
-        moneda: "USD",
-        plazo: "30–365 días",
-        tasaTna: PENDIENTE("BROU / BCU", BCU_TASAS_URL, "Depósito a plazo fijo en dólares. Ver tabla del BCU."),
-      },
-      {
-        moneda: "UYU",
-        plazo: "30–365 días",
-        tasaTna: PENDIENTE("BROU / BCU", BCU_TASAS_URL, "Depósito a plazo fijo en pesos. Ver tabla del BCU."),
-      },
+      ...PLAZOS_STD.map(p => tasaUSD(p, "BROU / BCU", BCU_TASAS_URL, "Depósito a plazo fijo en dólares.")),
+      ...PLAZOS_STD.map(p => tasaUYU(p, "BROU / BCU", BCU_TASAS_URL, "Depósito a plazo fijo en pesos.")),
     ],
   },
   {
@@ -125,16 +152,8 @@ export const BANCOS: Banco[] = [
     sitioWeb: "https://www.itau.com.uy",
     descripcion: "Filial del grupo brasileño Itaú Unibanco. Uno de los principales bancos privados del país.",
     tasas: [
-      {
-        moneda: "USD",
-        plazo: "30–365 días",
-        tasaTna: PENDIENTE("Itaú / BCU", BCU_TASAS_URL),
-      },
-      {
-        moneda: "UYU",
-        plazo: "30–365 días",
-        tasaTna: PENDIENTE("Itaú / BCU", BCU_TASAS_URL),
-      },
+      ...PLAZOS_STD.map(p => tasaUSD(p, "Itaú / BCU", BCU_TASAS_URL)),
+      ...PLAZOS_STD.map(p => tasaUYU(p, "Itaú / BCU", BCU_TASAS_URL)),
     ],
   },
   {
@@ -145,16 +164,8 @@ export const BANCOS: Banco[] = [
     sitioWeb: "https://www.santander.com.uy",
     descripcion: "Filial del grupo español Santander. Amplia presencia en banca personal y empresas.",
     tasas: [
-      {
-        moneda: "USD",
-        plazo: "30–365 días",
-        tasaTna: PENDIENTE("Santander / BCU", BCU_TASAS_URL),
-      },
-      {
-        moneda: "UYU",
-        plazo: "30–365 días",
-        tasaTna: PENDIENTE("Santander / BCU", BCU_TASAS_URL),
-      },
+      ...PLAZOS_STD.map(p => tasaUSD(p, "Santander / BCU", BCU_TASAS_URL)),
+      ...PLAZOS_STD.map(p => tasaUYU(p, "Santander / BCU", BCU_TASAS_URL)),
     ],
   },
   {
@@ -165,16 +176,8 @@ export const BANCOS: Banco[] = [
     sitioWeb: "https://www.scotiabank.com.uy",
     descripcion: "Filial del grupo canadiense Bank of Nova Scotia. Presente en Uruguay desde 2011.",
     tasas: [
-      {
-        moneda: "USD",
-        plazo: "30–365 días",
-        tasaTna: PENDIENTE("Scotiabank / BCU", BCU_TASAS_URL),
-      },
-      {
-        moneda: "UYU",
-        plazo: "30–365 días",
-        tasaTna: PENDIENTE("Scotiabank / BCU", BCU_TASAS_URL),
-      },
+      ...scotiaUSD,
+      ...PLAZOS_STD.map(p => tasaUYU(p, "Scotiabank / BCU", BCU_TASAS_URL)),
     ],
   },
   {
@@ -185,16 +188,8 @@ export const BANCOS: Banco[] = [
     sitioWeb: "https://www.bbva.com.uy",
     descripcion: "Filial del grupo español BBVA. Banca personal y productos de ahorro e inversión.",
     tasas: [
-      {
-        moneda: "USD",
-        plazo: "30–365 días",
-        tasaTna: PENDIENTE("BBVA / BCU", BCU_TASAS_URL),
-      },
-      {
-        moneda: "UYU",
-        plazo: "30–365 días",
-        tasaTna: PENDIENTE("BBVA / BCU", BCU_TASAS_URL),
-      },
+      ...PLAZOS_STD.map(p => tasaUSD(p, "BBVA / BCU", BCU_TASAS_URL)),
+      ...PLAZOS_STD.map(p => tasaUYU(p, "BBVA / BCU", BCU_TASAS_URL)),
     ],
   },
   {
@@ -205,11 +200,7 @@ export const BANCOS: Banco[] = [
     sitioWeb: "https://www.heritage.com.uy",
     descripcion: "Banco privado especializado en banca patrimonial y clientes de alto valor neto en Uruguay.",
     tasas: [
-      {
-        moneda: "USD",
-        plazo: "Consultar",
-        tasaTna: PENDIENTE("Banque Heritage / BCU", BCU_TASAS_URL, "Banco con foco patrimonial. Consultar directamente."),
-      },
+      ...PLAZOS_STD.map(p => tasaUSD(p, "Banque Heritage / BCU", BCU_TASAS_URL, "Banco patrimonial. Consultar directamente para tasas vigentes.")),
     ],
   },
   {
@@ -220,11 +211,7 @@ export const BANCOS: Banco[] = [
     sitioWeb: "https://www.bandes.com.uy",
     descripcion: "Banco de desarrollo con capital venezolano, regulado por el BCU. Opera en Uruguay.",
     tasas: [
-      {
-        moneda: "USD",
-        plazo: "30–365 días",
-        tasaTna: PENDIENTE("Bandes / BCU", BCU_TASAS_URL),
-      },
+      ...PLAZOS_STD.map(p => tasaUSD(p, "Bandes / BCU", BCU_TASAS_URL)),
     ],
   },
 ]
@@ -242,16 +229,6 @@ export interface AFAP {
   comisionSalario: Dato   // % del salario nominal cobrado como comisión de administración
   participacionMercado: Dato
 }
-
-// Helpers para datos actualizados
-const ACTUALIZADO = (valor: string, fuente: string, fuenteUrl: string, fechaConsulta: string, nota?: string): Dato => ({
-  valor,
-  estado: "actualizado",
-  fuente,
-  fuenteUrl,
-  fechaConsulta,
-  nota,
-})
 
 export const AFAPS: AFAP[] = [
   {
