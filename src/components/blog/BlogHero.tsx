@@ -21,8 +21,8 @@ export default function BlogHero() {
           className="text-[1.05rem] leading-relaxed max-w-xl"
           style={{ color: '#4a4a4a', fontWeight: 300 }}
         >
-          Análisis sobre jubilación, sistema previsional uruguayo, ahorro e inversión de largo plazo.
-          Sin tecnicismos innecesarios.
+          Artículos sobre jubilación, sistema previsional, ahorro e inversión.
+          Con datos, sin jerga.
         </p>
       </div>
     </section>

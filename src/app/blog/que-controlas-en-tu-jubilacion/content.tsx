@@ -5,8 +5,6 @@ export default function ArticleContent() {
       className="article-body"
       dangerouslySetInnerHTML={{
         __html: `
-<span class="tag">Sistema Previsional</span>
-
 <h1>Qué parte de tu jubilación controlás y qué parte no</h1>
 
 <p class="bajada">Uruguay tiene un sistema mixto de jubilaciones desde 1996: una parte funciona como reparto colectivo (BPS) y otra como ahorro individual (AFAP). Entender cómo funciona cada pilar — y qué variables están en tus manos — es lo que define el margen real que tenés para planificar.</p>

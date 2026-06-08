@@ -5,8 +5,6 @@ export default function ArticleContent() {
       className="article-body"
       dangerouslySetInnerHTML={{
         __html: `
-<span class="tag">Sistema Previsional</span>
-
 <h1>Caja de Profesionales: cómo funciona y por qué está en discusión</h1>
 
 <p class="bajada">La Caja de Jubilaciones y Pensiones de Profesionales Universitarios del Uruguay cubre a más de 63.000 profesionales activos. Entender cómo funciona, cómo se financia y dónde está parada hoy cambia la forma en que cualquier profesional proyecta su retiro.</p>

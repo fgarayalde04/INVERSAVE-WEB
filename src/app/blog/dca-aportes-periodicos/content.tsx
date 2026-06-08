@@ -4,9 +4,7 @@ export default function ArticleContent() {
     <div
       className="article-body"
       dangerouslySetInnerHTML={{
-        __html: `<p class="tag">Mercado · Biblioteca</p>
-
-  <h1>Dollar Cost Averaging: invertir de forma periódica sin intentar adivinar el mercado</h1>
+        __html: `<h1>Dollar Cost Averaging: invertir de forma periódica sin intentar adivinar el mercado</h1>
 
   <p class="bajada">El DCA consiste en invertir una suma fija a intervalos regulares, independientemente del precio del mercado. No requiere adivinar el momento correcto. Requiere constancia.</p>
 

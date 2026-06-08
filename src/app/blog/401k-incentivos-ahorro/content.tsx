@@ -4,9 +4,7 @@ export default function ArticleContent() {
     <div
       className="article-body"
       dangerouslySetInnerHTML={{
-        __html: `<p class="tag">Mercado · Educación Financiera</p>
-
-  <h1>El 401(k): por qué el diseño del incentivo importa más que el producto</h1>
+        __html: `<h1>El 401(k): por qué el diseño del incentivo importa más que el producto</h1>
 
   <p class="bajada">El 401(k) acumula hoy más de 10 billones de dólares en activos. Pero su verdadero logro no es financiero: es haber logrado que millones de personas ahorren voluntariamente durante décadas. La pregunta es cómo.</p>
 

@@ -43,14 +43,7 @@ export default function BlogArticleLayout({
 
           {/* Article meta header */}
           <div className="mb-8">
-            <span
-              className="inline-block text-[10.5px] font-semibold tracking-widest uppercase mb-3 px-2.5 py-1 rounded-full"
-              style={{ color: '#1d3557', background: '#e8eef4', letterSpacing: '0.15em' }}
-            >
-              {post.categoryLabel}
-            </span>
-
-            <div className="flex items-center gap-3 mt-3" style={{ color: '#8a8a8a' }}>
+            <div className="flex items-center gap-3" style={{ color: '#8a8a8a' }}>
               <time dateTime={post.date} className="text-[0.82rem]">{dateFormatted}</time>
               <span className="text-[#d8d0c8]">·</span>
               <span className="flex items-center gap-1 text-[0.82rem]">

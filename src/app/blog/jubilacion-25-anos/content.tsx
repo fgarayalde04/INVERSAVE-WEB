@@ -5,8 +5,6 @@ export default function ArticleContent() {
       className="article-body"
       dangerouslySetInnerHTML={{
         __html: `
-<span class="tag">Sistema Previsional · Planificación</span>
-
 <h1>La jubilación puede durar 25 años: por qué vivir más exige planificar mejor</h1>
 
 <p class="bajada">Una mujer que se jubila hoy en Uruguay tiene, en promedio, 23 años de vida por delante. Ese horizonte define cuánto tiempo tus ingresos deben sostenerse — y cambia completamente el cálculo del retiro.</p>

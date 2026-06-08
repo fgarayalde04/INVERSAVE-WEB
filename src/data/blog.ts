@@ -26,6 +26,7 @@ export interface BlogPost {
   };
 }
 
+// Ordenados por fecha descendente (más reciente primero)
 export const BLOG_POSTS: BlogPost[] = [
   {
     slug: '401k-incentivos-ahorro',
@@ -34,42 +35,12 @@ export const BLOG_POSTS: BlogPost[] = [
       'El 401(k) acumula hoy más de 10 billones de dólares en activos. Pero su verdadero logro no es financiero: es haber logrado que millones de personas ahorren voluntariamente durante décadas. La pregunta es cómo.',
     category: 'educacion-financiera',
     categoryLabel: 'Mercado · Educación Financiera',
-    date: '2026-05-07',
+    date: '2026-06-07',
     readingTime: 9,
     seo: {
       title: 'El 401(k): diseño de incentivos para el ahorro | Inversave',
       description:
         'Por qué el 401(k) de EE.UU. acumula USD 10 billones: inscripción automática, matching del empleador y beneficio fiscal. Qué aprendizajes deja para fomentar el ahorro de largo plazo.',
-    },
-  },
-  {
-    slug: 'dca-aportes-periodicos',
-    title: 'Dollar Cost Averaging: invertir de forma periódica sin intentar adivinar el mercado',
-    excerpt:
-      'El DCA consiste en invertir una suma fija a intervalos regulares, independientemente del precio del mercado. No requiere adivinar el momento correcto. Requiere constancia.',
-    category: 'mercado',
-    categoryLabel: 'Mercado · Biblioteca',
-    date: '2026-05-20',
-    readingTime: 12,
-    seo: {
-      title: 'Dollar Cost Averaging: invertir periódicamente | Inversave',
-      description:
-        'Qué es el DCA, cómo funciona en mercados volátiles y qué muestran los datos históricos del S&P 500. Guía práctica para ahorradores de largo plazo.',
-    },
-  },
-  {
-    slug: 'menos-aportantes-por-jubilado',
-    title: 'Menos aportantes por cada jubilado: el dato que explica la presión del sistema previsional',
-    excerpt:
-      'En 2024 hay 2,50 aportantes por cada jubilado en Uruguay. En 2100 el BPS proyecta que esa cifra caerá a 1,23. Ese número explica, mejor que cualquier otro, la presión estructural que enfrenta el sistema previsional.',
-    category: 'sistema-previsional',
-    categoryLabel: 'Sistema Previsional',
-    date: '2026-05-08',
-    readingTime: 6,
-    seo: {
-      title: 'Menos aportantes por jubilado: la presión del sistema previsional | Inversave',
-      description:
-        'La relación activo-pasivo del BPS cae de 2,50 a 1,23 según proyecciones al 2100. Qué significa ese dato para la sostenibilidad del sistema previsional uruguayo.',
     },
   },
   {
@@ -103,6 +74,21 @@ export const BLOG_POSTS: BlogPost[] = [
     },
   },
   {
+    slug: 'dca-aportes-periodicos',
+    title: 'Dollar Cost Averaging: invertir de forma periódica sin intentar adivinar el mercado',
+    excerpt:
+      'El DCA consiste en invertir una suma fija a intervalos regulares, independientemente del precio del mercado. No requiere adivinar el momento correcto. Requiere constancia.',
+    category: 'mercado',
+    categoryLabel: 'Mercado · Biblioteca',
+    date: '2026-05-20',
+    readingTime: 12,
+    seo: {
+      title: 'Dollar Cost Averaging: invertir periódicamente | Inversave',
+      description:
+        'Qué es el DCA, cómo funciona en mercados volátiles y qué muestran los datos históricos del S&P 500. Guía práctica para ahorradores de largo plazo.',
+    },
+  },
+  {
     slug: 'jubilacion-25-anos',
     title: 'La jubilación puede durar 25 años: por qué vivir más exige planificar mejor',
     excerpt:
@@ -115,6 +101,21 @@ export const BLOG_POSTS: BlogPost[] = [
       title: 'La jubilación puede durar 25 años: planificar el retiro largo | Inversave',
       description:
         'Con 17 a 23 años de retiro esperados, el ingreso debe sostenerse mucho más tiempo. Riesgo de longevidad, brecha del BPS y ahorro complementario explicados.',
+    },
+  },
+  {
+    slug: 'menos-aportantes-por-jubilado',
+    title: 'Menos aportantes por cada jubilado: el dato que explica la presión del sistema previsional',
+    excerpt:
+      'En 2024 hay 2,50 aportantes por cada jubilado en Uruguay. En 2100 el BPS proyecta que esa cifra caerá a 1,23. Ese número explica, mejor que cualquier otro, la presión estructural que enfrenta el sistema previsional.',
+    category: 'sistema-previsional',
+    categoryLabel: 'Sistema Previsional',
+    date: '2026-05-08',
+    readingTime: 6,
+    seo: {
+      title: 'Menos aportantes por jubilado: la presión del sistema previsional | Inversave',
+      description:
+        'La relación activo-pasivo del BPS cae de 2,50 a 1,23 según proyecciones al 2100. Qué significa ese dato para la sostenibilidad del sistema previsional uruguayo.',
     },
   },
 ];

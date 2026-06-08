@@ -22,14 +22,6 @@ export default function BlogCard({ post }: { post: BlogPost }) {
       href={`/blog/${post.slug}`}
       className="group block bg-white border border-[#d8d0c8] rounded-2xl p-6 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
     >
-      {/* Category badge */}
-      <span
-        className="inline-block text-[10.5px] font-semibold tracking-widest uppercase mb-3 px-2.5 py-1 rounded-full"
-        style={{ color: '#1d3557', background: '#e8eef4', letterSpacing: '0.15em' }}
-      >
-        {post.categoryLabel}
-      </span>
-
       {/* Title */}
       <h2
         className="text-[1.15rem] font-semibold leading-snug mb-3 group-hover:text-[#1d3557] transition-colors"
