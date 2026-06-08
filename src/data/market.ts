@@ -47,7 +47,8 @@ const ACTUALIZADO = (valor: string, fuente: string, fuenteUrl: string, fechaCons
 })
 
 const BCU_TASAS_URL = "https://www.bcu.gub.uy/Estadisticas-e-Indicadores/Paginas/Tasas.aspx"
-const BCU_AFAP_URL  = "https://www.bcu.gub.uy/Regulacion-y-Supervision/Paginas/Rendimientos-AFAP.aspx"
+const BCU_AFAP_URL  = "https://www.bcu.gub.uy/Servicios-Financieros-SSF/paginas/memoria-afap.aspx"
+const BCU_AFAP_RENT_URL = "https://www.bcu.gub.uy/Servicios-Financieros-SSF/AFAPRentabilidades/cocf02d0526.pdf"
 const FED_URL       = "https://www.federalreserve.gov/monetarypolicy/openmarket.htm"
 const INE_URL       = "https://www.ine.gub.uy/ipc-indice-de-precios-al-consumo"
 
@@ -239,24 +240,24 @@ export const AFAPS: AFAP[] = [
     descripcion: "La AFAP más grande de Uruguay por número de afiliados. Administrada por el Banco República (BROU). Cobertura nacional.",
     sitioWeb: "https://www.rafap.com.uy",
     rentabilidadReal: ACTUALIZADO(
-      "6,45% anual",
-      "BCU — SSF / Rentabilidad Neta AFAP",
-      BCU_AFAP_URL,
-      "Dic 2024",
-      "Rentabilidad real neta acumulada últimos 12 meses. Publicada por la SSF del BCU."
+      "+0,67% (may 2026)",
+      "BCU — SSF / Rentabilidades por Administradora",
+      BCU_AFAP_RENT_URL,
+      "May 2026",
+      "Rentabilidad neta agregada del FAP — mayo 2026. Publicada mensualmente por la SSF del BCU."
     ),
     comisionSalario: ACTUALIZADO(
       "0,00%",
       "BCU — SSF",
       BCU_AFAP_URL,
-      "2025",
+      "2026",
       "República AFAP no cobra comisión sobre el salario desde 2022."
     ),
     participacionMercado: ACTUALIZADO(
-      "~44% afiliados",
-      "BCU — SSF / ANAFAP",
-      "https://www.anafap.com.uy/indicadores.php",
-      "2024"
+      "38,6% afiliados",
+      "BCU — SSF / Memoria AFAP Q1 2026",
+      BCU_AFAP_URL,
+      "Mar 2026"
     ),
   },
   {
@@ -267,50 +268,50 @@ export const AFAPS: AFAP[] = [
     descripcion: "Filial del grupo latinoamericano Sura Asset Management. Segunda AFAP por número de afiliados en Uruguay.",
     sitioWeb: "https://www.afapsura.com.uy",
     rentabilidadReal: ACTUALIZADO(
-      "6,12% anual",
-      "BCU — SSF / Rentabilidad Neta AFAP",
-      BCU_AFAP_URL,
-      "Dic 2024",
-      "Rentabilidad real neta acumulada últimos 12 meses. Publicada por la SSF del BCU."
+      "+0,15% (may 2026)",
+      "BCU — SSF / Rentabilidades por Administradora",
+      BCU_AFAP_RENT_URL,
+      "May 2026",
+      "Rentabilidad neta agregada del FAP — mayo 2026. Publicada mensualmente por la SSF del BCU."
     ),
     comisionSalario: ACTUALIZADO(
       "1,35% s/ salario",
       "BCU — SSF",
       BCU_AFAP_URL,
-      "2025"
+      "2026"
     ),
     participacionMercado: ACTUALIZADO(
-      "~31% afiliados",
-      "BCU — SSF / ANAFAP",
-      "https://www.anafap.com.uy/indicadores.php",
-      "2024"
+      "22,7% afiliados",
+      "BCU — SSF / Memoria AFAP Q1 2026",
+      BCU_AFAP_URL,
+      "Mar 2026"
     ),
   },
   {
     id: "unioncapital",
-    nombre: "UniónCapital AFAP",
-    acronimo: "UniónCapital",
+    nombre: "AFAP Itaú",
+    acronimo: "AFAP Itaú",
     grupo: "Grupo Itaú",
-    descripcion: "Vinculada al grupo Itaú Uruguay. Tercera AFAP por participación de mercado en Uruguay.",
+    descripcion: "Vinculada al grupo Itaú Uruguay (ex UniónCapital AFAP). Segunda AFAP por número de afiliados en Uruguay.",
     sitioWeb: "https://www.afapitau.com.uy",
     rentabilidadReal: ACTUALIZADO(
-      "5,98% anual",
-      "BCU — SSF / Rentabilidad Neta AFAP",
-      BCU_AFAP_URL,
-      "Dic 2024",
-      "Rentabilidad real neta acumulada últimos 12 meses. Publicada por la SSF del BCU."
+      "+0,23% (may 2026)",
+      "BCU — SSF / Rentabilidades por Administradora",
+      BCU_AFAP_RENT_URL,
+      "May 2026",
+      "Rentabilidad neta agregada del FAP — mayo 2026. Publicada mensualmente por la SSF del BCU."
     ),
     comisionSalario: ACTUALIZADO(
       "1,45% s/ salario",
       "BCU — SSF",
       BCU_AFAP_URL,
-      "2025"
+      "2026"
     ),
     participacionMercado: ACTUALIZADO(
-      "~21% afiliados",
-      "BCU — SSF / ANAFAP",
-      "https://www.anafap.com.uy/indicadores.php",
-      "2024"
+      "23,3% afiliados",
+      "BCU — SSF / Memoria AFAP Q1 2026",
+      BCU_AFAP_URL,
+      "Mar 2026"
     ),
   },
   {
@@ -321,23 +322,23 @@ export const AFAPS: AFAP[] = [
     descripcion: "La AFAP de menor tamaño por número de afiliados. De capital nacional, regulada por el BCU.",
     sitioWeb: "https://www.integracionafap.com.uy",
     rentabilidadReal: ACTUALIZADO(
-      "5,74% anual",
-      "BCU — SSF / Rentabilidad Neta AFAP",
-      BCU_AFAP_URL,
-      "Dic 2024",
-      "Rentabilidad real neta acumulada últimos 12 meses. Publicada por la SSF del BCU."
+      "-0,63% (may 2026)",
+      "BCU — SSF / Rentabilidades por Administradora",
+      BCU_AFAP_RENT_URL,
+      "May 2026",
+      "Rentabilidad neta agregada del FAP — mayo 2026. Publicada mensualmente por la SSF del BCU."
     ),
     comisionSalario: ACTUALIZADO(
       "1,50% s/ salario",
       "BCU — SSF",
       BCU_AFAP_URL,
-      "2025"
+      "2026"
     ),
     participacionMercado: ACTUALIZADO(
-      "~4% afiliados",
-      "BCU — SSF / ANAFAP",
-      "https://www.anafap.com.uy/indicadores.php",
-      "2024"
+      "15,3% afiliados",
+      "BCU — SSF / Memoria AFAP Q1 2026",
+      BCU_AFAP_URL,
+      "Mar 2026"
     ),
   },
 ]

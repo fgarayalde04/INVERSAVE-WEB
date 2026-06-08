@@ -22,12 +22,12 @@ export default function MercadoAFAPs() {
             <span className="text-[12px] text-t2">
               Datos oficiales:{" "}
               <Link
-                href="https://www.bcu.gub.uy/Regulacion-y-Supervision/Paginas/Rendimientos-AFAP.aspx"
+                href="https://www.bcu.gub.uy/Servicios-Financieros-SSF/paginas/memoria-afap.aspx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-g3 underline underline-offset-2 hover:text-g2"
               >
-                BCU → Rendimientos AFAP ↗
+                BCU → Memoria AFAP ↗
               </Link>
             </span>
           </div>
@@ -112,7 +112,7 @@ export default function MercadoAFAPs() {
 
                 <div className="mt-4 pt-3 border-t border-black/[.05]">
                   <Link
-                    href="https://www.bcu.gub.uy/Regulacion-y-Supervision/Paginas/Rendimientos-AFAP.aspx"
+                    href="https://www.bcu.gub.uy/Servicios-Financieros-SSF/paginas/memoria-afap.aspx"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[11px] text-g3 hover:underline"
@@ -128,18 +128,26 @@ export default function MercadoAFAPs() {
         <FadeIn>
           <div className="bg-white border border-black/[.07] rounded-2xl px-5 py-4">
             <p className="text-[12px] text-t3 leading-relaxed">
-              <strong className="text-t2">Fuente:</strong> Banco Central del Uruguay (BCU) ·
-              Superintendencia de Servicios Financieros ·{" "}
+              <strong className="text-t2">Fuente:</strong> Banco Central del Uruguay (BCU) · Superintendencia de Servicios Financieros.{" "}
               <Link
-                href="https://www.bcu.gub.uy/Regulacion-y-Supervision/Paginas/Rendimientos-AFAP.aspx"
+                href="https://www.bcu.gub.uy/Servicios-Financieros-SSF/paginas/memoria-afap.aspx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-g3 hover:underline"
               >
-                Rendimientos AFAP ↗
+                Memoria trimestral AFAP ↗
               </Link>
-              . Los datos de rentabilidad y comisiones se actualizan manualmente desde la fuente oficial.
-              La información tiene fines educativos y no constituye asesoramiento financiero personalizado.
+              {" "}·{" "}
+              <Link
+                href="https://www.bcu.gub.uy/Servicios-Financieros-SSF/AFAPRentabilidades/cocf02d0526.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-g3 hover:underline"
+              >
+                Rentabilidades por administradora — may 2026 ↗
+              </Link>
+              . Rentabilidades corresponden al mes de mayo 2026 (mensual, neta agregada del FAP).
+              Los datos se actualizan manualmente. No constituye asesoramiento financiero.
             </p>
           </div>
         </FadeIn>
