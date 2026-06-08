@@ -442,6 +442,19 @@ function TabPlazos() {
 
   return (
     <div>
+      {/* Nota de contexto */}
+      <div className="bg-[#1d3557]/[.05] border border-[#1d3557]/10 rounded-2xl px-5 py-4 mb-6">
+        <p className="text-[12px] font-semibold text-[#1d3557] mb-1">¿Por qué mostramos estos datos?</p>
+        <p className="text-[13px] text-t2 leading-relaxed">
+          Esta selección <strong className="text-t1">no incluye todos los plazos fijos disponibles en el mercado</strong> — solo algunos de referencia.
+          El objetivo es poner en perspectiva: históricamente, el S&P 500 ha retornado en torno al{" "}
+          <strong className="text-t1">9–10% anual en dólares</strong> en el largo plazo,
+          muy por encima de lo que ofrecen los depósitos bancarios.
+          Los plazos fijos pueden ser útiles para liquidez de corto plazo, pero{" "}
+          <strong className="text-t1">no son la herramienta óptima para construir patrimonio a largo plazo</strong>.
+        </p>
+      </div>
+
       {/* Intro */}
       <p className="text-[14px] text-t2 leading-relaxed mb-5 max-w-2xl">
         Tasas publicadas por bancos uruguayos para depósitos a plazo fijo. Pueden variar según
