@@ -36,7 +36,7 @@ function TabTasas() {
         Tasas de depósito a plazo fijo (DPF) en bancos uruguayos. Los datos se actualizan
         periódicamente desde el{" "}
         <SourceLink
-          url="https://www.bcu.gub.uy/Estadisticas-e-Indicadores/Paginas/Tasas.aspx"
+          url="https://www.bcu.gub.uy/Servicios-Financieros-SSF/Paginas/Tasas-Medias.aspx"
           label="Banco Central del Uruguay (BCU)"
         />
         .
@@ -481,7 +481,7 @@ function TabPlazos() {
           comparación definitiva entre bancos. Los datos son orientativos y deben verificarse
           directamente con cada institución o en la{" "}
           <a
-            href="https://www.bcu.gub.uy/Estadisticas-e-Indicadores/Paginas/Tasas.aspx"
+            href="https://www.bcu.gub.uy/Servicios-Financieros-SSF/Paginas/Tasas-Medias.aspx"
             target="_blank"
             rel="noopener noreferrer"
             className="text-g3 hover:underline"

@@ -3,9 +3,9 @@
  *
  * CÓMO ACTUALIZAR:
  *   - Las tasas bancarias se publican diariamente en:
- *     https://www.bcu.gub.uy/Estadisticas-e-Indicadores/Paginas/Tasas.aspx
- *   - Las rentabilidades de AFAPs se publican trimestralmente en:
- *     https://www.bcu.gub.uy/Regulacion-y-Supervision/Paginas/Rendimientos-AFAP.aspx
+ *     https://www.bcu.gub.uy/Servicios-Financieros-SSF/Paginas/Tasas-Medias.aspx
+ *   - Las rentabilidades de AFAPs se publican en:
+ *     https://www.bcu.gub.uy/Servicios-Financieros-SSF/paginas/memoria-afap.aspx
  *   - La tasa de la FED se actualiza en cada reunión del FOMC:
  *     https://www.federalreserve.gov/monetarypolicy/openmarket.htm
  *
