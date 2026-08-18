@@ -1,8 +1,6 @@
 "use client";
 import { useState } from "react";
-import { BANCOS, AFAPS, FED, INDICADORES } from "@/data/market";
-import { bankIndicators } from "@/data/bank-indicators";
-import type { BankIndicatorCurrency } from "@/data/bank-indicators";
+import { AFAPS, FED, INDICADORES } from "@/data/market";
 import { InstitutionLogoLabel } from "@/components/ui/InstitutionLogoLabel";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
@@ -25,94 +23,6 @@ function SourceLink({ url, label }: { url: string; label: string }) {
     >
       {label}
     </a>
-  );
-}
-
-// ── Tab: Tasas bancarias ─────────────────────────────────────────────────────
-function TabTasas() {
-  return (
-    <div>
-      <p className="text-[14px] text-t2 leading-relaxed mb-6 max-w-2xl">
-        Tasas de depósito a plazo fijo (DPF) en bancos uruguayos. Los datos se actualizan
-        periódicamente desde el{" "}
-        <SourceLink
-          url="https://www.bcu.gub.uy/Servicios-Financieros-SSF/Paginas/Tasas-Medias.aspx"
-          label="Banco Central del Uruguay (BCU)"
-        />
-        .
-      </p>
-      <div className="overflow-x-auto">
-        <table className="w-full text-[13px]">
-          <thead>
-            <tr className="border-b border-black/[.06]">
-              <th className="text-left py-2.5 px-3 text-[11px] font-bold text-t3 uppercase tracking-[0.08em]">Banco</th>
-              <th className="text-left py-2.5 px-3 text-[11px] font-bold text-t3 uppercase tracking-[0.08em]">Tipo</th>
-              <th className="text-center py-2.5 px-3 text-[11px] font-bold text-t3 uppercase tracking-[0.08em]">USD DPF</th>
-              <th className="text-center py-2.5 px-3 text-[11px] font-bold text-t3 uppercase tracking-[0.08em]">UYU DPF</th>
-            </tr>
-          </thead>
-          <tbody>
-            {BANCOS.map((banco) => {
-              const usd = banco.tasas.find((t) => t.moneda === "USD");
-              const uyu = banco.tasas.find((t) => t.moneda === "UYU");
-              return (
-                <tr key={banco.id} className="border-b border-black/[.04] hover:bg-[#F8F8F6] transition-colors">
-                  <td className="py-3 px-3">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 text-[10px] font-bold text-white"
-                        style={{ background: banco.tipo === "público" ? "#1A6638" : "#2C4A6E" }}>
-                        {banco.abrev.slice(0, 2)}
-                      </div>
-                      <div>
-                        <p className="font-semibold text-t1 leading-snug">{banco.nombre}</p>
-                        <a href={banco.sitioWeb} target="_blank" rel="noopener noreferrer"
-                          className="text-[10px] text-t3 hover:text-g3 transition-colors">
-                          {banco.sitioWeb.replace("https://www.", "")}
-                        </a>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="py-3 px-3">
-                    <span className={`inline-flex items-center text-[10px] font-semibold rounded-full px-2.5 py-0.5 ${
-                      banco.tipo === "público"
-                        ? "bg-[#EDF8E8] text-g3"
-                        : "bg-[#F0EFF8] text-[#4A3FA8]"
-                    }`}>
-                      {banco.tipo}
-                    </span>
-                  </td>
-                  <td className="py-3 px-3 text-center">
-                    {usd ? (
-                      usd.tasaTna.estado === "pendiente" ? (
-                        <PendingPill />
-                      ) : (
-                        <span className="font-semibold text-g3">{usd.tasaTna.valor}</span>
-                      )
-                    ) : (
-                      <span className="text-t3 text-[11px]">—</span>
-                    )}
-                  </td>
-                  <td className="py-3 px-3 text-center">
-                    {uyu ? (
-                      uyu.tasaTna.estado === "pendiente" ? (
-                        <PendingPill />
-                      ) : (
-                        <span className="font-semibold text-g3">{uyu.tasaTna.valor}</span>
-                      )
-                    ) : (
-                      <span className="text-t3 text-[11px]">—</span>
-                    )}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-      <p className="text-[10px] text-t3/60 italic mt-4">
-        Tasas TNA de referencia. Verificá condiciones actualizadas directamente con cada banco o en el BCU.
-      </p>
-    </div>
   );
 }
 
@@ -343,182 +253,16 @@ function TabIndicadores() {
   );
 }
 
-// ── Tab: Plazos fijos / bancos ───────────────────────────────────────────────
-
-const CURRENCY_FILTERS: { id: BankIndicatorCurrency | "all"; label: string }[] = [
-  { id: "all", label: "Todos" },
-  { id: "UYU", label: "Pesos uruguayos" },
-  { id: "USD", label: "Dólares" },
-];
-
-const CURRENCY_BADGE: Record<BankIndicatorCurrency, { bg: string; text: string; label: string }> = {
-  UYU: { bg: "#EDF8E8", text: "#1A6638", label: "UYU" },
-  USD: { bg: "#EEF4FF", text: "#2C4A6E", label: "USD" },
-};
-
-function formatDate(iso: string) {
-  const [y, m, d] = iso.split("-").map(Number);
-  return new Intl.DateTimeFormat("es-UY", { day: "numeric", month: "short", year: "numeric" })
-    .format(new Date(y, m - 1, d));
-}
-
-function BankCard({ item }: { item: typeof bankIndicators[number] }) {
-  const badge = CURRENCY_BADGE[item.currency];
-  return (
-    <div className="bg-white border border-black/[.07] rounded-2xl p-5 flex flex-col gap-3 hover:shadow-sm transition-shadow">
-      {/* Header */}
-      <div className="flex items-start justify-between gap-2">
-        <div className="flex flex-col gap-1 min-w-0">
-          <InstitutionLogoLabel name={item.entity} size="sm" />
-          <p className="text-[13px] font-semibold text-t1 leading-snug">{item.title}</p>
-        </div>
-        <span
-          className="inline-flex items-center text-[10px] font-bold rounded-full px-2.5 py-0.5 flex-shrink-0"
-          style={{ background: badge.bg, color: badge.text }}
-        >
-          {badge.label}
-        </span>
-      </div>
-
-      {/* Rate */}
-      <div className="flex items-end gap-2">
-        <span className="text-[36px] font-bold text-g3 leading-none">{item.value}</span>
-        <span className="text-[14px] font-semibold text-g3/70 pb-1">{item.unit}</span>
-      </div>
-
-      {/* Meta */}
-      <div className="space-y-1.5 text-[12px] text-t2">
-        <div className="flex gap-2">
-          <span className="text-t3 w-16 flex-shrink-0">Plazo</span>
-          <span className="font-medium text-t1">{item.term}</span>
-        </div>
-        <div className="flex gap-2">
-          <span className="text-t3 w-16 flex-shrink-0">Tipo</span>
-          <span>{item.typeRate}</span>
-        </div>
-        {item.channel && (
-          <div className="flex gap-2">
-            <span className="text-t3 w-16 flex-shrink-0">Canal</span>
-            <span>{item.channel}</span>
-          </div>
-        )}
-        {item.period && (
-          <div className="flex gap-2">
-            <span className="text-t3 w-16 flex-shrink-0">Vigencia</span>
-            <span>{item.period}</span>
-          </div>
-        )}
-      </div>
-
-      {/* Explanation */}
-      <p className="text-[11px] text-t3 leading-relaxed border-t border-black/[.05] pt-3">
-        {item.explanation}
-      </p>
-
-      {/* Footer */}
-      <div className="flex items-center justify-between gap-2 border-t border-black/[.05] pt-3">
-        <time className="text-[10px] text-t3/70" dateTime={item.lastUpdated}>
-          Actualizado: {formatDate(item.lastUpdated)}
-        </time>
-        <a
-          href={item.sourceUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[11px] font-semibold text-g3 hover:underline"
-        >
-          Ver fuente →
-        </a>
-      </div>
-    </div>
-  );
-}
-
-function TabPlazos() {
-  const [currency, setCurrency] = useState<BankIndicatorCurrency | "all">("all");
-
-  const filtered = currency === "all"
-    ? bankIndicators
-    : bankIndicators.filter((b) => b.currency === currency);
-
-  return (
-    <div>
-      {/* Nota de contexto */}
-      <div className="bg-[#1d3557]/[.05] border border-[#1d3557]/10 rounded-2xl px-5 py-4 mb-6">
-        <p className="text-[12px] font-semibold text-[#1d3557] mb-1">¿Por qué mostramos estos datos?</p>
-        <p className="text-[13px] text-t2 leading-relaxed">
-          Esta selección <strong className="text-t1">no incluye todos los plazos fijos disponibles en el mercado</strong> — solo algunos de referencia.
-          El objetivo es poner en perspectiva: históricamente, el S&P 500 ha retornado en torno al{" "}
-          <strong className="text-t1">9–10% anual en dólares</strong> en el largo plazo,
-          muy por encima de lo que ofrecen los depósitos bancarios.
-          Los plazos fijos pueden ser útiles para liquidez de corto plazo, pero{" "}
-          <strong className="text-t1">no son la herramienta óptima para construir patrimonio a largo plazo</strong>.
-        </p>
-      </div>
-
-      {/* Intro */}
-      <p className="text-[14px] text-t2 leading-relaxed mb-5 max-w-2xl">
-        Tasas publicadas por bancos uruguayos para depósitos a plazo fijo. Pueden variar según
-        el monto, la moneda, el plazo y el canal de contratación. Información con fines educativos:
-        verificar siempre en la fuente oficial de cada institución.
-      </p>
-
-      {/* Currency filter */}
-      <div className="flex gap-2 flex-wrap mb-6">
-        {CURRENCY_FILTERS.map((f) => (
-          <button
-            key={f.id}
-            onClick={() => setCurrency(f.id)}
-            className={`px-4 py-1.5 text-[12px] font-semibold rounded-full border transition-all ${
-              currency === f.id
-                ? "bg-g3 text-white border-g3"
-                : "bg-white text-t2 border-black/[.10] hover:border-g3/50 hover:text-g3"
-            }`}
-          >
-            {f.label}
-          </button>
-        ))}
-      </div>
-
-      {/* Cards grid */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filtered.map((item) => (
-          <BankCard key={item.id} item={item} />
-        ))}
-      </div>
-
-      {/* Disclaimer */}
-      <div className="mt-6 bg-[#F8F6F0] border border-black/[.06] rounded-2xl px-5 py-4">
-        <p className="text-[11px] text-t3 leading-relaxed">
-          <strong className="text-t2">Aviso importante:</strong> Las tasas publicadas no constituyen
-          recomendación de inversión ni asesoramiento financiero. No se presentan como ranking ni
-          comparación definitiva entre bancos. Los datos son orientativos y deben verificarse
-          directamente con cada institución o en la{" "}
-          <a
-            href="https://www.bcu.gub.uy/Servicios-Financieros-SSF/Paginas/Tasas-Medias.aspx"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-g3 hover:underline"
-          >
-            tabla de tasas del BCU
-          </a>
-          .
-        </p>
-      </div>
-    </div>
-  );
-}
-
 // ── Dashboard principal ──────────────────────────────────────────────────────
 const TABS = [
-  { id: "plazos", label: "Plazos fijos" },
-  { id: "afaps",  label: "AFAPs" },
-  { id: "bps",    label: "BPS" },
+  { id: "afaps", label: "AFAPs" },
+  { id: "bps",   label: "BPS" },
 ] as const;
 
 type TabId = typeof TABS[number]["id"];
 
 export default function MercadoDashboard() {
-  const [active, setActive] = useState<TabId>("plazos");
+  const [active, setActive] = useState<TabId>("afaps");
 
   return (
     <section id="dashboard" className="section-wrap-white">
@@ -529,7 +273,7 @@ export default function MercadoDashboard() {
           <span className="text-g3">de referencia.</span>
         </h2>
         <p className="text-[16px] text-t2 leading-relaxed max-w-xl mb-8">
-          Tasas bancarias, AFAPs, BPS, FED y contexto macroeconómico.
+          AFAPs, BPS y contexto macroeconómico.
           Datos educativos con fuente visible.
         </p>
 
@@ -552,9 +296,8 @@ export default function MercadoDashboard() {
 
         {/* Tab content */}
         <div className="min-h-[320px]">
-          {active === "plazos" && <TabPlazos />}
-          {active === "afaps"  && <TabAFAPs />}
-          {active === "bps"    && <TabBPS />}
+          {active === "afaps" && <TabAFAPs />}
+          {active === "bps"   && <TabBPS />}
         </div>
       </div>
     </section>
