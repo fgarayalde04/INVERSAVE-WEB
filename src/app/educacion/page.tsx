@@ -3,10 +3,10 @@ import ExpandiblesSection from "@/components/sections/Expandibles";
 import { CTASection, Footer } from "@/components/sections/CTAFooter";
 
 export const metadata: Metadata = {
-  title: "Educación financiera — Conceptos de inversión en simple | INVERSAVE",
+  title: "Educación financiera — Conceptos de inversión en simple | INVERTITE",
   description:
     "Qué es inflación, interés compuesto, diversificación, ETFs, S&P 500, volatilidad, liquidez y más. Una biblioteca de conceptos financieros clave explicados en lenguaje claro.",
-  alternates: { canonical: "https://inversave.com/educacion" },
+  alternates: { canonical: "https://invertite.com/educacion" },
   keywords: [
     "qué es inflación",
     "qué es interés compuesto",

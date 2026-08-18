@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "envejecimiento poblacional Uruguay",
     "BPS cotizantes jubilados",
   ],
-  alternates: { canonical: "https://inversave.com/sistema-previsional" },
+  alternates: { canonical: "https://invertite.com/sistema-previsional" },
 };
 
 export default function SistemaPrevisionalPage() {

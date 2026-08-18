@@ -38,7 +38,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-06-07',
     readingTime: 9,
     seo: {
-      title: 'El 401(k): diseño de incentivos para el ahorro | Inversave',
+      title: 'El 401(k): diseño de incentivos para el ahorro | invertite',
       description:
         'Por qué el 401(k) de EE.UU. acumula USD 10 billones: inscripción automática, matching del empleador y beneficio fiscal. Qué aprendizajes deja para fomentar el ahorro de largo plazo.',
     },
@@ -53,7 +53,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-05-26',
     readingTime: 10,
     seo: {
-      title: 'Caja de Profesionales Uruguay: cómo funciona y la reforma 2025 | Inversave',
+      title: 'Caja de Profesionales Uruguay: cómo funciona y la reforma 2025 | invertite',
       description:
         'Guía completa sobre la CJPPU: categorías, sueldo ficto, tasa de aporte, déficit operativo y los cambios de la Ley 20.410. Con datos, gráficos y análisis.',
     },
@@ -68,7 +68,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-05-22',
     readingTime: 8,
     seo: {
-      title: 'Qué parte de tu jubilación controlás y qué parte no | Inversave',
+      title: 'Qué parte de tu jubilación controlás y qué parte no | invertite',
       description:
         'Demografía, inflación y longevidad son variables fuera de tu control. Cuándo empezar, cuánto ahorrar y dónde invertir sí dependen de vos. Análisis con datos de BPS, INE y CEPAL.',
     },
@@ -83,7 +83,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-05-20',
     readingTime: 12,
     seo: {
-      title: 'Dollar Cost Averaging: invertir periódicamente | Inversave',
+      title: 'Dollar Cost Averaging: invertir periódicamente | invertite',
       description:
         'Qué es el DCA, cómo funciona en mercados volátiles y qué muestran los datos históricos del S&P 500. Guía práctica para ahorradores de largo plazo.',
     },
@@ -98,7 +98,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-05-14',
     readingTime: 7,
     seo: {
-      title: 'La jubilación puede durar 25 años: planificar el retiro largo | Inversave',
+      title: 'La jubilación puede durar 25 años: planificar el retiro largo | invertite',
       description:
         'Con 17 a 23 años de retiro esperados, el ingreso debe sostenerse mucho más tiempo. Riesgo de longevidad, brecha del BPS y ahorro complementario explicados.',
     },
@@ -113,7 +113,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-05-08',
     readingTime: 6,
     seo: {
-      title: 'Menos aportantes por jubilado: la presión del sistema previsional | Inversave',
+      title: 'Menos aportantes por jubilado: la presión del sistema previsional | invertite',
       description:
         'La relación activo-pasivo del BPS cae de 2,50 a 1,23 según proyecciones al 2100. Qué significa ese dato para la sostenibilidad del sistema previsional uruguayo.',
     },

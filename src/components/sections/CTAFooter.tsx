@@ -63,7 +63,7 @@ export function Footer() {
                   <path d="M1.5 9.5 L4.5 5.5 L7 8 L10 3.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <span className="text-[15px] font-bold text-t1 tracking-[-0.02em]">INVERSAVE</span>
+              <span className="text-[15px] font-bold text-t1 tracking-[-0.02em]">INVERTITE</span>
             </div>
             <p className="text-[12px] text-t3 leading-relaxed">Powered by Roble Capital Wealth Management · Regulado BCU Uruguay</p>
             <p className="text-[12px] text-t3 leading-relaxed">Plataforma: Dominion Capital Strategies Limited · Guernsey FSC</p>
@@ -77,7 +77,7 @@ export function Footer() {
           recomendación de inversión. Toda inversión implica riesgos, incluyendo pérdida de capital. Los
           rendimientos pasados no garantizan resultados futuros. Las simulaciones son meramente ilustrativas.
           Dominion Capital Strategies Limited está regulada por la Guernsey Financial Services Commission.
-          INVERSAVE actúa como asesor bajo la estructura de Roble Capital Wealth Management,
+          INVERTITE actúa como asesor bajo la estructura de Roble Capital Wealth Management,
           entidad regulada por el Banco Central del Uruguay.
         </p>
       </div>

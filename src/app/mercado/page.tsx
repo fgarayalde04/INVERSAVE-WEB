@@ -7,10 +7,10 @@ import MercadoEnDonde from "@/components/sections/mercado/MercadoEnDonde";
 import MercadoCrisis from "@/components/sections/mercado/MercadoCrisis";
 
 export const metadata: Metadata = {
-  title: "Mercado — Historia del S&P 500, dónde se invierte y crisis | INVERSAVE",
+  title: "Mercado — Historia del S&P 500, dónde se invierte y crisis | INVERTITE",
   description:
     "Historia del S&P 500, en dónde se invierte, rendimiento por período y grandes crisis del mercado. Contexto educativo, sin promesas de rendimiento.",
-  alternates: { canonical: "https://inversave.com/mercado" },
+  alternates: { canonical: "https://invertite.com/mercado" },
   keywords: [
     "historia S&P 500",
     "qué es el S&P 500",

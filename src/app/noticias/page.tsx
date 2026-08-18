@@ -5,7 +5,7 @@ import { NewsGrid } from "@/components/news/NewsGrid";
 import { getNewsSorted } from "@/data/news";
 
 export const metadata: Metadata = {
-  title: "Noticias del sistema previsional uruguayo | INVERSAVE",
+  title: "Noticias del sistema previsional uruguayo | INVERTITE",
   description:
     "Seguimos los principales cambios y debates del sistema previsional uruguayo: reforma jubilatoria, AFAPs, BPS, tasas y mercado financiero. Información educativa con fuente visible.",
   keywords: [
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "ahorro previsional complementario Uruguay",
     "educación financiera Uruguay",
   ],
-  alternates: { canonical: "https://inversave.com/noticias" },
+  alternates: { canonical: "https://invertite.com/noticias" },
 };
 
 export default function NoticiasPage() {
@@ -48,7 +48,7 @@ export default function NoticiasPage() {
 
           {/* Disclaimer */}
           <p className="mt-10 text-center text-[12px] text-t3 max-w-lg mx-auto leading-relaxed">
-            Los artículos enlazan a fuentes externas. INVERSAVE no produce ni edita
+            Los artículos enlazan a fuentes externas. INVERTITE no produce ni edita
             el contenido de terceros. Esta sección es exclusivamente educativa e
             informativa, no constituye asesoramiento financiero.
           </p>

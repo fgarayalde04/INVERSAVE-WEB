@@ -72,7 +72,7 @@ export default function DominionQue() {
                 {[
                   { label: "Vos", sub: "Titular de la cuenta", color: "#52B558" },
                   {
-                    label: "Roble Capital / Inversave",
+                    label: "Roble Capital / invertite",
                     sub: "Asesor regulado BCU — área de planes de ahorro",
                     color: "#8FD99A",
                   },

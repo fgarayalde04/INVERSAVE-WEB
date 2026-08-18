@@ -46,7 +46,7 @@ async function downloadPdf(params: {
   doc.roundedRect(16, 14, 9, 9, 1.5, 1.5, "F");
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(22); doc.setFont("helvetica", "bold");
-  doc.text("INVERSAVE", 30, 22);
+  doc.text("INVERTITE", 30, 22);
   doc.setFontSize(10); doc.setFont("helvetica", "normal");
   doc.setTextColor(200, 220, 200);
   doc.text("Proyección personalizada de ahorro · Roble Capital Wealth Management", 30, 31);
@@ -186,10 +186,10 @@ async function downloadPdf(params: {
 
   doc.setFillColor(...DARK); doc.rect(0, 282, W, 15, "F");
   doc.setFontSize(7.5); doc.setFont("helvetica", "normal"); doc.setTextColor(120, 160, 120);
-  doc.text("INVERSAVE · Roble Capital Wealth Management · Regulado BCU Uruguay", 20, 290);
+  doc.text("INVERTITE · Roble Capital Wealth Management · Regulado BCU Uruguay", 20, 290);
   doc.text("Dominion Capital Strategies Limited · Guernsey FSC", W - 20, 290, { align: "right" });
 
-  doc.save(`inversave-proyeccion-${params.years}a.pdf`);
+  doc.save(`invertite-proyeccion-${params.years}a.pdf`);
 }
 
 // ── Slider helper ─────────────────────────────────────────────

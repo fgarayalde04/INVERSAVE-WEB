@@ -65,7 +65,7 @@ async function downloadSimulationPdf(period: RollingPeriod, fv: number | null) {
   doc.setFontSize(9);
   doc.setFont("helvetica", "normal");
   doc.setTextColor(150, 210, 155);
-  doc.text("INVERSAVE · Planificación Patrimonial · Roble Capital Wealth Management", margin, 26);
+  doc.text("INVERTITE · Planificación Patrimonial · Roble Capital Wealth Management", margin, 26);
   doc.setTextColor(130, 160, 135);
   doc.text(`Generado el ${new Date().toLocaleDateString("es-UY", { day: "2-digit", month: "2-digit", year: "numeric" })}`, margin, 34);
 

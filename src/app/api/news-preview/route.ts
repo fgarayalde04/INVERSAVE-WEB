@@ -25,7 +25,7 @@ export async function GET(req: NextRequest) {
       signal: controller.signal,
       headers: {
         "User-Agent":
-          "Mozilla/5.0 (compatible; INVERSAVE-Bot/1.0; +https://inversave.com)",
+          "Mozilla/5.0 (compatible; INVERTITE-Bot/1.0; +https://invertite.com)",
         Accept: "text/html,application/xhtml+xml",
       },
     });

@@ -202,7 +202,7 @@ export default function Navbar() {
               <path d="M2 11L5.5 6.5 8 9 11.5 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
-          <span className="text-[15px] font-bold text-t1 tracking-[-0.02em]">INVERSAVE</span>
+          <span className="text-[15px] font-bold text-t1 tracking-[-0.02em]">INVERTITE</span>
         </Link>
 
         {/* Desktop nav */}

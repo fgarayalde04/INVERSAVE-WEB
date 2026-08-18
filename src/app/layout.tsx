@@ -4,18 +4,18 @@ import { ModalProvider } from "@/context/ModalContext";
 import LeadModal from "@/components/LeadModal";
 import Navbar from "@/components/sections/Navbar";
 
-const BASE_URL = "https://inversave.com";
+const BASE_URL = "https://invertite.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "INVERSAVE — Ahorro e inversión a largo plazo en Uruguay",
-    template: "%s | INVERSAVE",
+    default: "INVERTITE — Ahorro e inversión a largo plazo en Uruguay",
+    template: "%s | INVERTITE",
   },
   description:
     "Plataforma para entender el sistema previsional uruguayo, simular tu futuro financiero y conocer un plan de ahorro e inversión mensual de largo plazo.",
   keywords: [
-    "inversave",
+    "invertite",
     "ahorro a largo plazo Uruguay",
     "inversión a largo plazo",
     "planificación financiera Uruguay",
@@ -32,21 +32,21 @@ export const metadata: Metadata = {
     "simulador de ahorro",
     "ahorro mensual",
   ],
-  authors: [{ name: "INVERSAVE / Roble Capital Wealth Management" }],
-  creator: "INVERSAVE",
-  publisher: "INVERSAVE",
+  authors: [{ name: "INVERTITE / Roble Capital Wealth Management" }],
+  creator: "INVERTITE",
+  publisher: "INVERTITE",
   openGraph: {
     type: "website",
     locale: "es_UY",
     url: BASE_URL,
-    siteName: "INVERSAVE",
-    title: "INVERSAVE — Ahorro e inversión a largo plazo en Uruguay",
+    siteName: "INVERTITE",
+    title: "INVERTITE — Ahorro e inversión a largo plazo en Uruguay",
     description:
       "Plan de ahorro mensual automático invertido en mercados globales. Regulado BCU. Cuenta segregada BNY Mellon. Desde USD 150/mes.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "INVERSAVE — Ahorro e inversión a largo plazo en Uruguay",
+    title: "INVERTITE — Ahorro e inversión a largo plazo en Uruguay",
     description:
       "Plan de ahorro mensual automático invertido en mercados globales. Regulado BCU. Desde USD 150/mes.",
   },

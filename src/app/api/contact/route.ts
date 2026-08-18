@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
   const html = `
     <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
       <div style="background:#0C1A11;padding:24px 32px;border-radius:12px 12px 0 0">
-        <h2 style="color:#fff;margin:0;font-size:20px">INVERSAVE — Nuevo contacto</h2>
+        <h2 style="color:#fff;margin:0;font-size:20px">INVERTITE — Nuevo contacto</h2>
         <p style="color:#8FD99A;margin:4px 0 0;font-size:13px">Desde: ${source || "web"}</p>
       </div>
       <div style="background:#F8F6F0;padding:32px;border-radius:0 0 12px 12px">
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
   const { data, error } = await resend.emails.send({
     from:     fromEmail,
     to:       toEmail,
-    subject:  `Nuevo contacto INVERSAVE — ${nombre} ${apellido}`,
+    subject:  `Nuevo contacto INVERTITE — ${nombre} ${apellido}`,
     html,
     replyTo:  email,
   });

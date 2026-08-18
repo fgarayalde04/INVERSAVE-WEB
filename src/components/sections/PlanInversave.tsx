@@ -85,19 +85,19 @@ const FUNDS = [
   { name: "Emerging Markets", region: "Asia/LatAm", type: "Renta variable", pct: "Alto potencial, alta volatilidad" },
 ];
 
-export default function PlanInversaveSection({ hideAccountPreview = false }: { hideAccountPreview?: boolean }) {
+export default function PlanInvertiteSection({ hideAccountPreview = false }: { hideAccountPreview?: boolean }) {
   return (
     <section id="plan" className="section-wrap">
       <div className="inner">
         {/* Header */}
         <FadeIn>
-          <p className="section-label">Plan de Ahorro INVERSAVE</p>
+          <p className="section-label">Plan de Ahorro INVERTITE</p>
           <h2 className="text-h2 font-bold mb-5">
             Tu tercer pilar{" "}
             <span className="text-g3">de retiro.</span>
           </h2>
           <p className="text-[17px] text-t2 leading-relaxed max-w-xl mb-4">
-            BPS y AFAP son el primer y segundo pilar. INVERSAVE es el tercero:
+            BPS y AFAP son el primer y segundo pilar. INVERTITE es el tercero:
             ahorro e inversión global automatizada que construís a tu ritmo, fuera del sistema estatal.
           </p>
           <p className="text-[17px] text-t2 leading-relaxed max-w-xl mb-12">
@@ -111,7 +111,7 @@ export default function PlanInversaveSection({ hideAccountPreview = false }: { h
             {[
               { n: "1", label: "BPS", desc: "Jubilación pública de reparto. Obligatorio.", color: "text-t3", bg: "bg-[#F0EFE8]", border: "border-black/[.07]" },
               { n: "2", label: "AFAP", desc: "Ahorro individual capitalizado. Obligatorio.", color: "text-t3", bg: "bg-[#F0EFE8]", border: "border-black/[.07]" },
-              { n: "3", label: "INVERSAVE", desc: "Tu plan personal global. Voluntario y potente.", color: "text-g3", bg: "bg-[#EDF8E8]", border: "border-g1/25", highlight: true },
+              { n: "3", label: "INVERTITE", desc: "Tu plan personal global. Voluntario y potente.", color: "text-g3", bg: "bg-[#EDF8E8]", border: "border-g1/25", highlight: true },
             ].map(p => (
               <div key={p.n} className={`${p.bg} border ${p.border} rounded-3xl p-5 text-center`}>
                 <div className={`text-[11px] font-bold tracking-[0.1em] uppercase mb-3 ${p.color}`}>Pilar {p.n}</div>
@@ -149,7 +149,7 @@ export default function PlanInversaveSection({ hideAccountPreview = false }: { h
             <span className="text-g3">una estrategia agresiva puede tener mayor sentido.</span>
           </h3>
           <p className="text-[17px] text-t2 leading-relaxed mb-5 max-w-xl">
-            El modelo INVERSAVE está diseñado para maximizar el crecimiento compuesto a largo plazo.
+            El modelo INVERTITE está diseñado para maximizar el crecimiento compuesto a largo plazo.
             Los perfiles conservador y balanceado existen para quienes tienen objetivos de corto a mediano plazo
             o menor tolerancia a la volatilidad — pero no son el foco de este modelo.
           </p>

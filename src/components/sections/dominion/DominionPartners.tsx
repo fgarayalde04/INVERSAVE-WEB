@@ -36,7 +36,7 @@ const PARTNERS = [
       "S&P 500 Tracker · Global Equities",
     ],
     detail:
-      "Gestiona los fondos en los que se invierte tu portafolio. El S&P 500 Tracker es el fondo principal disponible en Inversave, junto con Global Infrastructure, Emerging Markets, Global Credit y más.",
+      "Gestiona los fondos en los que se invierte tu portafolio. El S&P 500 Tracker es el fondo principal disponible en invertite, junto con Global Infrastructure, Emerging Markets, Global Credit y más.",
     accent: "#52B558",
   },
   {

@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-const BASE_URL = "https://inversave.com";
+const BASE_URL = "https://invertite.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

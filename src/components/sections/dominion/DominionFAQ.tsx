@@ -5,7 +5,7 @@ import { FadeIn } from "@/components/ui";
 
 const FAQS = [
   {
-    q: "¿Qué es El Plan de INVERSAVE?",
+    q: "¿Qué es El Plan de INVERTITE?",
     a: "El Plan es un esquema de ahorro e inversión mensual automatizado, diseñado para construir patrimonio a largo plazo desde Uruguay. Aportás un monto mensual fijo —desde USD 150— y ese dinero se invierte en mercados globales a través de Dominion Capital Strategies. No necesitás saber de finanzas ni tomar decisiones de mercado.",
   },
   {

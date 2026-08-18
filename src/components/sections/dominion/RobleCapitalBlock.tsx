@@ -44,7 +44,7 @@ export default function RobleCapitalBlock() {
 
               <p className="text-[15px] text-t2 leading-relaxed mb-4">
                 Empresa de asesoramiento financiero con base en Montevideo y más de 25 años de experiencia
-                en gestión patrimonial. INVERSAVE es el área de planes de ahorro de Roble Capital.
+                en gestión patrimonial. INVERTITE es el área de planes de ahorro de Roble Capital.
               </p>
               <p className="text-[15px] text-t2 leading-relaxed mb-7">
                 Su equipo tiene formación en instituciones como Merrill Lynch, Citibank y UBS, y aplica
@@ -139,7 +139,7 @@ export default function RobleCapitalBlock() {
               <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
                 <path d="M0 5h14M11 2l3 3-3 3" stroke="rgba(0,0,0,.2)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span>asesorado por <strong className="text-t1">Roble Capital / Inversave</strong></span>
+              <span>asesorado por <strong className="text-t1">Roble Capital / invertite</strong></span>
               <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
                 <path d="M0 5h14M11 2l3 3-3 3" stroke="rgba(0,0,0,.2)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

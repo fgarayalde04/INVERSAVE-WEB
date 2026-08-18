@@ -144,7 +144,7 @@ export default function LeadModal() {
                           <path d="M1.5 9.5 L4.5 5.5 L7 8 L10 3.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </div>
-                      <span className="text-[14px] font-bold text-white tracking-[-0.01em]">INVERSAVE</span>
+                      <span className="text-[14px] font-bold text-white tracking-[-0.01em]">INVERTITE</span>
                     </div>
                     <div className="relative z-10">
                       <h3 className="text-[22px] font-bold text-white leading-tight mb-2">

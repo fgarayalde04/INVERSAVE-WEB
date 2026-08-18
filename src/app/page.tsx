@@ -7,10 +7,10 @@ import DominionHighlight from "@/components/sections/home/DominionHighlight";
 import HomeSimuladorCTA from "@/components/sections/home/HomeSimuladorCTA";
 
 export const metadata: Metadata = {
-  title: "Planificar la jubilación en Uruguay | Ahorro e inversión mensual | INVERSAVE",
+  title: "Planificar la jubilación en Uruguay | Ahorro e inversión mensual | INVERTITE",
   description:
     "Plataforma para entender el sistema previsional uruguayo, simular tu futuro financiero y conocer un plan de ahorro e inversión mensual de largo plazo.",
-  alternates: { canonical: "https://inversave.com" },
+  alternates: { canonical: "https://invertite.com" },
   keywords: [
     "planificación jubilatoria Uruguay",
     "sistema previsional uruguayo",

@@ -3,7 +3,7 @@ import SimuladorSection from "@/components/sections/Simulador";
 import { Footer } from "@/components/sections/CTAFooter";
 
 export const metadata: Metadata = {
-  title: "Simulador de ahorro e inversión — Interés compuesto | INVERSAVE",
+  title: "Simulador de ahorro e inversión — Interés compuesto | INVERTITE",
   description:
     "Simulador de ahorro e interés compuesto gratuito. Calculá cuánto podés acumular con aportes mensuales automáticos invertidos en mercados globales. Planificación financiera a largo plazo desde Uruguay.",
   keywords: [

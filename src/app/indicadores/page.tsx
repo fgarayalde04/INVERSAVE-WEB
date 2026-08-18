@@ -3,11 +3,11 @@ import MercadoDashboard       from "@/components/sections/mercado/MercadoDashboa
 import { CTASection, Footer } from "@/components/sections/CTAFooter";
 
 export const metadata: Metadata = {
-  title: "Indicadores financieros y previsionales en Uruguay | INVERSAVE",
+  title: "Indicadores financieros y previsionales en Uruguay | INVERTITE",
   description:
     "Tasas bancarias, rentabilidad histórica de AFAPs, datos del BPS, Banco Central del Uruguay " +
     "y Fed explicados de forma simple para planificar mejor tu futuro financiero.",
-  alternates: { canonical: "https://inversave.com/indicadores" },
+  alternates: { canonical: "https://invertite.com/indicadores" },
   keywords: [
     "indicadores financieros Uruguay",
     "tasas bancarias Uruguay",

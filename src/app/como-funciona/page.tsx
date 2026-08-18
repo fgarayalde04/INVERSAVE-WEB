@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "planificación financiera",
     "costo de esperar en inversión",
   ],
-  alternates: { canonical: "https://inversave.com/como-funciona" },
+  alternates: { canonical: "https://invertite.com/como-funciona" },
 };
 
 export default function ComoFuncionaPage() {

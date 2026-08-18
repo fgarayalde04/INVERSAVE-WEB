@@ -7,7 +7,7 @@ import { CTASection, Footer } from "@/components/sections/CTAFooter";
 import { GlowDivider } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Ahorrar — Interés compuesto, DCA y disciplina financiera | INVERSAVE",
+  title: "Ahorrar — Interés compuesto, DCA y disciplina financiera | INVERTITE",
   description:
     "Cómo funciona el ahorro a largo plazo, cómo hacerlo, el costo de esperar y la estrategia Dollar Cost Averaging. Conceptos clave explicados en simple.",
   keywords: [
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "planificación financiera",
     "costo de esperar en inversión",
   ],
-  alternates: { canonical: "https://inversave.com/ahorrar" },
+  alternates: { canonical: "https://invertite.com/ahorrar" },
 };
 
 export default function AhorrarPage() {

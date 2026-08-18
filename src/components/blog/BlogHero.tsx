@@ -9,7 +9,7 @@ export default function BlogHero() {
           className="text-[11px] font-semibold tracking-widest uppercase mb-4"
           style={{ color: '#1d3557', letterSpacing: '0.18em' }}
         >
-          Biblioteca · Inversave
+          Biblioteca · invertite
         </p>
         <h1
           className="text-[2.4rem] sm:text-[3rem] font-semibold leading-tight mb-4"
