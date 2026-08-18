@@ -197,9 +197,10 @@ export default function Navbar() {
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
-          <div className="w-7 h-7 rounded-lg bg-g3 flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M2 11L5.5 6.5 8 9 11.5 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <div className="w-7 h-7 rounded-lg bg-[#0B1A2B] flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
+            <svg width="16" height="16" viewBox="0 0 64 64" fill="none">
+              <path d="M12 48 L28 32 L44 36 L56 16" stroke="white" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="56" cy="16" r="5" fill="#2E8B74"/>
             </svg>
           </div>
           <span className="text-[15px] font-bold text-t1 tracking-[-0.02em]">INVERTITE</span>

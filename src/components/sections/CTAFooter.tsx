@@ -58,9 +58,10 @@ export function Footer() {
         <div className="flex flex-wrap justify-between gap-6 mb-6 pb-6 border-b border-black/[.07]">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-6 h-6 rounded-md bg-g3 flex items-center justify-center">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M1.5 9.5 L4.5 5.5 L7 8 L10 3.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              <div className="w-6 h-6 rounded-md bg-[#0B1A2B] flex items-center justify-center">
+                <svg width="14" height="14" viewBox="0 0 64 64" fill="none">
+                  <path d="M12 48 L28 32 L44 36 L56 16" stroke="white" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="56" cy="16" r="5" fill="#2E8B74"/>
                 </svg>
               </div>
               <span className="text-[15px] font-bold text-t1 tracking-[-0.02em]">INVERTITE</span>
