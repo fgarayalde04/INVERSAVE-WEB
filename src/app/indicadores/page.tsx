@@ -1,6 +1,7 @@
-import { Metadata }           from "next";
-import MercadoDashboard       from "@/components/sections/mercado/MercadoDashboard";
-import { CTASection, Footer } from "@/components/sections/CTAFooter";
+import { Metadata }              from "next";
+import MercadoDashboard          from "@/components/sections/mercado/MercadoDashboard";
+import RendimientosDepositos     from "@/components/sections/mercado/RendimientosDepositos";
+import { CTASection, Footer }    from "@/components/sections/CTAFooter";
 
 export const metadata: Metadata = {
   title: "Indicadores financieros y previsionales en Uruguay | INVERTITE",
@@ -40,6 +41,8 @@ export default function IndicadoresPage() {
       </section>
 
       <MercadoDashboard />
+
+      <RendimientosDepositos />
 
       <CTASection />
       <Footer />
