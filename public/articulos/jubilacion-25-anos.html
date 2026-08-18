@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>La jubilación puede durar 25 años: por qué vivir más exige planificar mejor | Inversave</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #faf9f7;
+  font-family: 'Source Serif 4', Georgia, serif;
+  color: #1a1a1a;
+}
+
+.article-wrap {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 3rem 2rem 6rem;
+}
+
+.article-body {
+  --ink: #1a1a1a;
+  --mid: #4a4a4a;
+  --light: #8a8a8a;
+  --rule: #d8d0c8;
+  --bg: #faf9f7;
+  --accent: #1d3557;
+  --accent-soft: #e8eef4;
+  font-size: 19px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.tag {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.4rem;
+  display: block;
+}
+
+h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 1.4rem;
+  letter-spacing: -0.01em;
+}
+
+.bajada {
+  font-size: 1.05rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--mid);
+  border-left: 3px solid var(--accent);
+  padding-left: 1.2rem;
+  margin-bottom: 2.8rem;
+  line-height: 1.6;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2.4rem 0;
+}
+
+h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 3.2rem 0 1rem;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin-bottom: 1.1rem;
+  font-weight: 300;
+  color: var(--ink);
+}
+
+strong {
+  font-weight: 600;
+}
+
+.dato {
+  display: inline-block;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05em;
+  font-weight: 600;
+  padding: 0.05em 0.35em;
+  border-radius: 3px;
+}
+
+ul {
+  margin: 0.6rem 0 1.1rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+ul li {
+  padding-left: 1.4rem;
+  position: relative;
+  margin-bottom: 0.4rem;
+  font-weight: 300;
+}
+ul li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.datos-grid {
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+.datos-grid.col2 { grid-template-columns: 1fr 1fr; }
+.datos-grid.col3 { grid-template-columns: 1fr 1fr 1fr; }
+
+.dato-item {
+  background: var(--bg);
+  padding: 1.3rem 1.4rem;
+}
+.dato-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.dato-label {
+  font-size: 0.88rem;
+  color: var(--mid);
+  font-weight: 300;
+  line-height: 1.4;
+}
+.dato-fuente {
+  font-size: 0.75rem;
+  color: var(--light);
+  font-style: italic;
+}
+
+.grafico-wrap {
+  margin: 2.8rem 0;
+}
+.grafico-label {
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--light);
+  margin-bottom: 0.7rem;
+  display: block;
+}
+.grafico-caption {
+  margin-top: 0.65rem;
+  font-size: 0.82rem;
+  color: var(--mid);
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.callout {
+  margin: 2rem 0;
+  padding: 18px 22px;
+  border-radius: 0 6px 6px 0;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+}
+.callout-warn {
+  border-left-color: #b5242a;
+  background: #fff4f4;
+}
+.callout-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.callout-warn .callout-label { color: #b5242a; }
+.callout p { margin: 0; font-size: 0.94rem; line-height: 1.65; }
+
+.fuentes {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+}
+.fuentes h3 {
+  font-family: 'Source Serif 4', serif;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--light);
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+.fuentes p {
+  font-size: 0.82rem;
+  color: var(--mid);
+  margin-bottom: 0.6rem;
+  font-weight: 300;
+}
+.fuentes a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.nota-legal {
+  font-size: 0.78rem;
+  color: var(--light);
+  font-style: italic;
+  margin-top: 1.2rem;
+  line-height: 1.5;
+  font-weight: 300;
+}
+svg { max-width: 100%; height: auto; }
+</style>
+</head>
+<body>
+<div class="article-wrap">
+<article class="article-body">
+
+<span class="tag">Sistema Previsional · Planificación</span>
+
+<h1>La jubilación puede durar 25 años: por qué vivir más exige planificar mejor</h1>
+
+<p class="bajada">
+  Una mujer que se jubila hoy en Uruguay tiene, en promedio, 23 años de vida por delante.
+  Ese horizonte define cuánto tiempo tus ingresos deben sostenerse — y cambia completamente
+  el cálculo del retiro.
+</p>
+
+<hr class="divider"/>
+
+<p>
+  Cuando la gente piensa en jubilarse, suele enfocarse en dos preguntas: ¿a qué edad voy
+  a poder hacerlo? ¿cuánto voy a cobrar? Son preguntas importantes. Pero hay una tercera
+  que pocas veces aparece, y que cambia todo el análisis: <strong>¿cuánto tiempo va a durar
+  esa jubilación?</strong>
+</p>
+
+<p>
+  En Uruguay, las tablas de mortalidad del Banco de Previsión Social muestran que una mujer
+  que llega a los 60 años tiene, en promedio, <span class="dato">23 años</span> de vida
+  por delante. Un hombre que llega a los 65 tiene, en promedio, unos
+  <span class="dato">17 años</span>. No son años de enfermedad inevitable — son años de vida
+  activa que requieren ingresos sostenidos.
+</p>
+
+<div class="datos-grid col3">
+  <div class="dato-item">
+    <div class="dato-val">23</div>
+    <div class="dato-label">años de retiro esperados para una mujer que se jubila a los 60</div>
+    <div class="dato-fuente">BPS · tablas de mortalidad 2024</div>
+  </div>
+  <div class="dato-item">
+    <div class="dato-val">17</div>
+    <div class="dato-label">años de retiro esperados para un hombre que se jubila a los 65</div>
+    <div class="dato-fuente">BPS · tablas de mortalidad 2024</div>
+  </div>
+  <div class="dato-item">
+    <div class="dato-val">1 de 4</div>
+    <div class="dato-label">personas vivirá más de 90 años, superando cualquier proyección promedio</div>
+    <div class="dato-fuente">INE · proyecciones demográficas</div>
+  </div>
+</div>
+
+<p>
+  El promedio, sin embargo, encubre un riesgo real. Si la expectativa de vida promedio es
+  de 23 años, eso significa que aproximadamente la mitad de las personas vivirán
+  <em>más</em> que eso. Para quienes vivan 28 o 30 años de retiro, el cálculo de cuánto
+  necesitan ahorrar cambia radicalmente. Este es el llamado <strong>riesgo de longevidad</strong>:
+  el riesgo de quedarse sin ingresos antes de quedarse sin vida.
+</p>
+
+<div class="grafico-wrap">
+  <span class="grafico-label">Gráfico 1 — Duración estimada del período de retiro</span>
+  <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+<line x1="120.0" y1="20" x2="120.0" y2="190" stroke="#d8d0c8" stroke-width="1"/>
+<text x="120.0" y="206" text-anchor="middle" font-size="10" fill="#8a8a8a">50</text>
+<line x1="180.0" y1="20" x2="180.0" y2="190" stroke="#d8d0c8" stroke-width="1"/>
+<text x="180.0" y="206" text-anchor="middle" font-size="10" fill="#8a8a8a">55</text>
+<line x1="240.0" y1="20" x2="240.0" y2="190" stroke="#d8d0c8" stroke-width="1"/>
+<text x="240.0" y="206" text-anchor="middle" font-size="10" fill="#8a8a8a">60</text>
+<line x1="300.0" y1="20" x2="300.0" y2="190" stroke="#d8d0c8" stroke-width="1"/>
+<text x="300.0" y="206" text-anchor="middle" font-size="10" fill="#8a8a8a">65</text>
+<line x1="360.0" y1="20" x2="360.0" y2="190" stroke="#d8d0c8" stroke-width="1"/>
+<text x="360.0" y="206" text-anchor="middle" font-size="10" fill="#8a8a8a">70</text>
+<line x1="420.0" y1="20" x2="420.0" y2="190" stroke="#d8d0c8" stroke-width="1"/>
+<text x="420.0" y="206" text-anchor="middle" font-size="10" fill="#8a8a8a">75</text>
+<line x1="480.0" y1="20" x2="480.0" y2="190" stroke="#d8d0c8" stroke-width="1"/>
+<text x="480.0" y="206" text-anchor="middle" font-size="10" fill="#8a8a8a">80</text>
+<line x1="540.0" y1="20" x2="540.0" y2="190" stroke="#d8d0c8" stroke-width="1"/>
+<text x="540.0" y="206" text-anchor="middle" font-size="10" fill="#8a8a8a">85</text>
+<line x1="600.0" y1="20" x2="600.0" y2="190" stroke="#d8d0c8" stroke-width="1"/>
+<text x="600.0" y="206" text-anchor="middle" font-size="10" fill="#8a8a8a">90</text>
+<line x1="660.0" y1="20" x2="660.0" y2="190" stroke="#d8d0c8" stroke-width="1"/>
+<text x="660.0" y="206" text-anchor="middle" font-size="10" fill="#8a8a8a">95</text>
+<text x="350" y="218" text-anchor="middle" font-size="9" fill="#8a8a8a" letter-spacing="0.1em">EDAD</text>
+<text x="52" y="104" text-anchor="end" font-size="11" fill="#4a4a4a" font-weight="300">Mujer</text>
+<text x="52" y="172" text-anchor="end" font-size="11" fill="#4a4a4a" font-weight="300">Hombre</text>
+<rect x="-120.0" y="80" width="360.0" height="38" fill="#1d3557" rx="2"/>
+<text x="60.0" y="104" text-anchor="middle" font-size="10" fill="white" font-weight="300">Vida activa · 30 años</text>
+<rect x="240.0" y="80" width="276.0" height="38" fill="#c0392b" rx="2"/>
+<text x="378.0" y="104" text-anchor="middle" font-size="10" fill="white" font-weight="300">~23 años de jubilación</text>
+<rect x="-120.0" y="148" width="420.0" height="38" fill="#1d3557" rx="2"/>
+<text x="90.0" y="172" text-anchor="middle" font-size="10" fill="white" font-weight="300">Vida activa · 35 años</text>
+<rect x="300.0" y="148" width="204.0" height="38" fill="#c0392b" rx="2"/>
+<text x="402.0" y="172" text-anchor="middle" font-size="10" fill="white" font-weight="300">~17 años</text>
+<line x1="240.0" y1="72" x2="240.0" y2="126" stroke="#1d3557" stroke-width="1.5" stroke-dasharray="3,2"/>
+<line x1="300.0" y1="140" x2="300.0" y2="194" stroke="#1d3557" stroke-width="1.5" stroke-dasharray="3,2"/>
+<rect x="60" y="10" width="12" height="10" fill="#1d3557" rx="1"/>
+<text x="76" y="18" font-size="10" fill="#4a4a4a">Vida activa</text>
+<rect x="160" y="10" width="12" height="10" fill="#c0392b" rx="1"/>
+<text x="176" y="18" font-size="10" fill="#4a4a4a">Retiro</text>
+</svg>
+  <p class="grafico-caption">
+    Estimación basada en esperanza de vida condicional a los 60 años (mujer) y 65 años (hombre)
+    según tablas de mortalidad BPS 2024. Las barras naranjas representan el período promedio
+    de jubilación — la mitad de las personas vivirá más que ese horizonte.
+  </p>
+</div>
+
+<h2>Lo que el BPS paga — y lo que no</h2>
+
+<p>
+  El sistema de reparto uruguayo, administrado por el BPS, tiene un mecanismo de cálculo
+  que no garantiza la continuidad del ingreso previo. La <strong>tasa de reemplazo</strong>
+  — el porcentaje del salario activo que se percibe como jubilación — varía según los
+  años de servicio, el salario promedio y la edad de retiro, pero en la práctica ronda
+  entre el <span class="dato">45%</span> y el <span class="dato">65%</span> del ingreso
+  previo para la mayoría de los trabajadores.
+</p>
+
+<p>
+  Eso significa que alguien que ganaba 80.000 pesos mensuales en actividad puede pasar a
+  percibir entre 36.000 y 52.000 pesos de jubilación. La brecha no es marginal —
+  es estructural.
+</p>
+
+<div class="grafico-wrap">
+  <span class="grafico-label">Gráfico 2 — Ingreso activo vs jubilación estimada del BPS</span>
+  <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+<line x1="55" y1="199.2" x2="670" y2="199.2" stroke="#d8d0c8" stroke-width="1"/>
+<text x="49" y="203.2" text-anchor="end" font-size="9" fill="#8a8a8a">20k</text>
+<line x1="55" y1="168.5" x2="670" y2="168.5" stroke="#d8d0c8" stroke-width="1"/>
+<text x="49" y="172.5" text-anchor="end" font-size="9" fill="#8a8a8a">40k</text>
+<line x1="55" y1="137.7" x2="670" y2="137.7" stroke="#d8d0c8" stroke-width="1"/>
+<text x="49" y="141.7" text-anchor="end" font-size="9" fill="#8a8a8a">60k</text>
+<line x1="55" y1="106.9" x2="670" y2="106.9" stroke="#d8d0c8" stroke-width="1"/>
+<text x="49" y="110.9" text-anchor="end" font-size="9" fill="#8a8a8a">80k</text>
+<line x1="55" y1="76.2" x2="670" y2="76.2" stroke="#d8d0c8" stroke-width="1"/>
+<text x="49" y="80.2" text-anchor="end" font-size="9" fill="#8a8a8a">100k</text>
+<line x1="55" y1="45.4" x2="670" y2="45.4" stroke="#d8d0c8" stroke-width="1"/>
+<text x="49" y="49.4" text-anchor="end" font-size="9" fill="#8a8a8a">120k</text>
+<text transform="rotate(-90)" x="-140" y="13" text-anchor="middle" font-size="9" fill="#8a8a8a" letter-spacing="0.08em">UYU / MES</text>
+<rect x="71.5" y="196.2" width="43.0" height="33.8" fill="#1d3557" rx="2"/>
+<rect x="118.5" y="202.3" width="43.0" height="27.7" fill="#c0392b" rx="2" opacity="0.85"/>
+<text x="116.5" y="190.2" text-anchor="middle" font-size="9.5" fill="#4a4a4a">82%</text>
+<text x="116.5" y="272" text-anchor="middle" font-size="9.5" fill="#4a4a4a">Salario mín.</text>
+<rect x="194.4" y="183.8" width="43.0" height="46.2" fill="#1d3557" rx="2"/>
+<rect x="241.5" y="196.2" width="43.0" height="33.8" fill="#c0392b" rx="2" opacity="0.85"/>
+<text x="239.5" y="177.8" text-anchor="middle" font-size="9.5" fill="#4a4a4a">73%</text>
+<text x="239.5" y="272" text-anchor="middle" font-size="9.5" fill="#4a4a4a">30k UYU</text>
+<rect x="317.4" y="153.1" width="43.0" height="76.9" fill="#1d3557" rx="2"/>
+<rect x="364.5" y="183.8" width="43.0" height="46.2" fill="#c0392b" rx="2" opacity="0.85"/>
+<text x="362.5" y="147.1" text-anchor="middle" font-size="9.5" fill="#4a4a4a">60%</text>
+<text x="362.5" y="272" text-anchor="middle" font-size="9.5" fill="#4a4a4a">50k UYU</text>
+<rect x="440.4" y="106.9" width="43.0" height="123.1" fill="#1d3557" rx="2"/>
+<rect x="487.5" y="168.5" width="43.0" height="61.5" fill="#c0392b" rx="2" opacity="0.85"/>
+<text x="485.5" y="100.9" text-anchor="middle" font-size="9.5" fill="#4a4a4a">50%</text>
+<text x="485.5" y="272" text-anchor="middle" font-size="9.5" fill="#4a4a4a">80k UYU</text>
+<rect x="563.5" y="45.4" width="43.0" height="184.6" fill="#1d3557" rx="2"/>
+<rect x="610.5" y="150.0" width="43.0" height="80.0" fill="#c0392b" rx="2" opacity="0.85"/>
+<text x="608.5" y="39.4" text-anchor="middle" font-size="9.5" fill="#4a4a4a">43%</text>
+<text x="608.5" y="272" text-anchor="middle" font-size="9.5" fill="#4a4a4a">120k UYU</text>
+<rect x="65" y="242" width="12" height="10" fill="#1d3557" rx="1"/>
+<text x="81" y="250" font-size="10" fill="#4a4a4a">Ingreso activo</text>
+<rect x="195" y="242" width="12" height="10" fill="#c0392b" rx="1" opacity="0.85"/>
+<text x="211" y="250" font-size="10" fill="#4a4a4a">Jubilación BPS estimada</text>
+<text x="415" y="250" font-size="9.5" fill="#8a8a8a">% = tasa de reemplazo</text>
+</svg>
+  <p class="grafico-caption">
+    Estimaciones ilustrativas basadas en el mecanismo de cálculo del BPS para distintos
+    niveles de ingreso. El porcentaje indica la tasa de reemplazo aproximada. La brecha
+    crece en términos absolutos a medida que aumenta el salario.
+  </p>
+</div>
+
+<div class="callout callout-warn">
+  <div class="callout-label">Atención</div>
+  <p>La tasa de reemplazo real depende de los años de servicio, la historia salarial y
+  la edad de retiro. Quienes retiran a los 60 con menos de 35 años de trabajo pueden
+  ver tasas menores al 40%. La brecha puede ser más grande de lo que aparece en este
+  gráfico para muchos trabajadores.</p>
+</div>
+
+<h2>El dinero que vale menos cada año</h2>
+
+<p>
+  Incluso si la jubilación se mantiene constante en términos nominales — en pesos —,
+  la inflación erosiona su poder adquisitivo con el tiempo. En Uruguay, la inflación
+  histórica promedio supera el 7% anual. A ese ritmo, en 10 años un peso vale menos
+  de la mitad.
+</p>
+
+<p>
+  El gráfico siguiente muestra cómo el poder adquisitivo de una jubilación de valor
+  fijo se deteriora según distintos escenarios de inflación. La curva naranja refleja
+  el contexto típico uruguayo.
+</p>
+
+<div class="grafico-wrap">
+  <span class="grafico-label">Gráfico 3 — Erosión del poder adquisitivo a lo largo de 25 años</span>
+  <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+<line x1="60" y1="175.7" x2="670" y2="175.7" stroke="#d8d0c8" stroke-width="1"/>
+<text x="54" y="179.7" text-anchor="end" font-size="9" fill="#8a8a8a">20</text>
+<line x1="60" y1="141.4" x2="670" y2="141.4" stroke="#d8d0c8" stroke-width="1"/>
+<text x="54" y="145.4" text-anchor="end" font-size="9" fill="#8a8a8a">40</text>
+<line x1="60" y1="107.1" x2="670" y2="107.1" stroke="#d8d0c8" stroke-width="1"/>
+<text x="54" y="111.1" text-anchor="end" font-size="9" fill="#8a8a8a">60</text>
+<line x1="60" y1="72.9" x2="670" y2="72.9" stroke="#d8d0c8" stroke-width="1"/>
+<text x="54" y="76.9" text-anchor="end" font-size="9" fill="#8a8a8a">80</text>
+<line x1="60" y1="38.6" x2="670" y2="38.6" stroke="#d8d0c8" stroke-width="1"/>
+<text x="54" y="42.6" text-anchor="end" font-size="9" fill="#8a8a8a">100</text>
+<line x1="60.0" y1="30" x2="60.0" y2="210" stroke="#d8d0c8" stroke-width="1"/>
+<text x="60.0" y="224" text-anchor="middle" font-size="9.5" fill="#8a8a8a">Año 0</text>
+<line x1="182.0" y1="30" x2="182.0" y2="210" stroke="#d8d0c8" stroke-width="1"/>
+<text x="182.0" y="224" text-anchor="middle" font-size="9.5" fill="#8a8a8a">Año 5</text>
+<line x1="304.0" y1="30" x2="304.0" y2="210" stroke="#d8d0c8" stroke-width="1"/>
+<text x="304.0" y="224" text-anchor="middle" font-size="9.5" fill="#8a8a8a">Año 10</text>
+<line x1="426.0" y1="30" x2="426.0" y2="210" stroke="#d8d0c8" stroke-width="1"/>
+<text x="426.0" y="224" text-anchor="middle" font-size="9.5" fill="#8a8a8a">Año 15</text>
+<line x1="548.0" y1="30" x2="548.0" y2="210" stroke="#d8d0c8" stroke-width="1"/>
+<text x="548.0" y="224" text-anchor="middle" font-size="9.5" fill="#8a8a8a">Año 20</text>
+<line x1="670.0" y1="30" x2="670.0" y2="210" stroke="#d8d0c8" stroke-width="1"/>
+<text x="670.0" y="224" text-anchor="middle" font-size="9.5" fill="#8a8a8a">Año 25</text>
+<text x="54" y="42.6" text-anchor="end" font-size="9" fill="#8a8a8a">100</text>
+<polygon points="60.0,38.6 84.4,51.3 108.8,63.0 133.2,73.9 157.6,84.0 182.0,93.3 206.4,102.0 230.8,110.0 255.2,117.4 279.6,124.2 304.0,130.6 328.4,136.5 352.8,141.9 377.2,147.0 401.6,151.6 426.0,156.0 450.4,160.0 474.8,163.7 499.2,167.1 523.6,170.3 548.0,173.2 572.4,175.9 596.8,178.5 621.2,180.8 645.6,183.0 670.0,185.0 670.0,210.0 60.0,210.0" fill="#8B0000" opacity="0.07"/>
+<polyline points="60.0,38.6 84.4,43.6 108.8,48.4 133.2,53.1 157.6,57.7 182.0,62.1 206.4,66.4 230.8,70.6 255.2,74.7 279.6,78.6 304.0,82.4 328.4,86.2 352.8,89.8 377.2,93.3 401.6,96.7 426.0,100.0 450.4,103.2 474.8,106.3 499.2,109.3 523.6,112.2 548.0,115.1 572.4,117.8 596.8,120.5 621.2,123.1 645.6,125.7 670.0,128.1" fill="none" stroke="#1a6638" stroke-width="2" stroke-linejoin="round"/>
+<text x="675.0" y="132.1" font-size="9.5" fill="#1a6638" font-weight="600">48</text>
+<polyline points="60.0,38.6 84.4,46.7 108.8,54.5 133.2,61.9 157.6,69.0 182.0,75.7 206.4,82.1 230.8,88.2 255.2,94.0 279.6,99.5 304.0,104.8 328.4,109.8 352.8,114.5 377.2,119.1 401.6,123.4 426.0,127.5 450.4,131.5 474.8,135.2 499.2,138.8 523.6,142.2 548.0,145.4 572.4,148.5 596.8,151.4 621.2,154.2 645.6,156.8 670.0,159.4" fill="none" stroke="#c0392b" stroke-width="2" stroke-linejoin="round"/>
+<text x="675.0" y="163.4" font-size="9.5" fill="#c0392b" font-weight="600">30</text>
+<polyline points="60.0,38.6 84.4,51.3 108.8,63.0 133.2,73.9 157.6,84.0 182.0,93.3 206.4,102.0 230.8,110.0 255.2,117.4 279.6,124.2 304.0,130.6 328.4,136.5 352.8,141.9 377.2,147.0 401.6,151.6 426.0,156.0 450.4,160.0 474.8,163.7 499.2,167.1 523.6,170.3 548.0,173.2 572.4,175.9 596.8,178.5 621.2,180.8 645.6,183.0 670.0,185.0" fill="none" stroke="#8B0000" stroke-width="2" stroke-linejoin="round"/>
+<text x="675.0" y="189.0" font-size="9.5" fill="#8B0000" font-weight="600">15</text>
+<text transform="rotate(-90)" x="-130" y="13" text-anchor="middle" font-size="9" fill="#8a8a8a" letter-spacing="0.08em">PODER ADQUISITIVO (BASE 100)</text>
+<line x1="80" y1="247" x2="98" y2="247" stroke="#1a6638" stroke-width="2.5"/>
+<text x="102" y="252" font-size="9.5" fill="#4a4a4a">Inflación 3% anual</text>
+<line x1="240" y1="247" x2="258" y2="247" stroke="#c0392b" stroke-width="2.5"/>
+<text x="262" y="252" font-size="9.5" fill="#4a4a4a">Inflación 5% anual</text>
+<line x1="400" y1="247" x2="418" y2="247" stroke="#8B0000" stroke-width="2.5"/>
+<text x="422" y="252" font-size="9.5" fill="#4a4a4a">Inflación 8% anual</text>
+</svg>
+  <p class="grafico-caption">
+    Índice base 100 al inicio del retiro. A una inflación del 5% anual, el poder
+    adquisitivo cae a 30 en 25 años. La línea oscura representa el escenario del 8%
+    anual, comparable con la inflación histórica uruguaya promedio.
+  </p>
+</div>
+
+<p>
+  Este deterioro no es abstracto. Implica que quien cobra $50.000 de jubilación hoy,
+  al ritmo del 7% anual de inflación, percibirá el equivalente a menos de $13.000
+  en pesos de hoy dentro de 25 años. La protección del poder adquisitivo es uno de
+  los mayores desafíos del retiro largo.
+</p>
+
+<h2>El riesgo de agotar los fondos</h2>
+
+<p>
+  Supongamos que llegás al retiro con un capital acumulado de
+  <span class="dato">USD 150.000</span> en tu AFAP o en una cuenta de inversión propia,
+  y que ese capital genera un retorno del 8% anual. ¿Cuánto tiempo te dura, según
+  cuánto retirás cada mes?
+</p>
+
+<p>
+  La respuesta depende crítica y directamente del monto mensual que retirás. Retirar
+  USD 1.200 mensuales te permite sostener ese capital por más de 22 años. Retirar
+  USD 1.800 lo agota en poco más de 10.
+</p>
+
+<div class="grafico-wrap">
+  <span class="grafico-label">Gráfico 4 — Simulación de duración del capital según retiro mensual</span>
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+<line x1="65" y1="250.0" x2="560" y2="250.0" stroke="#d8d0c8" stroke-width="1"/>
+<text x="59" y="254.0" text-anchor="end" font-size="9.5" fill="#8a8a8a">$0</text>
+<line x1="65" y1="187.1" x2="560" y2="187.1" stroke="#d8d0c8" stroke-width="1"/>
+<text x="59" y="191.1" text-anchor="end" font-size="9.5" fill="#8a8a8a">$50k</text>
+<line x1="65" y1="124.3" x2="560" y2="124.3" stroke="#d8d0c8" stroke-width="1"/>
+<text x="59" y="128.3" text-anchor="end" font-size="9.5" fill="#8a8a8a">$100k</text>
+<line x1="65" y1="61.4" x2="560" y2="61.4" stroke="#d8d0c8" stroke-width="1"/>
+<text x="59" y="65.4" text-anchor="end" font-size="9.5" fill="#8a8a8a">$150k</text>
+<line x1="65.0" y1="30" x2="65.0" y2="250.0" stroke="#d8d0c8" stroke-width="1"/>
+<text x="65.0" y="264" text-anchor="middle" font-size="9.5" fill="#8a8a8a">Año 0</text>
+<line x1="164.0" y1="30" x2="164.0" y2="250.0" stroke="#d8d0c8" stroke-width="1"/>
+<text x="164.0" y="264" text-anchor="middle" font-size="9.5" fill="#8a8a8a">Año 5</text>
+<line x1="263.0" y1="30" x2="263.0" y2="250.0" stroke="#d8d0c8" stroke-width="1"/>
+<text x="263.0" y="264" text-anchor="middle" font-size="9.5" fill="#8a8a8a">Año 10</text>
+<line x1="362.0" y1="30" x2="362.0" y2="250.0" stroke="#d8d0c8" stroke-width="1"/>
+<text x="362.0" y="264" text-anchor="middle" font-size="9.5" fill="#8a8a8a">Año 15</text>
+<line x1="461.0" y1="30" x2="461.0" y2="250.0" stroke="#d8d0c8" stroke-width="1"/>
+<text x="461.0" y="264" text-anchor="middle" font-size="9.5" fill="#8a8a8a">Año 20</text>
+<line x1="560.0" y1="30" x2="560.0" y2="250.0" stroke="#d8d0c8" stroke-width="1"/>
+<text x="560.0" y="264" text-anchor="middle" font-size="9.5" fill="#8a8a8a">Año 25</text>
+<text x="59" y="34.0" text-anchor="end" font-size="9.5" fill="#8a8a8a">$175k</text>
+<text transform="rotate(-90)" x="-150" y="14" text-anchor="middle" font-size="9" fill="#8a8a8a" letter-spacing="0.08em">SALDO (USD)</text>
+<polyline points="65.0,61.4 66.7,61.7 68.3,61.9 70.0,62.2 71.6,62.4 73.2,62.7 74.9,63.0 76.5,63.2 78.2,63.5 79.8,63.8 81.5,64.0 83.2,64.3 84.8,64.6 86.4,64.8 88.1,65.1 89.8,65.4 91.4,65.7 93.0,65.9 94.7,66.2 96.3,66.5 98.0,66.8 99.7,67.1 101.3,67.4 103.0,67.7 104.6,67.9 106.2,68.2 107.9,68.5 109.5,68.8 111.2,69.1 112.8,69.4 114.5,69.7 116.2,70.1 117.8,70.4 119.5,70.7 121.1,71.0 122.8,71.3 124.4,71.6 126.1,71.9 127.7,72.3 129.4,72.6 131.0,72.9 132.6,73.2 134.3,73.6 135.9,73.9 137.6,74.2 139.2,74.6 140.9,74.9 142.6,75.3 144.2,75.6 145.8,75.9 147.5,76.3 149.2,76.6 150.8,77.0 152.4,77.3 154.1,77.7 155.8,78.1 157.4,78.4 159.1,78.8 160.7,79.2 162.4,79.5 164.0,79.9 165.6,80.3 167.3,80.7 168.9,81.0 170.6,81.4 172.2,81.8 173.9,82.2 175.6,82.6 177.2,83.0 178.9,83.4 180.5,83.8 182.2,84.2 183.8,84.6 185.4,85.0 187.1,85.4 188.8,85.8 190.4,86.2 192.1,86.6 193.7,87.0 195.3,87.5 197.0,87.9 198.7,88.3 200.3,88.7 201.9,89.2 203.6,89.6 205.2,90.1 206.9,90.5 208.5,90.9 210.2,91.4 211.9,91.8 213.5,92.3 215.2,92.8 216.8,93.2 218.4,93.7 220.1,94.1 221.8,94.6 223.4,95.1 225.1,95.6 226.7,96.0 228.3,96.5 230.0,97.0 231.7,97.5 233.3,98.0 235.0,98.5 236.6,99.0 238.2,99.5 239.9,100.0 241.5,100.5 243.2,101.0 244.8,101.5 246.5,102.0 248.2,102.6 249.8,103.1 251.4,103.6 253.1,104.2 254.8,104.7 256.4,105.2 258.1,105.8 259.7,106.3 261.4,106.9 263.0,107.4 264.7,108.0 266.3,108.5 267.9,109.1 269.6,109.7 271.2,110.3 272.9,110.8 274.6,111.4 276.2,112.0 277.9,112.6 279.5,113.2 281.1,113.8 282.8,114.4 284.5,115.0 286.1,115.6 287.8,116.2 289.4,116.8 291.1,117.4 292.7,118.1 294.4,118.7 296.0,119.3 297.6,120.0 299.3,120.6 300.9,121.2 302.6,121.9 304.2,122.6 305.9,123.2 307.5,123.9 309.2,124.5 310.9,125.2 312.5,125.9 314.2,126.6 315.8,127.3 317.5,127.9 319.1,128.6 320.8,129.3 322.4,130.0 324.1,130.8 325.7,131.5 327.4,132.2 329.0,132.9 330.6,133.6 332.3,134.4 333.9,135.1 335.6,135.9 337.2,136.6 338.9,137.4 340.6,138.1 342.2,138.9 343.9,139.6 345.5,140.4 347.1,141.2 348.8,142.0 350.4,142.8 352.1,143.6 353.8,144.4 355.4,145.2 357.1,146.0 358.7,146.8 360.4,147.6 362.0,148.4 363.7,149.3 365.3,150.1 366.9,150.9 368.6,151.8 370.2,152.6 371.9,153.5 373.6,154.4 375.2,155.2 376.9,156.1 378.5,157.0 380.1,157.9 381.8,158.8 383.4,159.7 385.1,160.6 386.8,161.5 388.4,162.4 390.1,163.3 391.7,164.3 393.4,165.2 395.0,166.2 396.7,167.1 398.3,168.1 400.0,169.0 401.6,170.0 403.2,171.0 404.9,172.0 406.5,172.9 408.2,173.9 409.9,174.9 411.5,175.9 413.1,177.0 414.8,178.0 416.4,179.0 418.1,180.0 419.8,181.1 421.4,182.1 423.0,183.2 424.7,184.3 426.3,185.3 428.0,186.4 429.7,187.5 431.3,188.6 432.9,189.7 434.6,190.8 436.2,191.9 437.9,193.0 439.6,194.1 441.2,195.3 442.8,196.4 444.5,197.6 446.2,198.7 447.8,199.9 449.5,201.1 451.1,202.3 452.8,203.5 454.4,204.7 456.1,205.9 457.7,207.1 459.4,208.3 461.0,209.5 462.6,210.8 464.3,212.0 466.0,213.3 467.6,214.5 469.3,215.8 470.9,217.1 472.5,218.4 474.2,219.7 475.8,221.0 477.5,222.3 479.1,223.6 480.8,224.9 482.4,226.3 484.1,227.6 485.8,229.0 487.4,230.4 489.1,231.7 490.7,233.1 492.3,234.5 494.0,235.9 495.6,237.3 497.3,238.8 499.0,240.2 500.6,241.6 502.2,243.1 503.9,244.6 505.6,246.0 507.2,247.5 508.9,249.0 510.5,250.0" fill="none" stroke="#1d3557" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="510.5" cy="250.0" r="4" fill="#1d3557"/>
+<line x1="560.0" y1="245.0" x2="566.0" y2="245.0" stroke="#1d3557" stroke-width="1" stroke-dasharray="2,2"/>
+<text x="568.0" y="249.0" font-size="9.5" fill="#1d3557" font-weight="500">USD 1.200/mes → se agota en ~22,5 años</text>
+<polyline points="65.0,61.4 66.7,62.1 68.3,62.7 70.0,63.3 71.6,64.0 73.2,64.6 74.9,65.3 76.5,65.9 78.2,66.6 79.8,67.2 81.5,67.9 83.2,68.6 84.8,69.3 86.4,69.9 88.1,70.6 89.8,71.3 91.4,72.0 93.0,72.7 94.7,73.4 96.3,74.1 98.0,74.8 99.7,75.5 101.3,76.3 103.0,77.0 104.6,77.7 106.2,78.5 107.9,79.2 109.5,80.0 111.2,80.7 112.8,81.5 114.5,82.2 116.2,83.0 117.8,83.8 119.5,84.5 121.1,85.3 122.8,86.1 124.4,86.9 126.1,87.7 127.7,88.5 129.4,89.3 131.0,90.1 132.6,91.0 134.3,91.8 135.9,92.6 137.6,93.4 139.2,94.3 140.9,95.1 142.6,96.0 144.2,96.8 145.8,97.7 147.5,98.6 149.2,99.5 150.8,100.3 152.4,101.2 154.1,102.1 155.8,103.0 157.4,103.9 159.1,104.8 160.7,105.8 162.4,106.7 164.0,107.6 165.6,108.6 167.3,109.5 168.9,110.4 170.6,111.4 172.2,112.4 173.9,113.3 175.6,114.3 177.2,115.3 178.9,116.3 180.5,117.3 182.2,118.3 183.8,119.3 185.4,120.3 187.1,121.3 188.8,122.3 190.4,123.4 192.1,124.4 193.7,125.5 195.3,126.5 197.0,127.6 198.7,128.6 200.3,129.7 201.9,130.8 203.6,131.9 205.2,133.0 206.9,134.1 208.5,135.2 210.2,136.3 211.9,137.5 213.5,138.6 215.2,139.7 216.8,140.9 218.4,142.1 220.1,143.2 221.8,144.4 223.4,145.6 225.1,146.8 226.7,148.0 228.3,149.2 230.0,150.4 231.7,151.6 233.3,152.8 235.0,154.1 236.6,155.3 238.2,156.6 239.9,157.8 241.5,159.1 243.2,160.4 244.8,161.7 246.5,163.0 248.2,164.3 249.8,165.6 251.4,166.9 253.1,168.2 254.8,169.6 256.4,170.9 258.1,172.3 259.7,173.7 261.4,175.0 263.0,176.4 264.7,177.8 266.3,179.2 267.9,180.6 269.6,182.1 271.2,183.5 272.9,184.9 274.6,186.4 276.2,187.8 277.9,189.3 279.5,190.8 281.1,192.3 282.8,193.8 284.5,195.3 286.1,196.8 287.8,198.4 289.4,199.9 291.1,201.4 292.7,203.0 294.4,204.6 296.0,206.2 297.6,207.8 299.3,209.4 300.9,211.0 302.6,212.6 304.2,214.2 305.9,215.9 307.5,217.5 309.2,219.2 310.9,220.9 312.5,222.6 314.2,224.3 315.8,226.0 317.5,227.7 319.1,229.5 320.8,231.2 322.4,233.0 324.1,234.8 325.7,236.5 327.4,238.3 329.0,240.1 330.6,242.0 332.3,243.8 333.9,245.6 335.6,247.5 337.2,249.4 338.9,250.0" fill="none" stroke="#c0392b" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="338.9" cy="250.0" r="4" fill="#c0392b"/>
+<line x1="560.0" y1="275.0" x2="566.0" y2="275.0" stroke="#c0392b" stroke-width="1" stroke-dasharray="2,2"/>
+<text x="568.0" y="279.0" font-size="9.5" fill="#c0392b" font-weight="500">USD 1.500/mes → se agota en ~13,8 años</text>
+<polyline points="65.0,61.4 66.7,62.4 68.3,63.4 70.0,64.5 71.6,65.5 73.2,66.5 74.9,67.6 76.5,68.6 78.2,69.7 79.8,70.7 81.5,71.8 83.2,72.9 84.8,73.9 86.4,75.0 88.1,76.1 89.8,77.2 91.4,78.4 93.0,79.5 94.7,80.6 96.3,81.7 98.0,82.9 99.7,84.0 101.3,85.2 103.0,86.3 104.6,87.5 106.2,88.7 107.9,89.9 109.5,91.1 111.2,92.3 112.8,93.5 114.5,94.7 116.2,95.9 117.8,97.2 119.5,98.4 121.1,99.7 122.8,100.9 124.4,102.2 126.1,103.5 127.7,104.8 129.4,106.1 131.0,107.4 132.6,108.7 134.3,110.0 135.9,111.3 137.6,112.7 139.2,114.0 140.9,115.4 142.6,116.7 144.2,118.1 145.8,119.5 147.5,120.9 149.2,122.3 150.8,123.7 152.4,125.1 154.1,126.5 155.8,128.0 157.4,129.4 159.1,130.9 160.7,132.4 162.4,133.8 164.0,135.3 165.6,136.8 167.3,138.3 168.9,139.9 170.6,141.4 172.2,142.9 173.9,144.5 175.6,146.0 177.2,147.6 178.9,149.2 180.5,150.8 182.2,152.4 183.8,154.0 185.4,155.6 187.1,157.2 188.8,158.9 190.4,160.5 192.1,162.2 193.7,163.9 195.3,165.6 197.0,167.3 198.7,169.0 200.3,170.7 201.9,172.4 203.6,174.2 205.2,175.9 206.9,177.7 208.5,179.5 210.2,181.3 211.9,183.1 213.5,184.9 215.2,186.7 216.8,188.6 218.4,190.4 220.1,192.3 221.8,194.2 223.4,196.1 225.1,198.0 226.7,199.9 228.3,201.8 230.0,203.8 231.7,205.7 233.3,207.7 235.0,209.7 236.6,211.6 238.2,213.7 239.9,215.7 241.5,217.7 243.2,219.8 244.8,221.8 246.5,223.9 248.2,226.0 249.8,228.1 251.4,230.2 253.1,232.3 254.8,234.5 256.4,236.6 258.1,238.8 259.7,241.0 261.4,243.2 263.0,245.4 264.7,247.7 266.3,249.9 267.9,250.0" fill="none" stroke="#8B0000" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="267.9" cy="250.0" r="4" fill="#8B0000"/>
+<line x1="560.0" y1="305.0" x2="566.0" y2="305.0" stroke="#8B0000" stroke-width="1" stroke-dasharray="2,2"/>
+<text x="568.0" y="309.0" font-size="9.5" fill="#8B0000" font-weight="500">USD 1.800/mes → se agota en ~10,2 años</text>
+<text x="65" y="294" font-size="8.5" fill="#8a8a8a" font-style="italic">Capital inicial: USD 150.000 · Retorno: 8% anual · Simulación de retiro mensual</text>
+</svg>
+</div>
+
+<div class="callout">
+  <div class="callout-label">La regla del 4%</div>
+  <p>En finanzas personales existe una referencia empírica conocida como la "regla del 4%":
+  retirar anualmente el 4% del capital inicial permite sostener el fondo por 30 años en
+  la mayoría de los escenarios históricos. Para un capital de USD 150.000, eso equivale
+  a retirar USD 500/mes. Es una guía, no una garantía — pero ilustra la tensión entre
+  longevidad y sostenibilidad.</p>
+</div>
+
+<h2>El impacto de cuándo empezás a ahorrar</h2>
+
+<p>
+  El tiempo es el factor más poderoso en la acumulación de capital. No porque los
+  rendimientos sean mágicos, sino porque el interés compuesto actúa de forma
+  exponencial: los retornos generan retornos sobre retornos, y esa curva se vuelve
+  dramáticamente diferente según el punto de partida.
+</p>
+
+<p>
+  Veamos un ejemplo concreto: ahorrar <strong>USD 200 mensuales</strong> con un
+  retorno del <strong>8% anual</strong>, comenzando a distintas edades y jubilándose
+  a los 65.
+</p>
+
+<div class="grafico-wrap">
+  <span class="grafico-label">Gráfico 5 — Capital acumulado según cuándo empezás a ahorrar (USD 200/mes · 8% anual)</span>
+  <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+<line x1="65" y1="209.1" x2="660" y2="209.1" stroke="#d8d0c8" stroke-width="1"/>
+<text x="59" y="213.1" text-anchor="end" font-size="9.5" fill="#8a8a8a">$100k</text>
+<line x1="65" y1="168.3" x2="660" y2="168.3" stroke="#d8d0c8" stroke-width="1"/>
+<text x="59" y="172.3" text-anchor="end" font-size="9.5" fill="#8a8a8a">$200k</text>
+<line x1="65" y1="127.4" x2="660" y2="127.4" stroke="#d8d0c8" stroke-width="1"/>
+<text x="59" y="131.4" text-anchor="end" font-size="9.5" fill="#8a8a8a">$300k</text>
+<line x1="65" y1="86.5" x2="660" y2="86.5" stroke="#d8d0c8" stroke-width="1"/>
+<text x="59" y="90.5" text-anchor="end" font-size="9.5" fill="#8a8a8a">$400k</text>
+<text transform="rotate(-90)" x="-160" y="14" text-anchor="middle" font-size="9" fill="#8a8a8a" letter-spacing="0.08em">CAPITAL ACUMULADO (USD)</text>
+<rect x="112.6" y="62.5" width="103.1" height="187.5" fill="#1d3557" rx="3" opacity="0.85"/>
+<rect x="112.6" y="215.7" width="103.1" height="34.3" fill="#1d3557" rx="3"/>
+<text x="164.2" y="54.5" text-anchor="middle" font-size="12" fill="#1d3557" font-weight="600">$459k</text>
+<text x="164.2" y="236.8" text-anchor="middle" font-size="9" fill="white" font-weight="300">Aportado</text>
+<text x="164.2" y="248.8" text-anchor="middle" font-size="9.5" fill="white" font-weight="500">$84k</text>
+<text x="164.2" y="268.0" text-anchor="middle" font-size="10" fill="#4a4a4a">Empezás</text>
+<text x="164.2" y="281.0" text-anchor="middle" font-size="10" fill="#4a4a4a">a los 30</text>
+<text x="164.2" y="294.0" text-anchor="middle" font-size="9" fill="#8a8a8a">35 años de ahorro</text>
+<rect x="310.9" y="172.3" width="103.1" height="77.7" fill="#c0392b" rx="3" opacity="0.85"/>
+<rect x="310.9" y="225.5" width="103.1" height="24.5" fill="#c0392b" rx="3"/>
+<text x="362.5" y="164.3" text-anchor="middle" font-size="12" fill="#c0392b" font-weight="600">$190k</text>
+<text x="362.5" y="241.7" text-anchor="middle" font-size="9" fill="white" font-weight="300">Aportado</text>
+<text x="362.5" y="253.7" text-anchor="middle" font-size="9.5" fill="white" font-weight="500">$60k</text>
+<text x="362.5" y="268.0" text-anchor="middle" font-size="10" fill="#4a4a4a">Empezás</text>
+<text x="362.5" y="281.0" text-anchor="middle" font-size="10" fill="#4a4a4a">a los 40</text>
+<text x="362.5" y="294.0" text-anchor="middle" font-size="9" fill="#8a8a8a">25 años de ahorro</text>
+<rect x="509.3" y="221.7" width="103.1" height="28.3" fill="#8a8a8a" rx="3" opacity="0.85"/>
+<rect x="509.3" y="235.3" width="103.1" height="14.7" fill="#8a8a8a" rx="3"/>
+<text x="560.8" y="213.7" text-anchor="middle" font-size="12" fill="#8a8a8a" font-weight="600">$69k</text>
+<text x="560.8" y="268.0" text-anchor="middle" font-size="10" fill="#4a4a4a">Empezás</text>
+<text x="560.8" y="281.0" text-anchor="middle" font-size="10" fill="#4a4a4a">a los 50</text>
+<text x="560.8" y="294.0" text-anchor="middle" font-size="9" fill="#8a8a8a">15 años de ahorro</text>
+<rect x="85" y="305" width="14" height="11" fill="#1d3557" rx="1" opacity="0.85"/>
+<text x="103" y="314" font-size="9.5" fill="#4a4a4a">Total acumulado (incluyendo intereses)</text>
+<rect x="325" y="305" width="14" height="11" fill="#1d3557" rx="1"/>
+<text x="343" y="314" font-size="9.5" fill="#4a4a4a">Capital aportado</text>
+</svg>
+  <p class="grafico-caption">
+    La barra más oscura representa el capital realmente aportado; la diferencia hasta
+    el total es el rendimiento acumulado. Quien empieza a los 30 aporta USD 84.000
+    en total pero acumula USD 458.000 — más de 5 veces lo aportado. Quien empieza
+    a los 50 aporta USD 36.000 y acumula USD 69.000.
+  </p>
+</div>
+
+<p class="nota-legal">Proyección ilustrativa. Tasa del 8% anual nominal no garantizada. El rendimiento real depende del instrumento, la inflación y las condiciones del mercado. USD 200 mensuales equivalen aproximadamente a $8.000–$9.000 pesos uruguayos al tipo de cambio actual.</p>
+
+<p>
+  La diferencia entre empezar a los 30 y empezar a los 40 no es lineal — es enorme.
+  Empezar 10 años antes, con el mismo aporte mensual, genera un capital
+  <strong>2,4 veces mayor</strong>. Empezar a los 50 en lugar de los 40 genera
+  menos de la mitad del capital.
+</p>
+
+<div class="callout">
+  <div class="callout-label">Lo que esto significa para tu retiro</div>
+  <p>Si te jubilás con USD 458.000 en lugar de USD 69.000, la diferencia no está solo
+  en el número — está en cuántos años podés sostener un retiro digno, cuánto podés
+  retirar cada mes sin agotar el fondo, y qué margen tenés frente a la inflación y
+  los imprevistos médicos. La ventana de tiempo es un recurso que no se recupera.</p>
+</div>
+
+<h2>Qué hacer con esta información</h2>
+
+<p>
+  El punto no es generar ansiedad. Es generar precisión. Planificar el retiro sin
+  considerar su duración probable es como planificar un viaje sin saber cuántos días
+  va a durar.
+</p>
+
+<p>
+  Los tres elementos centrales de un plan de retiro robusto son:
+</p>
+
+<ul>
+  <li><strong>Conocer la brecha real.</strong> ¿Cuánto vas a cobrar del BPS según tu historia laboral? ¿Cuánto necesitás para mantener tu nivel de vida? La diferencia es lo que el ahorro complementario debe cubrir.</li>
+  <li><strong>Estimar el horizonte.</strong> Una persona de 35 años hoy puede esperar vivir hasta los 85 o más. Su capital debe sostenerse durante 20 o 25 años de retiro, no 10.</li>
+  <li><strong>Empezar antes.</strong> Cada año que pasa sin ahorrar no es neutro — es una reducción exponencial del capital final disponible. El tiempo perdido no se compra.</li>
+</ul>
+
+<p>
+  El sistema previsional uruguayo ofrece una base. Lo que construís encima de esa base —
+  y cuándo empezás a construirlo — define el tipo de retiro que vas a tener.
+</p>
+
+<hr class="divider"/>
+
+<div class="fuentes">
+  <h3>Fuentes</h3>
+  <p>BPS – Tablas de mortalidad y esperanza de vida 2024. Banco de Previsión Social, Uruguay.</p>
+  <p>INE – Proyecciones demográficas 2023–2100. Instituto Nacional de Estadística, Uruguay.</p>
+  <p>BPS – Estadísticas del sistema previsional uruguayo. Memorias anuales 2023–2024.</p>
+  <p>Bengen, W. P. (1994). "Determining Withdrawal Rates Using Historical Data". <em>Journal of Financial Planning</em>. Base de la regla del 4%.</p>
+  <p>INE – Índice de Precios al Consumo. Serie histórica 2000–2024.</p>
+</div>
+
+</article>
+</div>
+</body>
+</html>
