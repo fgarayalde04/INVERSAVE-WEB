@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { CTASection, Footer } from "@/components/sections/CTAFooter";
-import { NewsGrid } from "@/components/news/NewsGrid";
+import { NewsFilterClient, type DisplayItem } from "@/components/news/NewsFilterClient";
 import { getNewsSorted } from "@/data/news";
+import { getInternalNewsSorted } from "@/data/internalNews";
 
 export const metadata: Metadata = {
   title: "Noticias del sistema previsional uruguayo | INVERTITE",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
     "noticias sistema previsional Uruguay",
     "reforma jubilatoria Uruguay",
     "noticias AFAPs Uruguay",
-    "jubilación BPS 2024",
+    "jubilación BPS 2026",
     "tasas financieras Uruguay",
     "ahorro previsional complementario Uruguay",
     "educación financiera Uruguay",
@@ -21,7 +22,18 @@ export const metadata: Metadata = {
 };
 
 export default function NoticiasPage() {
-  const news = getNewsSorted();
+  const internal = getInternalNewsSorted();
+  const external = getNewsSorted();
+
+  // Merge and sort all items by date descending
+  const allItems: DisplayItem[] = [
+    ...internal.map((item) => ({ kind: "internal" as const, item })),
+    ...external.map((item) => ({ kind: "external" as const, item })),
+  ].sort((a, b) => {
+    const da = a.kind === "internal" ? a.item.date : a.item.date;
+    const db = b.kind === "internal" ? b.item.date : b.item.date;
+    return db.localeCompare(da);
+  });
 
   return (
     <main>
@@ -41,16 +53,15 @@ export default function NoticiasPage() {
         </div>
       </section>
 
-      {/* News grid */}
+      {/* News grid con filtros */}
       <section className="section-wrap-white">
         <div className="inner">
-          <NewsGrid items={news} />
+          <NewsFilterClient items={allItems} />
 
           {/* Disclaimer */}
           <p className="mt-10 text-center text-[12px] text-t3 max-w-lg mx-auto leading-relaxed">
-            Los artículos enlazan a fuentes externas. INVERTITE no produce ni edita
-            el contenido de terceros. Esta sección es exclusivamente educativa e
-            informativa, no constituye asesoramiento financiero.
+            Los artículos de INVERTITE son educativos e informativos, no constituyen asesoramiento
+            financiero. Las noticias externas enlazan a sus fuentes originales.
           </p>
         </div>
       </section>

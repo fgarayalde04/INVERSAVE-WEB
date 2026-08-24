@@ -7,6 +7,9 @@ const CATEGORY_STYLES: Record<NewsCategory, string> = {
   mercado:       "bg-emerald-50 text-emerald-700 border-emerald-200",
   educacion:     "bg-yellow-50 text-yellow-700 border-yellow-200",
   internacional: "bg-slate-50 text-slate-600 border-slate-200",
+  jubilacion:    "bg-purple-50 text-purple-700 border-purple-200",
+  tasas:         "bg-emerald-50 text-emerald-700 border-emerald-200",
+  ahorro:        "bg-teal-50 text-teal-700 border-teal-200",
 };
 
 interface NewsTagProps {

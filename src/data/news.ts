@@ -10,7 +10,10 @@ export type NewsCategory =
   | "bps"
   | "mercado"
   | "educacion"
-  | "internacional";
+  | "internacional"
+  | "jubilacion"
+  | "tasas"
+  | "ahorro";
 
 export interface NewsItem {
   id: string;
