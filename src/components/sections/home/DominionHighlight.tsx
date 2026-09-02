@@ -5,7 +5,7 @@ import { FadeIn } from "@/components/ui";
 
 const ACCOUNT_STEPS = [
   { step: "01", title: "Abrís tu cuenta", desc: "A tu nombre, custodiada en BNY Mellon." },
-  { step: "02", title: "Configurás el aporte", desc: "Desde USD 150/mes. Automatizable." },
+  { step: "02", title: "Configurás el aporte", desc: "Desde USD 250/mes. Automatizable." },
   { step: "03", title: "Invertís globalmente", desc: "S&P 500, MSCI World, bonos internacionales." },
   { step: "04", title: "Seguís el crecimiento", desc: "Panel 24/7 con tu portafolio en tiempo real." },
 ];
@@ -52,7 +52,7 @@ export default function DominionHighlight() {
                 {/* Stats verticales */}
                 <div className="flex flex-col gap-3 md:w-[220px] flex-shrink-0">
                   {[
-                    { n: "USD 150/mes", l: "Aporte mínimo mensual" },
+                    { n: "USD 250/mes", l: "Aporte mínimo mensual" },
                     { n: "BNY Mellon", l: "Custodio de activos" },
                     { n: "BCU", l: "Asesor regulado localmente" },
                   ].map(s => (

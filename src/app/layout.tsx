@@ -42,13 +42,13 @@ export const metadata: Metadata = {
     siteName: "INVERTITE",
     title: "INVERTITE — Ahorro e inversión a largo plazo en Uruguay",
     description:
-      "Plan de ahorro mensual automático invertido en mercados globales. Regulado BCU. Cuenta segregada BNY Mellon. Desde USD 150/mes.",
+      "Plan de ahorro mensual automático invertido en mercados globales. Regulado BCU. Cuenta segregada BNY Mellon. Desde USD 250/mes.",
   },
   twitter: {
     card: "summary_large_image",
     title: "INVERTITE — Ahorro e inversión a largo plazo en Uruguay",
     description:
-      "Plan de ahorro mensual automático invertido en mercados globales. Regulado BCU. Desde USD 150/mes.",
+      "Plan de ahorro mensual automático invertido en mercados globales. Regulado BCU. Desde USD 250/mes.",
   },
   robots: {
     index: true,

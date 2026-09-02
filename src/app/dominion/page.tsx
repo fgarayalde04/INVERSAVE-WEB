@@ -18,7 +18,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "El Plan — Ahorro e inversión global desde Uruguay | INVERTITE",
   description:
-    "Un plan de ahorro mensual automatizado, invertido en mercados globales. Aportes desde USD 150/mes. Cuenta segregada BNY Mellon. Asesor regulado BCU. Dominion Capital Strategies · Guernsey FSC.",
+    "Un plan de ahorro mensual automatizado, invertido en mercados globales. Aportes desde USD 250/mes. Cuenta segregada BNY Mellon. Asesor regulado BCU. Dominion Capital Strategies · Guernsey FSC.",
 };
 
 // ── Navegación interna ───────────────────────────────────────────────────────
