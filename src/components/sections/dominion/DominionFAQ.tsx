@@ -6,7 +6,7 @@ import { FadeIn } from "@/components/ui";
 const FAQS = [
   {
     q: "¿Qué es El Plan de INVERTITE?",
-    a: "El Plan es un esquema de ahorro e inversión mensual automatizado, diseñado para construir patrimonio a largo plazo desde Uruguay. Aportás un monto mensual fijo —desde USD 150— y ese dinero se invierte en mercados globales a través de Dominion Capital Strategies. No necesitás saber de finanzas ni tomar decisiones de mercado.",
+    a: "El Plan es un esquema de ahorro e inversión mensual automatizado, diseñado para construir patrimonio a largo plazo desde Uruguay. Aportás un monto mensual fijo —desde USD 250— y ese dinero se invierte en mercados globales a través de Dominion Capital Strategies. No necesitás saber de finanzas ni tomar decisiones de mercado.",
   },
   {
     q: "¿Cómo funciona el aporte mensual automático?",
@@ -34,7 +34,7 @@ const FAQS = [
   },
   {
     q: "¿Cuál es el aporte mínimo?",
-    a: "El aporte mínimo es de USD 150 por mes. Los aportes son automáticos y se procesan mensualmente. No existe un mínimo de permanencia obligatoria — podés modificar o suspender tus aportes en cualquier momento.",
+    a: "El aporte mínimo es de USD 250 por mes. Los aportes son automáticos y se procesan mensualmente. No existe un mínimo de permanencia obligatoria — podés modificar o suspender tus aportes en cualquier momento.",
   },
   {
     q: "¿Puedo retirar mi dinero cuando quiera?",

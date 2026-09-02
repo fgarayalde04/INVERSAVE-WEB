@@ -4,7 +4,7 @@ const STEPS = [
   {
     n: "01",
     title: "Definís un aporte mensual",
-    desc: "Elegís cuánto querés aportar cada mes, desde USD 150. No hay una cifra correcta: lo importante es ser constante con lo que es sostenible para vos.",
+    desc: "Elegís cuánto querés aportar cada mes, desde USD 250. No hay una cifra correcta: lo importante es ser constante con lo que es sostenible para vos.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
         <circle cx="14" cy="14" r="10" stroke="#52B558" strokeWidth="1.5" />

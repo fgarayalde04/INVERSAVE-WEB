@@ -8,7 +8,7 @@ const ITEMS = [
     id: "aportes",
     title: "Aportes mensuales",
     content:
-      "Elegís un monto fijo desde USD 150 por mes. No hay una cifra perfecta: lo que importa es la constancia. Con el mismo monto mensual, cuando el mercado baja adquirís más participaciones y cuando sube tu portafolio crece. Podés aumentar o reducir tu aporte cuando lo necesités.",
+      "Elegís un monto fijo desde USD 250 por mes. No hay una cifra perfecta: lo que importa es la constancia. Con el mismo monto mensual, cuando el mercado baja adquirís más participaciones y cuando sube tu portafolio crece. Podés aumentar o reducir tu aporte cuando lo necesités.",
   },
   {
     id: "debito",

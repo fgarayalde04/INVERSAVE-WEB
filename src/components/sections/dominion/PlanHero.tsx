@@ -96,7 +96,7 @@ export default function PlanHero() {
             "Regulado BCU",
             "Cuenta segregada · BNY Mellon",
             "Guernsey FSC",
-            "Desde USD 150/mes",
+            "Desde USD 250/mes",
           ].map((b) => (
             <div key={b} className="badge">
               <span className="w-1.5 h-1.5 rounded-full bg-g1 flex-shrink-0" />

@@ -4,8 +4,8 @@ import { FadeIn } from "@/components/ui";
 const INFO = [
   {
     label: "Aporte mínimo",
-    value: "USD 150/mes",
-    sub: "Aportes automáticos mensuales desde USD 150",
+    value: "USD 250/mes",
+    sub: "Aportes automáticos mensuales desde USD 250",
     icon: (
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
         <path d="M3 16L8 10L12 13L17 6" stroke="#1A6638" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
