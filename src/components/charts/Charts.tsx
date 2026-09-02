@@ -718,15 +718,16 @@ export function PersonaABChart() {
   return <canvas ref={ref} />;
 }
 
-// ── SimLineChart — interactive line chart for Simulador ───────
+// ── SimLineChart — interactive stacked area chart for Simulador ─
 interface SimLineChartProps {
   monthly: number;
   years: number;
   rate: number;
   capitalInicial?: number;
+  inflacion?: number;
 }
 
-export function SimLineChart({ monthly, years, rate, capitalInicial = 0 }: SimLineChartProps) {
+export function SimLineChart({ monthly, years, rate, capitalInicial = 0, inflacion = 0 }: SimLineChartProps) {
   const ref = useRef<HTMLCanvasElement>(null);
   const chartRef = useRef<Chart | null>(null);
 
@@ -735,46 +736,82 @@ export function SimLineChart({ monthly, years, rate, capitalInicial = 0 }: SimLi
     if (chartRef.current) chartRef.current.destroy();
 
     const labels: string[] = [];
-    const capitalData: number[] = [];
     const aportadoData: number[] = [];
+    const rendimientoData: number[] = [];   // capital total − aportes
+    const realData: number[] = [];           // inflation-adjusted capital
     const r = rate / 100 / 12;
 
     for (let y = 0; y <= years; y++) {
-      labels.push(
+      const showLabel =
         y === 0 ? "Hoy" :
         y === years ? `Año ${y}` :
-        y % 5 === 0 ? `Año ${y}` : ""
-      );
+        y % Math.max(1, Math.floor(years / 8)) === 0 ? `Año ${y}` : "";
+      labels.push(showLabel);
+
       const mo = y * 12;
       const fvPMT = r > 0 ? monthly * ((Math.pow(1 + r, mo) - 1) / r) : monthly * mo;
-      capitalData.push(Math.round(fvPMT + capitalInicial * Math.pow(1 + r, mo)));
-      aportadoData.push(monthly * mo + capitalInicial);
+      const capital = Math.round(fvPMT + capitalInicial * Math.pow(1 + r, mo));
+      const aportado = monthly * mo + capitalInicial;
+
+      aportadoData.push(aportado);
+      rendimientoData.push(Math.max(0, capital - aportado));
+      if (inflacion > 0) {
+        realData.push(Math.round(capital / Math.pow(1 + inflacion / 100, y)));
+      }
+    }
+
+    const datasets: object[] = [
+      // Layer 1 — aportes (bottom fill, purple)
+      {
+        label: "Aportes",
+        data: aportadoData,
+        borderColor: "rgba(107,72,232,.7)",
+        backgroundColor: "rgba(107,72,232,.12)",
+        fill: "origin",
+        tension: 0,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: "rgba(107,72,232,.9)",
+        borderWidth: 1.5,
+        order: 2,
+        stack: "sim",
+      },
+      // Layer 2 — rendimiento (stacked on top of aportes, green)
+      {
+        label: "Rendimiento",
+        data: rendimientoData,
+        borderColor: "#52B558",
+        backgroundColor: "rgba(82,181,88,.25)",
+        fill: "-1",
+        tension: 0.4,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: "#52B558",
+        borderWidth: 2.5,
+        order: 1,
+        stack: "sim",
+      },
+    ];
+
+    // Layer 3 — inflation-adjusted capital (dashed amber), when inflation > 0
+    if (inflacion > 0) {
+      datasets.push({
+        label: "Capital real",
+        data: realData,
+        borderColor: "rgba(181,120,30,.75)",
+        backgroundColor: "transparent",
+        fill: false,
+        tension: 0.4,
+        pointRadius: 0,
+        borderWidth: 1.5,
+        borderDash: [5, 4],
+        order: 0,
+      });
     }
 
     chartRef.current = new Chart(ref.current, {
       type: "line",
-      data: {
-        labels,
-        datasets: [
-          {
-            label: "Capital total",
-            data: capitalData,
-            borderColor: "#52B558",
-            backgroundColor: "rgba(82,181,88,.12)",
-            fill: true, tension: 0.35, pointRadius: 0,
-            pointHoverRadius: 5, pointHoverBackgroundColor: "#52B558",
-            borderWidth: 2.5, order: 1,
-          },
-          {
-            label: "Solo aportes",
-            data: aportadoData,
-            borderColor: "rgba(107,72,232,.45)",
-            backgroundColor: "transparent",
-            fill: false, tension: 0, pointRadius: 0,
-            borderWidth: 1.5, borderDash: [5, 4], order: 2,
-          },
-        ],
-      },
+      data: { labels, datasets: datasets as Parameters<typeof Chart>[1]["data"]["datasets"] },
       options: {
         responsive: true, maintainAspectRatio: false,
         interaction: { mode: "index", intersect: false },
@@ -784,29 +821,44 @@ export function SimLineChart({ monthly, years, rate, capitalInicial = 0 }: SimLi
             callbacks: {
               label: (ctx) => {
                 const v = ctx.parsed.y ?? 0;
-                const lbl = ctx.datasetIndex === 0 ? "Capital total" : "Solo aportes";
-                return ` ${lbl}: USD ${Math.round(v).toLocaleString("es-UY")}`;
+                // For the stacked rendimiento, show the capital total in tooltip
+                if (ctx.datasetIndex === 1) {
+                  const aportado = aportadoData[ctx.dataIndex] ?? 0;
+                  const total = aportado + v;
+                  return ` Capital total: USD ${Math.round(total).toLocaleString("es-UY")}`;
+                }
+                if (ctx.datasetIndex === 0) return ` Aportado: USD ${Math.round(v).toLocaleString("es-UY")}`;
+                return ` Capital real: USD ${Math.round(v).toLocaleString("es-UY")}`;
               },
             },
             backgroundColor: "rgba(12,26,17,.96)",
-            titleColor: "#fff", bodyColor: "rgba(255,255,255,.6)",
-            borderColor: "rgba(255,255,255,.08)", borderWidth: 1, padding: 10,
+            titleColor: "#fff", bodyColor: "rgba(255,255,255,.7)",
+            borderColor: "rgba(255,255,255,.08)", borderWidth: 1, padding: 12,
           },
         },
         scales: {
           x: {
+            stacked: true,
             ticks: { font: TICK_FONT, color: AXIS_COLOR, maxRotation: 0, autoSkip: false },
             grid: { display: false },
           },
           y: {
-            ticks: { font: TICK_FONT, color: AXIS_COLOR, callback: (v) => "$" + Math.round(+v / 1000) + "k" },
+            stacked: true,
+            ticks: {
+              font: TICK_FONT, color: AXIS_COLOR,
+              callback: (v) => {
+                const n = +v;
+                if (n >= 1_000_000) return "$" + (n / 1_000_000).toFixed(1) + "M";
+                return "$" + Math.round(n / 1000) + "k";
+              },
+            },
             grid: { color: GRID_COLOR },
           },
         },
       },
     });
     return () => chartRef.current?.destroy();
-  }, [monthly, years, rate, capitalInicial]);
+  }, [monthly, years, rate, capitalInicial, inflacion]);
 
   return <canvas ref={ref} />;
 }

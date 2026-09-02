@@ -241,7 +241,7 @@ function Slider({
 // ── Main component ────────────────────────────────────────────
 export default function SimuladorSection() {
   const { openModal } = useLeadModal();
-  const [monthly, setMonthly] = useState(200);
+  const [monthly, setMonthly] = useState(250);
   const [years, setYears] = useState(20);
   const [edad, setEdad] = useState(30);
   const [capitalInicial, setCapitalInicial] = useState(0);
@@ -293,10 +293,10 @@ export default function SimuladorSection() {
           <div className="grid sm:grid-cols-3 gap-x-10 gap-y-8 bg-white border border-black/[.07] rounded-3xl p-8 mb-4">
             <Slider
               label="Aporte mensual"
-              microcopy="Lo que aportás cada mes. USD 150 es el mínimo del plan."
+              microcopy="Lo que aportás cada mes. USD 250 es el mínimo del plan."
               value={monthly}
               display={`USD ${monthly.toLocaleString("es-UY")}`}
-              min={50} max={5000} step={50}
+              min={250} max={5000} step={50}
               onChange={setMonthly}
             />
             <Slider
@@ -364,10 +364,10 @@ export default function SimuladorSection() {
                     />
                     <Slider
                       label="Inflación estimada"
-                      microcopy="Para calcular el poder real de compra de tu capital futuro."
+                      microcopy="Dejá en 0% si no querés ajustar por inflación."
                       value={inflacion}
-                      display={`${inflacion}%`}
-                      min={1} max={10} step={0.5}
+                      display={inflacion === 0 ? "Sin inflación" : `${inflacion}%`}
+                      min={0} max={10} step={0.5}
                       onChange={setInflacion}
                     />
                   </div>
@@ -466,27 +466,29 @@ export default function SimuladorSection() {
                 </p>
               </div>
 
-              {/* Real vs sin invertir */}
-              <div className="grid grid-cols-2 gap-3">
-                <div className="bg-[#EDF8E8] border border-g1/15 rounded-2xl p-4 text-center">
-                  <p className="text-[10px] font-bold text-g3 uppercase tracking-[0.08em] mb-2">
-                    Capital real
-                  </p>
-                  <motion.p key={`${capitalReal}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[16px] font-bold text-g3 tracking-tight">
-                    {fmt(capitalReal)}
-                  </motion.p>
-                  <p className="text-[10px] text-t3 mt-1">Poder adquisitivo hoy</p>
+              {/* Real vs sin invertir — only shown when inflation > 0 */}
+              {inflacion > 0 && (
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-[#EDF8E8] border border-g1/15 rounded-2xl p-4 text-center">
+                    <p className="text-[10px] font-bold text-g3 uppercase tracking-[0.08em] mb-2">
+                      Capital real
+                    </p>
+                    <motion.p key={`${capitalReal}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[16px] font-bold text-g3 tracking-tight">
+                      {fmt(capitalReal)}
+                    </motion.p>
+                    <p className="text-[10px] text-t3 mt-1">Poder adquisitivo hoy</p>
+                  </div>
+                  <div className="bg-[#FEF0EC] border border-warn/15 rounded-2xl p-4 text-center">
+                    <p className="text-[10px] font-bold text-warn uppercase tracking-[0.08em] mb-2">
+                      Sin invertir
+                    </p>
+                    <motion.p key={`${sinInvertir}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[16px] font-bold text-warn tracking-tight">
+                      {fmt(sinInvertir)}
+                    </motion.p>
+                    <p className="text-[10px] text-t3 mt-1">Si guardás el efectivo</p>
+                  </div>
                 </div>
-                <div className="bg-[#FEF0EC] border border-warn/15 rounded-2xl p-4 text-center">
-                  <p className="text-[10px] font-bold text-warn uppercase tracking-[0.08em] mb-2">
-                    Sin invertir
-                  </p>
-                  <motion.p key={`${sinInvertir}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[16px] font-bold text-warn tracking-tight">
-                    {fmt(sinInvertir)}
-                  </motion.p>
-                  <p className="text-[10px] text-t3 mt-1">Si guardás el efectivo</p>
-                </div>
-              </div>
+              )}
 
             </div>
           </FadeIn>
@@ -498,27 +500,34 @@ export default function SimuladorSection() {
                 <p className="text-[11px] font-bold text-t3 uppercase tracking-[0.09em] mb-1">
                   Evolución del capital
                 </p>
-                <div className="flex items-center gap-5 text-[12px] text-t3">
+                <div className="flex items-center gap-4 flex-wrap text-[12px] text-t3">
                   <div className="flex items-center gap-1.5">
-                    <div className="w-6 h-0.5 rounded-full" style={{ background: "#52B558" }} />
-                    <span>Capital total</span>
+                    <div className="w-4 h-3.5 rounded-sm flex-shrink-0" style={{ background: "rgba(82,181,88,.35)", border: "1.5px solid #52B558" }} />
+                    <span>Rendimiento</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <div className="w-6 h-0.5 rounded-full" style={{ background: "#6B48E8", opacity: 0.5 }} />
-                    <span>Solo aportes</span>
+                    <div className="w-4 h-3.5 rounded-sm flex-shrink-0" style={{ background: "rgba(107,72,232,.15)", border: "1.5px solid rgba(107,72,232,.7)" }} />
+                    <span>Aportes</span>
                   </div>
+                  {inflacion > 0 && (
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-6 h-0.5 flex-shrink-0" style={{ background: "rgba(181,120,30,.75)", borderTop: "1.5px dashed rgba(181,120,30,.75)" }} />
+                      <span>Capital real</span>
+                    </div>
+                  )}
                 </div>
               </div>
-              <div className="flex-1" style={{ minHeight: 260 }}>
+              <div className="flex-1" style={{ minHeight: 280 }}>
                 <SimLineChart
                   monthly={monthly}
                   years={years}
                   rate={rate}
                   capitalInicial={capitalInicial}
+                  inflacion={inflacion}
                 />
               </div>
               <p className="text-[10px] text-t3/50 italic mt-3 text-center">
-                El área entre las dos curvas es el rendimiento generado por el interés compuesto.
+                Zona verde = rendimiento del interés compuesto · Zona violeta = lo que aportás vos
               </p>
             </div>
           </FadeIn>
