@@ -155,6 +155,8 @@ export default function Navbar() {
     return () => document.removeEventListener("keydown", handler);
   }, []);
 
+  if (pathname?.startsWith("/financial-os")) return null;
+
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
