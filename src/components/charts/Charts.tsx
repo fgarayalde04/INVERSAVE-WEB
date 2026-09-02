@@ -811,7 +811,7 @@ export function SimLineChart({ monthly, years, rate, capitalInicial = 0, inflaci
 
     chartRef.current = new Chart(ref.current, {
       type: "line",
-      data: { labels, datasets: datasets as Parameters<typeof Chart>[1]["data"]["datasets"] },
+      data: { labels, datasets: datasets as never[] },
       options: {
         responsive: true, maintainAspectRatio: false,
         interaction: { mode: "index", intersect: false },
