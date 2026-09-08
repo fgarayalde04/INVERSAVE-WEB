@@ -31,9 +31,9 @@ export default function Home() {
       <Hero />
       <HomeContext />
       <GlowDivider />
-      <DominionHighlight />
-      <GlowDivider />
       <HomeSimuladorCTA />
+      <GlowDivider />
+      <DominionHighlight />
       <CTASection />
       <Footer />
     </main>
