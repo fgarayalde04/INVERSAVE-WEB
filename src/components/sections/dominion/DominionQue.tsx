@@ -28,7 +28,7 @@ export default function DominionQue() {
               fondo común, tu cuenta está <strong className="text-t1">segregada a tu nombre</strong>.
             </p>
             <p className="text-[17px] text-t2 leading-relaxed mb-8">
-              Los activos son tuyos — custodiados por BNY Mellon (USD 59,4 billones bajo custodia),
+              Los activos se mantienen en custodia segregada a través de BNY Mellon (USD 59,4 billones bajo custodia),
               con tecnología de FNZ e inversión gestionada por Pacific Asset Management.
             </p>
             <div className="space-y-3">

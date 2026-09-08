@@ -521,7 +521,7 @@ export default function ExpandiblesSection() {
             </p>
             <div className="grid grid-cols-2 gap-3 mb-5">
               {[
-                { icon: <IconLock />, t: "Cuentas segregadas", d: "Los activos del cliente se mantienen separados del patrimonio de la institución. En caso de insolvencia, no pueden ser reclamados por acreedores." },
+                { icon: <IconLock />, t: "Cuentas segregadas", d: "Los activos del cliente se mantienen separados del patrimonio de la institución, bajo una estructura de custodia segregada conforme a la regulación aplicable." },
                 { icon: <IconGlobe />, t: "Plataforma digital", d: "Acceso al portafolio en tiempo real, reportes de cartera y movimientos. Tecnología de administración de clase institucional." },
                 { icon: <IconShield />, t: "Regulación", d: "Las plataformas reguladas en jurisdicciones reconocidas están sujetas a controles, auditorías y obligaciones de protección al cliente." },
                 { icon: <IconTrending />, t: "Estrategias globales", d: "Acceso a índices y fondos internacionales, con perfil de inversión adaptado a cada objetivo y horizonte temporal." },

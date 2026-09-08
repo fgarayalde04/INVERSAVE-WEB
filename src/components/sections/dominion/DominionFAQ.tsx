@@ -50,7 +50,7 @@ const FAQS = [
   },
   {
     q: "¿Qué es una cuenta segregada?",
-    a: "Una cuenta segregada significa que tus activos están registrados a tu nombre y separados del balance general de Dominion y de cualquier otro cliente. Esto es diferente a depositar dinero en un banco (donde el banco usa tu depósito). Con una cuenta segregada, si Dominion cerrara mañana, tus activos siguen siendo tuyos.",
+    a: "Una cuenta segregada significa que tus activos se mantienen en custodia separada del balance general de Dominion y de cualquier otro cliente. Esto es diferente a depositar dinero en un banco, donde el banco utiliza tu depósito. La estructura de custodia segregada está diseñada para mantener tus activos separados del patrimonio del operador. Consultá los documentos contractuales para conocer el alcance exacto de la protección aplicable.",
   },
 ];
 
