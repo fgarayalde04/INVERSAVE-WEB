@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { FadeIn, QuoteBlock } from "@/components/ui";
 import { fmt, QUOTES } from "@/lib/utils";
@@ -124,12 +125,9 @@ export default function MentalidadSection() {
             >
               Comenzar mi plan
             </button>
-            <button
-              onClick={() => document.getElementById("sim")?.scrollIntoView({ behavior: "smooth" })}
-              className="btn-outline text-[14px]"
-            >
+            <Link href="/simulador" className="btn-outline text-[14px]">
               Simulá tu futuro
-            </button>
+            </Link>
           </div>
         </FadeIn>
       </div>
