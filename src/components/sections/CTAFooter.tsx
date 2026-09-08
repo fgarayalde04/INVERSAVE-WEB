@@ -78,7 +78,7 @@ export function Footer() {
           recomendación de inversión. Toda inversión implica riesgos, incluyendo pérdida de capital. Los
           rendimientos pasados no garantizan resultados futuros. Las simulaciones son meramente ilustrativas.
           Dominion Capital Strategies Limited está regulada por la Guernsey Financial Services Commission.
-          INVERTITE actúa como asesor bajo la estructura de Roble Capital Wealth Management,
+          INVERTITE es una iniciativa de Roble Capital Wealth Management,
           entidad regulada por el Banco Central del Uruguay.
         </p>
       </div>
